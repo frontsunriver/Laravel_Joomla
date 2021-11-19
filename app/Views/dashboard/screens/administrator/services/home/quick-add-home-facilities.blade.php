@@ -1,5 +1,4 @@
-<a class="btn btn-success waves-effect waves-light" href="javascript:void(0)" data-toggle="modal"
-   data-target="#hh-add-new-term-modal">
+<a class="btn btn-success waves-effect waves-light" href="javascript:showFacilitiesModal()" >
     <i class="ti-plus mr-1"></i>
     {{__('Create New')}}
 </a>
@@ -30,15 +29,16 @@
                                    placeholder="{{__('Name')}}">
                         @endforeach
                     </div>
-                    <div class="form-group">
-                        <label for="term_description">{{__('Description')}}</label>
-                        @foreach($langs as $key => $item)
-                            <textarea name="term_description{{get_lang_suffix($item)}}"
-                                      id="term_description{{get_lang_suffix($item)}}"
-                                      class="form-control {{get_lang_class($key, $item)}}"
-                                      placeholder="{{__('Description')}}"
-                                      @if(!empty($item)) data-lang="{{$item}}" @endif></textarea>
-                        @endforeach
+                    <div class="form-group" id="subnameGroup_add">
+                        <label for="term_sub_update">
+                            {{__('Subname')}}
+                        </label>
+                        <a href="javascript:addSubname();" class="btn btn-info float-right mb-3">Add</a>
+                        <input type="hidden" id="currentNum" name="currentNum" value="1">
+                        <input type="text" class="form-control hh-icon-input mb-3 has-validation has-translation"
+                            id="sub_name_add_1" name="sub_name_add_1"
+                            placeholder="">
+                        
                     </div>
                     <div class="form-group field-icon relative">
                         <label for="term_icon">

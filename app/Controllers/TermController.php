@@ -63,6 +63,17 @@ class TermController extends Controller
         $termIcon = request()->get('term_icon');
         $termPrice = request()->get('term_price');
         $taxonomyName = request()->get('taxonomy_name', '');
+        $current = request()->get('currentNum');
+
+        $value = array();
+        for($i = 1; $i <= (int)($current); $i++){
+            $val = request()->get('sub_name_add_'.$i);
+            if(!empty($val)){
+                array_push($value, $val);
+            }
+        }
+
+        $value = json_encode($value);
 
         if (empty(trim($termName))) {
             $this->sendJson([
@@ -92,6 +103,7 @@ class TermController extends Controller
             'term_price' => (float)$termPrice,
             'created_at' => time(),
             'author' => get_current_user_id(),
+            'term_select' => $value,
         ];
 
         $term = new Term();
@@ -163,6 +175,17 @@ class TermController extends Controller
         $termImage = request()->get('term_image');
         $termIcon = request()->get('term_icon');
         $termPrice = request()->get('term_price');
+        $current = request()->get('currentNum_update');
+
+        $value = array();
+        for($i = 1; $i <= (int)($current); $i++){
+            $val = request()->get('sub_name_update_'.$i);
+            if(!empty($val)){
+                array_push($value, $val);
+            }
+        }
+
+        $value = json_encode($value);
 
         if (!hh_compare_encrypt($termID, $termEncrypt)) {
             $this->sendJson([
@@ -189,6 +212,7 @@ class TermController extends Controller
             'term_image' => $termImage,
             'term_icon' => $termIcon,
             'term_price' => (float)$termPrice,
+            'term_select' => $value
         ];
 
         $termUpdated = $term->updateTerm($data, $termID);
