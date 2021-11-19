@@ -12,7 +12,7 @@
                 </div>
             @else
                 <?php
-                $serviceObject = get_post($newHome, 'home', true);
+                    $serviceObject = get_post($newHome, 'home', true);
                 ?>
                 <div class="row">
                     <div class="col-12 col-lg-8">

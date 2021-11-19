@@ -6,13 +6,15 @@ $options = Config::get('awebooking.' . $key);
 $facilities = get_terms('home-facilities');
 foreach ($facilities as $key => $field) {
     $item = [
-        'id' => strtolower($field),
-        'label' => awe_lang($field),
+        'id' => strtolower($field['title']),
+        // 'id' => 'facilities',
+        'label' => awe_lang($field['title']),
         'type' => 'checkbox',
-        'choices' => 'terms:home-amenity',
+        'choices' => 'terms:home-facilities',
         'field_type' => 'taxonomy',
         'style' => 'col',
-        'section' => 'amenities_options'
+        'section' => 'amenities_options',
+        'selection_val' => $field['selection_val'],
     ];
     array_push($options['fields'],$item);
 } 

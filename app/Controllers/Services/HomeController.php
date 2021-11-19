@@ -1397,6 +1397,22 @@ class HomeController extends Controller
             $post_title_field .= '_' . $current_lang;
         }
 
+        $facilities = get_terms('home-facilities');
+        $tmp = array();
+        foreach ($facilities as $key => $value) {
+            $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', strtolower($value['title'])));
+            // print_r($_POST['bed-room']);
+            // exit;
+            // if(in_array($idName, $_POST)) {
+            if(isset($_POST[$idName])){
+                $tmp[$value['title']] = $_POST[$idName];
+            }else {
+                $tmp[$value['title']] = null;
+            }
+            
+            // $tmp[$value['title']] = request()->get($idName);
+        }
+
         $fields = request()->get('currentOptions');
         $fields = unserialize(base64_decode($fields));
         if ($fields) {
@@ -1426,6 +1442,7 @@ class HomeController extends Controller
                 $data['status'] = 'pending';
             }
 
+            $data['facilities'] = json_encode($tmp);
             foreach ($fields as $field) {
                 $field = \ThemeOptions::mergeField($field);
                 $value = \ThemeOptions::fetchField($field);

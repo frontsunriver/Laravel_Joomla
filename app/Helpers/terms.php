@@ -48,9 +48,16 @@ function get_terms($taxonomy = 'home-type', $is_object = false)
             $return = $terms;
         } else {
             if ($terms) {
-                foreach ($terms as $item) {
-                    $return[$item->term_id] = esc_attr(get_translate($item->term_title));
+                if($taxonomy == 'home-facilities'){
+                    foreach ($terms as $item) {
+                        $return[$item->term_id] = array('title' => esc_attr(get_translate($item->term_title)), 'selection_val' => $item->term_select);
+                    }
+                }else{
+                    foreach ($terms as $item) {
+                        $return[$item->term_id] = esc_attr(get_translate($item->term_title));
+                    }
                 }
+                
             }
         }
     }

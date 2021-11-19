@@ -106,16 +106,19 @@ class ThemeOptions
             $choices = explode(':', $field['choices']);
             if (is_array($choices) && $choices[0] === 'terms') {
                 $value = [];
-                $terms = get_the_terms($serviceID, $choices[1]);
-                if (!is_null($terms)) {
-                    foreach ($terms as $term) {
-                        $value[] = $term->term_id;
+                if($choices[1] == 'home-facilities'){
+                    
+                }else {
+                    $terms = get_the_terms($serviceID, $choices[1]);
+                    if (!is_null($terms)) {
+                        foreach ($terms as $term) {
+                            $value[] = $term->term_id;
+                        }
                     }
+                    $field['value'] = implode(',', $value);
                 }
-                $field['value'] = implode(',', $value);
             }
         }
-
         if ($field['type'] == 'term_price') {
             $field['value'] = maybe_unserialize($field['value']);
         }
@@ -141,6 +144,10 @@ class ThemeOptions
     {
         $role = get_user_role(get_current_user_id(), 'slug');
         if (View::exists('options.fields.' . $field['type']) && in_array($role, $field['permission'])) {
+            // if(!in_array('selection_val', $field)) {
+            //     $filed['selection_val'] = '';
+            // }
+            // print_r($field);
             return view('options.fields.' . $field['type'], $field)->render();
         }
         return '';
@@ -393,7 +400,8 @@ class ThemeOptions
             'permission' => ['administrator', 'partner', 'customer'],// ['administrator', 'partner']
             'translation' => false,
             'seo_detect' => false,
-            'seo_put_to' => ''
+            'seo_put_to' => '',
+            'selection_val' => '',
         ];
     }
 
