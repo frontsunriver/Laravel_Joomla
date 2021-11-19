@@ -1,0 +1,819 @@
+.hh-options-wrapper {
+  position: relative;
+  width: 100%; }
+  .hh-options-wrapper .hh-options-tab .nav-pills {
+    margin-bottom: 20px; }
+    .hh-options-wrapper .hh-options-tab .nav-pills .nav-link {
+      margin-top: 10px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #7a7a7a;
+      letter-spacing: 1px;
+      border: 1px solid #DDD;
+      font-weight: 500; }
+      .hh-options-wrapper .hh-options-tab .nav-pills .nav-link .tab-icon {
+        margin-right: 10px; }
+      .hh-options-wrapper .hh-options-tab .nav-pills .nav-link.active {
+        border-color: #00acc1;
+        background: #00acc1;
+        color: #FFF; }
+      .hh-options-wrapper .hh-options-tab .nav-pills .nav-link:focus {
+        outline: none; }
+    .hh-options-wrapper .hh-options-tab .nav-pills.disabled-link .nav-link {
+      position: absolute;
+      visibility: hidden;
+      z-index: -1; }
+      .hh-options-wrapper .hh-options-tab .nav-pills.disabled-link .nav-link.active {
+        position: inherit;
+        visibility: visible;
+        z-index: inherit; }
+  .hh-options-wrapper .hh-options-tab-content > .tab-content {
+    padding-top: 0; }
+  .hh-options-wrapper .hh-options-tab-content .nav-pills > li > a, .hh-options-wrapper .hh-options-tab-content .nav-tabs > li > a {
+    font-weight: 500; }
+  .hh-options-wrapper .form-group .invalid-feedback {
+    display: none !important; }
+  .hh-options-wrapper .form-group .sub-label {
+    font-size: 13px; }
+  .hh-options-wrapper .field-desc {
+    color: #AAA;
+    margin-left: 8px;
+    float: right;
+    margin-top: 2px; }
+    .hh-options-wrapper .field-desc:hover {
+      color: #43B6C9;
+      cursor: pointer; }
+  .hh-options-wrapper .form-control .list,
+  .hh-options-wrapper .nice-select .list {
+    max-height: 350px;
+    overflow-y: auto; }
+  .hh-options-wrapper .input-none {
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    height: 0; }
+  .hh-options-wrapper textarea.form-control {
+    line-height: 1.6; }
+  .hh-options-wrapper .nice-select img {
+    max-width: 35px;
+    border-radius: 2px;
+    margin-right: 5px;
+    display: inline-block; }
+  .hh-options-wrapper .nice-select:after {
+    margin-top: -4px; }
+  .hh-options-wrapper .select2-container .select2-selection--single {
+    height: 50px;
+    border: 1px solid #ced4da; }
+  .hh-options-wrapper .select2-container .select2-selection--single .select2-selection__rendered {
+    color: #6c757d;
+    padding-left: 0;
+    padding-right: 0; }
+  .hh-options-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%); }
+    .hh-options-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow b {
+      margin-top: 0; }
+  .hh-options-wrapper .select2-container--open .select2-selection--single .select2-selection__arrow b {
+    border-color: transparent transparent #888 transparent !important;
+    border-width: 0 4px 5px 4px !important; }
+  .hh-options-wrapper textarea.form-control {
+    height: auto; }
+  .hh-options-wrapper input[type="number"] {
+    -moz-appearance: textfield; }
+  .hh-options-wrapper .field-location .mapbox-content {
+    width: 100%;
+    height: 380px;
+    margin-bottom: 20px; }
+  .hh-options-wrapper .field-location .hh-marker {
+    width: 40px;
+    height: 55px;
+    margin-top: -30px;
+    background: url("../images/map/marker.png") no-repeat center center;
+    background-size: 35px; }
+  .hh-options-wrapper .field-location .mapboxgl-marker:not(.hh-marker) {
+    display: none !important; }
+  .hh-options-wrapper [data-plugin="mapbox-geocoder"] {
+    position: relative;
+    border: none; }
+    .hh-options-wrapper [data-plugin="mapbox-geocoder"] .mapboxgl-ctrl-geocoder {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      max-width: 100%;
+      z-index: 2;
+      box-shadow: none; }
+      .hh-options-wrapper [data-plugin="mapbox-geocoder"] .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--icon-loading {
+        top: 25px;
+        margin-top: -13px; }
+      .hh-options-wrapper [data-plugin="mapbox-geocoder"] .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--icon {
+        display: none; }
+      .hh-options-wrapper [data-plugin="mapbox-geocoder"] .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--input {
+        border: 1px solid #ced4da;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: .9rem .9rem;
+        width: 100%;
+        box-shadow: none;
+        font-size: 14px;
+        border-radius: .2rem;
+        font-family: Poppins, sans-serif;
+        height: auto;
+        line-height: 1.5;
+        text-indent: 5px;
+        color: #6c757d; }
+      .hh-options-wrapper [data-plugin="mapbox-geocoder"] .mapboxgl-ctrl-geocoder .suggestions-wrapper .suggestions {
+        top: 0 !important;
+        margin-top: 50px;
+        border: solid 1px #cccccc;
+        box-shadow: none; }
+  .hh-options-wrapper [data-plugin="acejs"] {
+    min-height: 550px; }
+  .hh-options-wrapper .field-select2 span.select2 {
+    width: 100% !important; }
+  .hh-options-wrapper .field-ical .form-control {
+    padding-top: .6rem;
+    padding-bottom: .6rem; }
+  .hh-options-wrapper .field-ical button {
+    min-width: 115px; }
+  .hh-options-wrapper .field-select2_multiple span.select2 {
+    width: 100% !important; }
+  .hh-options-wrapper .field-select2_multiple .select2-container {
+    width: 100% !important; }
+    .hh-options-wrapper .field-select2_multiple .select2-container .select2-selection--multiple .select2-selection__choice {
+      background-color: #6658dd;
+      border: none;
+      color: var(--white);
+      border-radius: 3px;
+      padding: 5px 8px;
+      margin-top: 7px;
+      font-size: 0.75rem; }
+    .hh-options-wrapper .field-select2_multiple .select2-container .select2-selection--multiple .select2-selection__choice__remove {
+      color: var(--white);
+      margin-right: 5px; }
+    .hh-options-wrapper .field-select2_multiple .select2-container .select2-container--default .select2-results__option--highlighted[aria-selected] {
+      background-color: #6658dd; }
+    .hh-options-wrapper .field-select2_multiple .select2-container .select2-results__option {
+      padding: 6px 12px; }
+  .hh-options-wrapper .field-select2_multiple .select2-container--default .select2-results__option[aria-selected="true"] {
+    background-color: #cae4f0 !important;
+    color: #323a46; }
+  .hh-options-wrapper .field-select2_multiple .select2-container .select2-search--inline {
+    margin-top: 5px; }
+  .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-area {
+    padding: 60px 30px;
+    border: 2px dashed #CCC;
+    text-align: center; }
+    .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-area h2 {
+      font-size: 26px;
+      font-weight: normal;
+      color: #6c757d; }
+    .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-area .btn {
+      margin-top: 20px;
+      text-transform: uppercase;
+      border-radius: 0;
+      color: var(--white);
+      padding: 10px 110px;
+      background: #6658dd;
+      font-size: 14px; }
+    .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-area .desc {
+      margin-top: 20px;
+      color: #7a7a7a; }
+  .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-render {
+    margin-top: 20px; }
+    .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-render .gallery-item {
+      margin-bottom: 30px;
+      width: 100%;
+      position: relative; }
+      .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-render .gallery-item .gallery-image {
+        position: relative;
+        overflow: hidden; }
+        .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-render .gallery-item .gallery-image:after {
+          content: "";
+          display: block;
+          padding-top: 100%; }
+        .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-render .gallery-item .gallery-image img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          max-width: none;
+          max-height: 100%; }
+      .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-render .gallery-item .gallery-action {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 1; }
+        .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-render .gallery-item .gallery-action a {
+          color: #5f5f5f;
+          display: inline-block;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background: var(--white);
+          text-align: center;
+          line-height: 30px;
+          font-size: 13px; }
+          .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-render .gallery-item .gallery-action a:hover {
+            color: #ff4861; }
+        .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-render .gallery-item .gallery-action .hh-gallery-add-featured {
+          margin-right: 5px;
+          font-size: 14px; }
+          .hh-options-wrapper .field-media_advanced .hh-dashboard-upload-render .gallery-item .gallery-action .hh-gallery-add-featured.is-featured {
+            color: #ff4861; }
+  .hh-options-wrapper .field-upload .hh-upload-wrapper .attachments .attachment-item,
+  .hh-options-wrapper .field-uploads .hh-upload-wrapper .attachments .attachment-item {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 120px;
+    position: relative; }
+    .hh-options-wrapper .field-upload .hh-upload-wrapper .attachments .attachment-item .thumbnail,
+    .hh-options-wrapper .field-uploads .hh-upload-wrapper .attachments .attachment-item .thumbnail {
+      position: relative;
+      overflow: hidden; }
+      .hh-options-wrapper .field-upload .hh-upload-wrapper .attachments .attachment-item .thumbnail:after,
+      .hh-options-wrapper .field-uploads .hh-upload-wrapper .attachments .attachment-item .thumbnail:after {
+        content: "";
+        display: block;
+        padding-top: 100%; }
+      .hh-options-wrapper .field-upload .hh-upload-wrapper .attachments .attachment-item .thumbnail img,
+      .hh-options-wrapper .field-uploads .hh-upload-wrapper .attachments .attachment-item .thumbnail img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: none;
+        max-height: 100%; }
+  .hh-options-wrapper .field-upload .hh-upload-wrapper .remove-attachment,
+  .hh-options-wrapper .field-uploads .hh-upload-wrapper .remove-attachment {
+    display: inline-block;
+    margin-right: 15px;
+    color: #bc2b3e;
+    font-size: .85rem; }
+  .hh-options-wrapper .field-upload .hh-upload-wrapper .add-attachment,
+  .hh-options-wrapper .field-upload .hh-upload-wrapper .add-attachments,
+  .hh-options-wrapper .field-uploads .hh-upload-wrapper .add-attachment,
+  .hh-options-wrapper .field-uploads .hh-upload-wrapper .add-attachments {
+    display: inline-block;
+    color: var(--blue);
+    font-size: .85rem; }
+  .hh-options-wrapper .field-permalink .input-group .input-group-text,
+  .hh-options-wrapper .field-permalink .input-group .form-control {
+    height: auto;
+    padding: .5rem .7rem;
+    font-size: 0.7rem;
+    line-height: 1.5; }
+  .hh-options-wrapper .field-permalink .input-group .form-control {
+    padding-left: 5px;
+    padding-right: 5px; }
+  .hh-options-wrapper .field-radio .radio {
+    margin-left: 5px;
+    margin-bottom: 5px; }
+  .hh-options-wrapper .field-checkbox .checkbox, .hh-options-wrapper .field-checkbox_pro .checkbox {
+    margin-top: 10px;
+    margin-left: 5px; }
+    .hh-options-wrapper .field-checkbox .checkbox label, .hh-options-wrapper .field-checkbox_pro .checkbox label {
+      padding-left: 20px;
+      font-size: 13px;
+      cursor: pointer; }
+      .hh-options-wrapper .field-checkbox .checkbox label:after, .hh-options-wrapper .field-checkbox .checkbox label:before, .hh-options-wrapper .field-checkbox_pro .checkbox label:after, .hh-options-wrapper .field-checkbox_pro .checkbox label:before {
+        margin-left: -5px; }
+    .hh-options-wrapper .field-checkbox .checkbox input[type="checkbox"], .hh-options-wrapper .field-checkbox_pro .checkbox input[type="checkbox"] {
+      display: none; }
+    .hh-options-wrapper .field-checkbox .checkbox input[type="checkbox"]:checked + label::after, .hh-options-wrapper .field-checkbox_pro .checkbox input[type="checkbox"]:checked + label::after {
+      top: 4px; }
+    .hh-options-wrapper .field-checkbox .checkbox input[type="checkbox"]:checked + label::before, .hh-options-wrapper .field-checkbox_pro .checkbox input[type="checkbox"]:checked + label::before {
+      top: 0; }
+    .hh-options-wrapper .field-checkbox .checkbox input[type="checkbox"] + label::before, .hh-options-wrapper .field-checkbox_pro .checkbox input[type="checkbox"] + label::before {
+      top: 0; }
+  .hh-options-wrapper .field-range input[type="number"] {
+    width: 50px;
+    float: right;
+    margin-top: -28px; }
+  .hh-options-wrapper .field-editor .cke .cke_contents {
+    min-height: 350px; }
+  .hh-options-wrapper .field-editor .cke {
+    border: none; }
+    .hh-options-wrapper .field-editor .cke .cke_inner {
+      border: 1px solid #ced4da;
+      border-radius: .2rem; }
+    .hh-options-wrapper .field-editor .cke .btn-add-image-editor {
+      background: #fff;
+      color: #222;
+      border: 1px solid #bbb;
+      font-size: 12px;
+      margin-bottom: 5px;
+      border-radius: 3px; }
+      .hh-options-wrapper .field-editor .cke .btn-add-image-editor .hh-icon {
+        margin-right: 5px; }
+      .hh-options-wrapper .field-editor .cke .btn-add-image-editor:focus, .hh-options-wrapper .field-editor .cke .btn-add-image-editor:active {
+        box-shadow: none; }
+  .hh-options-wrapper .field-editor.has-editor-translation .cke .cke_inner {
+    border-left: 3px solid #1abc9c; }
+  .hh-options-wrapper .field-calendar {
+    position: relative; }
+    .hh-options-wrapper .field-calendar > label {
+      float: left;
+      width: 100%; }
+    .hh-options-wrapper .field-calendar .hh-calendar-tips {
+      position: absolute;
+      top: 0;
+      right: 0; }
+      .hh-options-wrapper .field-calendar .hh-calendar-tips .item {
+        display: inline-block;
+        margin-left: 30px; }
+        .hh-options-wrapper .field-calendar .hh-calendar-tips .item span {
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          margin-right: 10px; }
+          .hh-options-wrapper .field-calendar .hh-calendar-tips .item span.not-available-color {
+            background: #CCC; }
+          .hh-options-wrapper .field-calendar .hh-calendar-tips .item span.available-color {
+            background: #7ecaa5; }
+    .hh-options-wrapper .field-calendar .daterangepicker {
+      border-radius: 0;
+      border: none;
+      box-shadow: none !important;
+      position: relative;
+      top: 2rem !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      z-index: 1 !important; }
+      .hh-options-wrapper .field-calendar .daterangepicker:before {
+        border: none; }
+      .hh-options-wrapper .field-calendar .daterangepicker .calendar.left {
+        max-width: 100%; }
+        .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .table-header {
+          position: relative;
+          margin-bottom: 20px; }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .table-header .month {
+            font-size: 20px;
+            text-align: center;
+            line-height: 48px;
+            font-weight: 500; }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .table-header .next {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            float: right;
+            width: 48px;
+            height: 48px;
+            background: url("../images/arrow_right.png") no-repeat right center;
+            cursor: pointer;
+            z-index: 9; }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .table-header .prev {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            float: left;
+            width: 48px;
+            height: 48px;
+            background: url("../images/arow_left.png") no-repeat left center;
+            cursor: pointer;
+            z-index: 9; }
+        .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .table-sub-header {
+          border-top: 1px solid #eeeeee; }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .table-sub-header:after {
+            content: '';
+            display: table;
+            clear: both; }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .table-sub-header .day-of-week {
+            width: 92px;
+            height: 92px;
+            line-height: 92px;
+            float: left;
+            text-align: center;
+            color: #7a7a7a;
+            font-size: 18px; }
+        .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .table-condensed * {
+          box-sizing: border-box; }
+        .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .td-date {
+          width: 92px;
+          height: 92px;
+          padding: 3px;
+          color: #CCC;
+          font-size: 15px;
+          background: transparent !important; }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .td-date .event {
+            display: none; }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .td-date .date {
+            line-height: 85px;
+            background: #f9f9f9; }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .td-date.disabled {
+            text-decoration: none; }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .td-date.today:not(.td-no-show) {
+            position: relative; }
+            .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .td-date.today:not(.td-no-show):after {
+              content: '';
+              bottom: -4px;
+              right: -4px;
+              width: 0;
+              height: 0;
+              border: 7px solid transparent;
+              border-bottom: 7px solid #f57d8f;
+              position: absolute;
+              transform: rotate(135deg); }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .td-date.available {
+            color: var(--white); }
+            .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .td-date.available .date {
+              background: #7ecaa5; }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .td-date.toggle_available.available .date {
+            background: #f9f9f9;
+            color: #CCC; }
+          .hh-options-wrapper .field-calendar .daterangepicker .calendar.left .td-date.toggle_available.available:hover .date {
+            background: #edf6f6; }
+  .hh-options-wrapper .field-editor .wp-editor-tabs {
+    float: left; }
+    .hh-options-wrapper .field-editor .wp-editor-tabs button {
+      border-top-left-radius: .2rem;
+      border-top-right-radius: .2rem;
+      border-color: #ced4da; }
+      .hh-options-wrapper .field-editor .wp-editor-tabs button:first-child {
+        margin-left: 0; }
+  .hh-options-wrapper .field-editor .wp-editor-container {
+    border-radius: .2rem;
+    border-color: #ced4da; }
+  .hh-options-wrapper .field-editor div.mce-toolbar-grp {
+    border: none; }
+  .hh-options-wrapper .field-availability .hh-availability {
+    position: relative;
+    display: flex;
+    justify-content: center; }
+    .hh-options-wrapper .field-availability .hh-availability .daterangepicker {
+      border-radius: 0;
+      border: none;
+      box-shadow: none !important;
+      position: static !important;
+      z-index: 1; }
+      .hh-options-wrapper .field-availability .hh-availability .daterangepicker:before {
+        border: none; }
+      .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left {
+        max-width: 100%; }
+        .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .table-header {
+          position: relative;
+          margin-bottom: 20px; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .table-header .month {
+            font-size: 1.5rem;
+            text-align: center;
+            line-height: 48px;
+            font-weight: 500; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .table-header .next {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            float: right;
+            width: 48px;
+            height: 48px;
+            background: url("../images/arrow_right.png") no-repeat right center;
+            cursor: pointer;
+            z-index: 9; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .table-header .prev {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            float: left;
+            width: 48px;
+            height: 48px;
+            background: url("../images/arow_left.png") no-repeat left center;
+            cursor: pointer;
+            z-index: 9; }
+        .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .table-sub-header {
+          border-top: 1px solid #eeeeee; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .table-sub-header:after {
+            content: '';
+            display: table;
+            clear: both; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .table-sub-header .day-of-week {
+            width: 92px;
+            height: 92px;
+            line-height: 92px;
+            float: left;
+            text-align: center;
+            color: #7a7a7a;
+            font-size: 1rem; }
+        .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .table-condensed * {
+          box-sizing: border-box; }
+        .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date {
+          width: 92px;
+          height: 92px;
+          padding: 3px;
+          color: #CCC;
+          font-size: 0.875rem;
+          background: transparent !important;
+          position: relative; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event {
+            display: none; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .date {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            line-height: 1;
+            z-index: 0; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.disabled {
+            text-decoration: none; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.today:not(.td-no-show) {
+            position: relative; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.today:not(.td-no-show):after {
+              content: '';
+              position: absolute;
+              width: 8px;
+              height: 8px;
+              top: 15px;
+              right: 15px;
+              border-radius: 50%;
+              background: #fd566f; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.available {
+            color: #008489; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.available .date {
+              background: #edf6f6; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.toggle_available.available .date {
+            background: #f9f9f9; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.toggle_available.available:hover .date {
+            background: #edf6f6; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event {
+            display: block;
+            height: 100%;
+            background: #EEE; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event .booking-item {
+              position: relative;
+              height: 100%; }
+              .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event .booking-item .author {
+                position: relative; }
+                .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event .booking-item .author:after {
+                  content: '';
+                  position: absolute;
+                  top: 50%;
+                  left: 10px;
+                  width: 50px;
+                  height: 20px;
+                  margin-top: -10px;
+                  display: block;
+                  z-index: -1; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event.incomplete .booking-item:after {
+              background: #f7b84b; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event.incomplete .booking-item .author:after {
+              background: #f7b84b; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event.incomplete.completed .author:after {
+              background: var(--blue); }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event.completed .booking-item:after {
+              background: var(--blue); }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event.completed .booking-item .author:after {
+              background: var(--blue); }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event.completed.incomplete .author:after {
+              background: #f7b84b; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event.pending .booking-item:after {
+              background: #516a77; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event.pending .booking-item .author:after {
+              background: #516a77; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event.pending.incomplete .author:after {
+              background: #f7b84b; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.start-group {
+            position: relative; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.start-group .event {
+              z-index: 1; }
+              .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.start-group .event .booking-item .author {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateY(-50%); }
+                .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.start-group .event .booking-item .author img {
+                  max-width: 35px;
+                  border-radius: 50%; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.in-group .event .booking-item {
+            position: relative;
+            height: 100%; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.in-group .event .booking-item:after {
+              content: '';
+              display: block;
+              position: absolute;
+              top: 50%;
+              left: 0;
+              width: calc(100% + 10px);
+              height: 20px;
+              margin-top: -10px; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.in-group .event .booking-item .author:after {
+              right: 0;
+              left: auto; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.in-group .event .booking-item .author img {
+              display: none; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.in-group.sunday .event .booking-item:after {
+            width: 100%; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.end-group:not(.start-group) .event .booking-item {
+            position: relative;
+            height: 100%; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.end-group:not(.start-group) .event .booking-item:after {
+              content: '';
+              display: block;
+              position: absolute;
+              top: 50%;
+              left: 0;
+              width: 50%;
+              height: 20px;
+              margin-top: -10px;
+              border-radius: 0 10px 10px 0; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.end-group:not(.start-group) .event .booking-item .author img {
+              display: none; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.end-group.start-group .event .booking-item .author {
+            top: 50%;
+            transform: translateY(-50%); }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.end-group.start-group .event .booking-item .author:after {
+              right: -20px;
+              left: auto; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.end-group.start-group .event .booking-item:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 50%;
+            height: 20px;
+            margin-top: -10px;
+            border-radius: 0 10px 10px 0; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event .booking-item.booking-item-time {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event .booking-item.booking-item-time .item {
+              background: #00acc1;
+              font-size: 0.6rem;
+              padding: 2px 3px;
+              border-radius: 2px;
+              color: var(--white); }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .event .booking-item.booking-item-time:after {
+              position: static !important;
+              display: none !important; }
+      @media (max-width: 767px) {
+        .hh-options-wrapper .field-availability .hh-availability .daterangepicker {
+          width: auto !important; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .table-sub-header .day-off-week {
+            width: 65px;
+            height: 65px;
+            line-height: 65px; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date {
+            width: 65px;
+            height: 65px; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .date {
+              line-height: 65px; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date.today:not(.td-no-show)::after {
+              top: 5px;
+              right: 5px;
+              width: 4px;
+              height: 4px; } }
+      @media (max-width: 600px) {
+        .hh-options-wrapper .field-availability .hh-availability .daterangepicker {
+          width: auto !important; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .table-sub-header .day-off-week {
+            width: 45px;
+            height: 45px;
+            line-height: 45px; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date {
+            width: 45px;
+            height: 45px; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .date {
+              line-height: 45px; } }
+      @media (max-width: 450px) {
+        .hh-options-wrapper .field-availability .hh-availability .daterangepicker {
+          width: auto !important; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .table-sub-header .day-off-week {
+            width: 34px;
+            height: 34px;
+            line-height: 34px;
+            font-size: 1.4rem; }
+          .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date {
+            width: 34px;
+            height: 34px;
+            font-size: 1.4rem; }
+            .hh-options-wrapper .field-availability .hh-availability .daterangepicker .calendar.left .td-date .date {
+              line-height: 34px; } }
+  .hh-options-wrapper .field-icon .render {
+    border: none !important;
+    padding: 0 !important; }
+  .hh-options-wrapper .field-images .hh-upload-wrapper .attachments {
+    display: inline-block;
+    float: left; }
+    .hh-options-wrapper .field-images .hh-upload-wrapper .attachments .attachments-item {
+      position: relative;
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      margin-right: 5px; }
+      .hh-options-wrapper .field-images .hh-upload-wrapper .attachments .attachments-item img {
+        width: 100%;
+        height: auto;
+        display: block; }
+      .hh-options-wrapper .field-images .hh-upload-wrapper .attachments .attachments-item .hh-attachments-delete {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #f1556c;
+        z-index: 9;
+        cursor: pointer;
+        display: none;
+        font-size: 20px; }
+      .hh-options-wrapper .field-images .hh-upload-wrapper .attachments .attachments-item:hover:after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: block;
+        background: rgba(255, 255, 255, 0.7);
+        z-index: 1; }
+      .hh-options-wrapper .field-images .hh-upload-wrapper .attachments .attachments-item:hover .hh-attachments-delete {
+        display: block; }
+  .hh-options-wrapper .field-images .hh-upload-wrapper .add-attachments {
+    float: left;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border: 1px dashed #CCC;
+    text-align: center;
+    line-height: 80px;
+    color: var(--blue);
+    font-size: 20px; }
+  .hh-options-wrapper .field-colorpicker .color {
+    width: 50px; }
+  .hh-options-wrapper .sub-label input {
+    margin-right: 10px; }
+  .hh-options-wrapper .field-google_font .hh-font-variants,
+  .hh-options-wrapper .field-google_font .hh-font-subsets {
+    padding-left: 35px;
+    margin-top: 15px; }
+    .hh-options-wrapper .field-google_font .hh-font-variants .checkbox,
+    .hh-options-wrapper .field-google_font .hh-font-subsets .checkbox {
+      margin-top: 3px;
+      width: 50%;
+      float: left; }
+  .hh-options-wrapper .field-range input[type="number"] {
+    padding-right: 0; }
+  .hh-options-wrapper .field-list_item .hh-list-items {
+    list-style: none;
+    padding-left: 0; }
+    .hh-options-wrapper .field-list_item .hh-list-items li {
+      margin-bottom: 5px; }
+      .hh-options-wrapper .field-list_item .hh-list-items li .hh-list-item-heading {
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        height: 45px;
+        background: #EEE;
+        line-height: 45px; }
+        .hh-options-wrapper .field-list_item .hh-list-items li .hh-list-item-heading .close {
+          font-size: 15px;
+          float: right;
+          display: inline-block;
+          color: #da5050; }
+        .hh-options-wrapper .field-list_item .hh-list-items li .hh-list-item-heading .edit {
+          float: right;
+          margin-right: 15px;
+          display: inline-block;
+          margin-left: auto; }
+      .hh-options-wrapper .field-list_item .hh-list-items li .render {
+        padding: 5px;
+        border: 1px solid #EEE;
+        display: none;
+        flex-wrap: wrap; }
+        .hh-options-wrapper .field-list_item .hh-list-items li .render.toggleFlex {
+          display: flex; }
+        .hh-options-wrapper .field-list_item .hh-list-items li .render label {
+          font-size: 13px; }
+        .hh-options-wrapper .field-list_item .hh-list-items li .render .form-control,
+        .hh-options-wrapper .field-list_item .hh-list-items li .render .nice-select {
+          padding: .6rem .7rem;
+          font-size: 13px; }
+          .hh-options-wrapper .field-list_item .hh-list-items li .render .form-control .list,
+          .hh-options-wrapper .field-list_item .hh-list-items li .render .nice-select .list {
+            max-height: 320px; }
+        .hh-options-wrapper .field-list_item .hh-list-items li .render .field-range input[type="number"] {
+          margin-top: -22px; }
+        .hh-options-wrapper .field-list_item .hh-list-items li .render .nice-select:after {
+          margin-top: -2px; }
+        .hh-options-wrapper .field-list_item .hh-list-items li .render .select2-container .select2-selection--single {
+          height: 40px; }
+        .hh-options-wrapper .field-list_item .hh-list-items li .render .select2-container .select2-selection--single .select2-selection__rendered {
+          line-height: 40px; }
+      .hh-options-wrapper .field-list_item .hh-list-items li.ui-sortable-helper {
+        opacity: 0.7; }
+
+.select2-container.select2-container--open {
+  z-index: 10000; }
+
+#hh-media-frame-modal .hh-media-upload-area {
+  background: var(--white); }
+  #hh-media-frame-modal .hh-media-upload-area .hh-dropzone {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }

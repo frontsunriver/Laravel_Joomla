@@ -1,0 +1,23 @@
+.modal .modal-body .nav-bordered .nav-item .nav-link::after{
+    right: 0;
+    left: auto;
+}
+.hh-dashboard .profile-preview .avatar-preview .media-body{
+    margin-left: 0;
+    margin-right: 20px;
+}
+.hh-dashboard .card-box .header-area form{
+    margin-right: auto;
+    margin-left: 0;
+}
+.hh-dashboard .card-box .header-area form [type="submit"]{
+    left: 0;
+    right: auto;
+}
+.hh-dashboard .page-title-box .page-title-right{
+    float: left;
+}
+.hh-dashboard #hh-dashboard-service-preview .thumbnail .avatar{
+    left: 20px;
+    right: auto;
+}

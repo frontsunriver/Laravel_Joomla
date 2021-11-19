@@ -1,0 +1,1238 @@
+Card Number
+Card Month
+Card Year
+Card CVV
+Credit Card details are incorrect, please try again.
+2Checkout
+Enable
+Logo
+Sandbox Mode
+Seller ID
+Publishable Key
+Private Key
+Description
+This currency is not supported by 2Checkout
+Successful booking
+Authorize.Net
+Login ID
+Transaction Key
+Successfully created transaction with Transaction ID: %s
+No response returned
+Cancelled the Approval
+Get the error: Code %s - Message %s
+FlutterWave
+Public Key
+Secret Key
+Business Name
+Created payment successfully. It will be redirected to Flutter Checkout to complete
+Error when create payment
+This payment is completed
+This payment is incomplete
+This payment is cancelled
+Korta.is
+Merchant ID
+Terminal ID
+Secret Code
+%s is required for this payment
+Created payment successfully. The system is redirecting
+Done
+Clean
+Nothing to clean
+Optimize Tool
+Cleaning
+Home Price Expired
+Experience Price Expired
+Temp Data
+Trash Items
+Old Notifications
+Clean up expired availability, revision items, temp data ...
+PayUMoney
+Merchant Key
+Merchant Salt
+•••• •••• •••• ••••
+CVV
+Postal
+Expiration
+Square
+Application ID
+Access Token
+Location ID
+The booking has been canceled
+Has error when process. Try again!
+Executed Payment. The Payment is: %s
+VNPay
+Website Code
+Checksum Code
+Bank Code
+Executed Payment.
+Transaction failed
+Order not found
+Unknow error: %s
+WorldPay
+Service Key
+Client Key
+Settlement Currency
+The payment is completed
+Error creating payment
+Error message: %s
+%s has been captured
+Created API key successfully
+System Alert
+the Addon url is invalid
+The addon has been updated successfully
+Can not extract the addon
+Can not update this Addon. Try again!
+Can not install this Addon. Try install again!
+This addon is not installed
+Can not remove this Addon. Try again!
+This Addon is deleted
+The addon has been installed successfully
+Can not install this Addon. Try again!
+Can not get data
+Created post successfully
+Can not create post
+The email is required
+The password is required
+The password has at least 6 characters
+Please agree with the Term and Condition
+The email does not exist
+Can not reset password for this account. Try again!
+[%s] You have changed the password
+Can not send email.
+Successfully! Please check your email for a new password.
+User is not activated
+Your account has been suspended due to 5 failed attempts. Try again after 15 minutes.
+Logged in successfully. Redirecting ...
+The email or password is incorrect
+Successfully Logged out
+Booking at %s
+This booking is changed
+This booking is not available
+Get the invoice successfully
+You need to login before making payments
+First name is required
+Last name is required
+Email is required
+Email is invalid
+Phone is required
+Address is required
+Payment gateway is required
+Your request was denied
+This payment gateway is not available
+Cart is empty
+Can not create new booking. Please try again!
+This payment gateway is missing purchase() method
+Saved user data successfully
+This email already exists. Please login and continue
+The data is invalid
+Updated Successfully
+Have error when saving
+This data is invalid
+comment
+review
+This %s is deleted
+Can not delete this %s
+This %s is invalid
+Review function was closed
+Add new %s successfully
+Add new %s successfully. Your comment needs to be moderated before publishing
+Add new %s successfully. Your review needs to be moderated before publishing
+Can not add this %s
+Some fields is incorrect
+The coupon code is removed
+This service is not available
+Coupon code does not apply to this service
+This coupon code has been successfully applied
+This coupon is invalid
+This coupon is not available
+This coupon is available
+this Coupon is invalid
+this Coupon is deleted
+Can not delete this coupon
+Can not update this coupon
+this Coupon is exists
+Created Successfully
+Can not create this coupon
+This range is not available
+Updated successfully
+Can not update this range
+Can not save data. This service is invalid
+Successfully
+Have error when delete custom price
+The price is incorrect
+Select time to set availabile
+Month is incorrect
+Year is incorrect
+Valid!
+Added Successfully
+Created successfully
+This service does not exist
+Successfully get QR Code
+This user does not exist
+Updated payout information successfully
+Updated password successfully
+Not found icons
+Not found icons data
+Can not update this user. Try again!
+This user is invalid
+Can not use this email
+This payout is not available
+This item is not available
+This action is invalid
+Deleted successfully
+The email is incorrect
+Please enter the title
+[%s] Has new message from %s
+Successfully sent
+[1::%s icon has been upload successfully][2::%s icons has been upload successfully]
+Please select .ZIP file format
+No icons imported
+You need choose font file before importing
+Your System Password is incorrect
+Your site has been imported at %s
+Your site has been imported
+The email address is incorrect
+Sent email. Please check your mailbox
+Error when delete: [ID %s]
+Bulk action successfully
+Data is invalid
+Delete
+Can not update this attachment
+Not found this attachment
+Loaded successfully
+Loaded Media
+Not found media
+The attachment %s is uploaded successfully
+Have error when uploading
+This file is invalid
+This attachment is unavailable
+Can not access this attachment
+This attachment is not stored
+Can not delete this attachment
+This menu is invalid
+This Menu is deleted
+Can not delete this menu
+This Menu is invalid
+Created menu successfully
+Updated menu successfully
+Please create new menu before doing it
+No notification yet
+Can not get notification
+Can not delete this notification
+[1::%s booking][2::%s bookings]
+Buyer
+From
+To
+Number
+Status
+User Avatar
+No items found yet
+Date
+Time
+Guest
+Reservations on %s
+Saved successfully
+Have error when saving data
+Data invalid
+This page is invalid
+This Page is deleted
+Can not delete this page
+This Page is invalid
+Can not update this page
+This post is invalid
+This Post is deleted
+Can not delete this post
+This Post is invalid
+Can not update this post
+This post is not available
+Can not save SEO data. [Error: DB]
+Can not save SEO data
+Name is required
+This email is incorrect
+Message is required
+This service is invalid
+[%s] Have a booking request from [Car ID: %s] -  %s
+[%s] Have a booking request from [Car ID: %s] - %s
+Sent! Please wait for a response from the partner
+Please select a valid datetime
+This car is unavailability
+The Car is not exist
+Successfully Deleted
+Has error when delete this Car
+Can not save meta for this service
+This car is not available
+Saved Successful
+The car is not exist
+Duplicated new car successful
+Can not duplicate
+[1::This tour is available for %s guest][2::This tour is available for %s guests]
+Unavailable
+[%s] Have a booking request from [Experience ID: %s] - %s
+This experience is not available
+This experience is not available in this time
+The maximum number of people is %s
+This package is not available
+This date range is available
+Total
+Adults
+Children
+Infants
+---- Select ----
+This date is unavailable
+Available
+The experience is not exist
+Has error when delete this experience
+Duplicated new experience successful
+[1::The min stay is %s hour][2::The min stay is %s hours]
+[1::The max stay is %s hour][2::The max stay is %s hours]
+[1::The min stay is %s day][2::The min stay is %s day]
+[1::The max stay is %s day][2::The max stay is %s day]
+Booking ID: %s
+[%s] Have a booking request from [Home ID: %s] - %s
+Not found
+This home is not available
+This date range is not available
+Booked
+The home is not exist
+Has error when delete this home
+Duplicated new home successful
+Saved Successfully
+Some problem occurred, please try again.
+the Term Name is required
+Taxonomy is not available
+Can not create new term
+This term is invalid
+Can not delete this term
+Can not update this term
+This term is updated
+This category is invalid
+This tag is invalid
+Update successfully
+Update failed
+This language is invalid
+This language is deleted
+Can not delete this language
+This Language is invalid
+Can not update this language
+Language is required
+Flag is required
+This language already exists
+Update language successfully
+Can not edit this language
+Create new language successfully
+Can not create this language
+Scan failed
+No text translation
+Translate failed
+Please choose language before translating
+Translated successfully
+Deleted scripts cache
+Has updated version %s
+Can not access this action
+Can not access this action. Please check the password.
+Updated media link successfully
+Updated tax option successfully
+Updated term relation successfully
+There is no request from this account
+Can not active this user. Try again!
+Approved successfully
+Has error when approve this user.
+Successful
+This featured is not available
+The First Name is required
+The Last Name is required
+The Gender is required
+The Phone is required
+The Address is required
+The Email is required
+The City is required
+This user already exists
+Successfully updated
+Has error when updating
+This member has been deleted
+This user assign does not exist
+This user has been deleted
+This email has been registered
+Can not create user
+Successfully created new user
+Car Type
+Car Features
+hour
+day
+Experience Languages
+Avatar
+people
+Attachment
+Publish
+Pending
+Laravel App
+Awesome Booking System
+Image
+night
+Home Type
+Home Amenity
+Back
+Menu name
+Menu URL
+Open link in a new tab
+Type:
+Origin:
+Written by
+Thumbnail
+Invalid Email address
+Can not create new user
+Registered successfully
+%1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead.
+%1$s is <strong>deprecated</strong> since version %2$s with no alternative available.
+Token mismatch
+Invalid token
+Can not access
+We use cookies to offer you a better browsing experience, personalise content and ads, to provide social media features and to analyse our traffic. Read about how we use cookies and how you can control them by clicking Cookie Settings. You consent to our cookies if you continue to use this website.
+Cookie settings
+Accept cookies
+Our cookie statement
+Save settings
+Always on
+Essential website cookies
+Necessary cookies help make a website usable by enabling basic functions like page navigation and access to secure areas of the website. The website cannot function properly without these cookies.
+Performance cookies
+These cookies are used to enhance the performance and functionality of our websites but are non-essential to their use. For example it stores your preferred language or the region that you are in.
+Analytics cookies
+We use analytics cookies to help us measure how users interact with website content, which helps us customize our websites and application for you in order to enhance your experience.
+Marketing cookies
+These cookies are used to make advertising messages more relevant to you and your interests. The intention is to display ads that are relevant and engaging for the individual user and thereby more valuable for publishers and third party advertisers.
+Apply
+Cancel
+Custom
+Sun
+Mo
+Tu
+We
+Th
+Fr
+Sa
+January
+February
+March
+April
+May
+June
+July
+August
+September
+October
+November
+December
+Today
+[%s] You have registered a new account
+Subscribe successfully. Thanks for registering for our email list
+Have an error when submit this form
+[%s] - Your partner registration request has been approved
+[%s] - Your user registration request has been approved
+[%s] - You have successfully created an account
+[%s] - A new customer registration needs approval
+[%s] - A new registration partner needs approval
+[%s] - Your payout in %s has been confirmed and paid.
+[%s] - We are processing your payout in %s
+[%s] Booking Confirmation
+[%s] Your booking (%s) at %s
+[%s] %s has booked your service - Booking ID: %s
+[%s] There is a new booking on your system - Booking ID: %s
+A new booking at <strong>%s</strong> from %s to %s
+A new booking <a href="%s">#%s</a>
+Your booking <a href="%s">#%s</a>
+New Home - %s
+Bank Transfer
+The system is redirecting
+Paypal
+Test Mode
+Client ID
+Client Secret
+The system will be redirect to the Paypal
+Have error when processing: Code %s - Message %s
+Stripe
+The booking has not been completed
+Can not create booking. Try again!
+Create New
+Dashboard
+Coupon Code
+Recommended: Letters, numbers
+Coupon Description
+Enter more detail
+Coupon Type
+Fixed
+Percent
+Coupon Price
+Price
+Service Type
+Apply All Services
+Start Date
+End Date
+by
+About Us
+Help
+Contact Us
+Free
+Package time
+Unlimited
+Commisson
+Select
+ID
+File name
+File type
+File size
+Uploaded on
+Title
+Alternative Text
+Uploaded By
+View
+Are you sure want to delete this media?
+Delete it!
+Page not found
+Package Name
+Package Price ($)
+Package Time (days)
+Package Commission (%)
+Package Description
+Gender
+Full Name
+Mobile
+Address
+Country
+ZipCode
+Payout Information
+Payment Information
+Payout ID
+Amount
+Name
+Email
+Payment Detail
+QR Code
+Add new Coupon
+Add New
+Add new Package
+Leave empty for Free
+Leave empty for Unlimited
+Add new User
+First Name
+Last Name
+(Optional)
+Role
+Password
+Create Password
+Settings
+Quick Settings
+Main Color
+Enable Review
+Partner Commission
+Mapbox Key
+Google Font Key
+Enable Lazy Load
+Enable GDPR Cookie
+Enable SEO Tools
+Use Google Captcha?
+Placeholder
+Image Profile
+Name of Car
+Auto
+5 Reviews
+Action
+Delete this item?
+Are you sure to delete this item?
+[1::%s hour][2::%s hours]
+[1::%s day][2::%s days]
+Transaction
+Customer
+Owner
+Booking ID
+Service Name
+Duration
+Equipments
+Insurance Plan
+Payment Method
+Not Available
+Base Price
+Equipment Price
+Insurance Price
+Coupon
+Sub Total
+Tax
+Phone
+Note
+Max. People
+Adult
+Child
+Infant
+Max.
+City
+Title of Experience
+Featured
+Package
+No. Guest
+Extra
+Title of Home
+/night
+:number guests
+:number beds
+:number baths
+Check In/Out
+Search booking...
+Notification
+View all
+Welcome !
+Goto Home
+Profile
+Home
+Experience
+Car
+Logout
+New Post
+New Page
+New Home
+New Experience
+New Car
+New Coupon
+Your Package
+Buy Package
+Enter your account to access dashboard.
+Email address
+Enter your email
+Enter your password
+Remember me
+Log In
+Log in with
+Forgot your password?
+Back to
+Sign Up
+Don't have an account?
+Reset Password
+Login
+Enter your email address and we'll send you an email with instructions to reset your password.
+All Add-ons
+Can not create shortcut for Add-ons folder.<br/> Please read this document to resolve it: <a href="%s" target="_blank">How to create shortcut for Add-ons folder</a>
+Update
+Uninstall
+Install
+Not Extensions yet
+All Reservations
+Search by id, boking id, email
+Export to CSV
+Export to PDF
+All
+Created Date
+Actions
+Invoice
+No bookings yet.
+Booking Detail
+Close
+APIs
+Copy
+New Key
+All Coupons
+Search by id, code
+ON
+OFF
+Applied Date
+Edit
+No coupon yet.
+Update Coupon
+Balance:
+Net Earning:
+Earning:
+Payout:
+You can make payout with this balance
+Balance
+Total amount of owner after minus all the fees (commission) for administrator
+Net Earning
+Your total amount
+Earning
+The total of withdrawals
+Payout
+Completed
+Incomplete
+Canceled
+Refunded
+Booking Analytics
+This month
+Last month
+This week
+Last week
+The newest bookings
+Export PDF
+Email Checker
+Send a Test email
+Send To:
+Subject
+Demo Content:
+This is a test mail sent from AweBooking
+Send Now
+Import Icon Fonts
+Drop files here or click to upload.
+File #_# has been selected
+Upload Now
+Upload a .zip file that includes the svg fonts. <br/>Reference: <a target="_blank" href="https://www.flaticon.com/">flaticon.com</a>
+Languages
+Setup Languages
+Language
+Flag Icon
+No Flags
+Display name
+Right to Left
+Add new
+All Languages
+Search by code, name
+Flag
+No languages yet.
+Media library
+new
+Bulk Actions
+Check All
+Size/Type
+Author
+Attachment Details
+No car found
+Add to menu
+Categories
+No categories found
+No experience found
+No home found
+Custom Link
+URL
+Pages
+No pages found
+Posts
+No posts found
+Tags
+No tags found
+Select menu:
+--- Select ---
+or create a new menu.
+Menu structure
+Save menu
+No menu selected.
+Menu name:
+Display location
+None
+Confirm Delete
+Are you sure want to delete this menu?
+Delete this menu
+Add menu item
+Menu
+Notifications
+#ID
+Message
+Type
+Created at
+No notification yet.
+Partner Registration
+All Users
+Search by id, email
+Request
+Registered At
+Partner
+Detail
+Approved
+No users yet.
+Partner Information
+All Payouts
+Search by id
+Created At
+Are you sure want to delete this item?
+No payout yet.
+Payout Detail
+Change Avatar
+Add Image
+About Me:
+Nothing :)
+Full Name:
+Mobile:
+Email:
+Location:
+New Password
+Re-Password
+Change Password
+Your Profile
+Add new Car
+Can not create new Car
+Icon
+Car Equipments
+All Equipments
+Search id, name
+No terms yet.
+Update Car Equipments
+All Features
+Update Car Features
+Car Reviews
+All Reviews
+Search by id, title
+Review
+Car Name
+Rating Score
+Are you sure want to delete this review?
+No reviews yet.
+Please enable review option in Settings to use this function
+Change to :status
+Remove
+All Types
+Featured Image
+Update Car Type
+Edit Car
+This Car is invalid
+My Cars
+All Cars
+Draft
+Trash
+Quantity
+Duplicate
+Are you sure want to delete this car?
+No cars yet.
+Add new Experience
+Can not create new Experience
+Edit Experience
+This item is invalid
+Experience Exclusions
+All Exclusions
+No term yet.
+Update Exclusion
+Experience Inclusions
+All Inclusions
+Update Inclusion
+Update Language
+Experience Reviews
+Home Name
+Experience Name
+Experience Type
+Update Experience Type
+My Experiences
+All Experiences
+Are you sure want to delete this experience?
+No experience yet.
+Add new Home
+Can not create new Home
+Edit Home
+All Amenities
+Update Home Amenity
+Home Reviews
+Update Home Type
+My Homes
+All Homes
+Are you sure want to delete this home?
+No home yet.
+Can not create Page
+Edit Page
+Can not edit Page
+View page
+Are you sure want to delete this page?
+Delete this page
+All Pages
+Search Pages
+No pages yet.
+Can not create Post
+Edit Post
+Can not edit Post
+View post
+Are you sure want to delete this post?
+Delete this post
+All Categories
+Search Categories
+No categories yet.
+Update Category
+Comments
+Post Title
+Comment
+User
+Comment Content
+Username
+No comments yet.
+All Tags
+Search Tags
+No tags yet.
+Update Tag
+All Posts
+Search Posts
+No posts yet.
+Sitemap Settings
+Set up the sitemap settings
+View your sitemap here:
+sitemap_index.xml
+Sitemap Per Page:
+Enable Post
+Enable Page
+Save Change
+TinyPNG Compress
+TinyPNG uses smart lossy compression techniques to reduce the file size of your image files
+Get your API Key at <a target="_blank" href="https://tinypng.com/developers">https://tinypng.com/developers</a>
+Your API Key is invalid
+Compressed
+Enable TinyPNG
+API Key
+Save
+Text Translation
+Scan Text
+Select language
+Save Translation
+Please select a language before translating
+Enter search text...
+Search
+Origin Text
+Translation Text
+No Text to translate
+:number items
+Delete all service data.
+Assign data to another user.
+No users
+If you select option <b>"Delete all service data"</b>, all the data of this user will be deleted including:
+User information (Email, location, phone)
+User media
+User review/comment
+User payout data
+User notification
+If you select option <b>"Assign data to another user"</b>, the user information will be deleted and listings of this user will be assigned to user you selected (Home, Car, Experience and Media)
+User Management
+Roles
+Are you sure to delete this user?
+Update User
+Delete User
+Confirm Deletion
+Your newest booking
+Your Notifications
+No messages yet.
+Welcome :username
+No notifications yet.
+Location
+No coupons yet.
+Payment Gateway
+Enter the payment information that admin can pay for you
+Comment Title
+Seo Options
+Google
+Facebook
+Twitter
+How to use?
+Shortcode
+Show the post ID
+Show the post title
+Show the post description
+Show the site name
+Show the site description
+Show a separator icon
+I accept %s
+Terms and Conditions
+Sign up using
+Already have account?
+Sign In
+Don't have an account? Create your account, it takes less than a minute
+We are coming soon
+We are coming soon !!!
+Stay tuned for something amazing
+Page Not Found
+Return to
+Home page
+It's looking like you may have taken a wrong turn. Don't worry... it happens to the best of us. You might want to check your internet connection. Here's a little tip that might help you get back on track.
+Blog
+By %s
+on
+Read more
+Why host on AweBooking?
+Join our community and start uploading your properties. <br/> We make it simple and secure to host travelers.
+Explore Now
+Become a Host
+Email Address
+Male
+Female
+Other
+Zipcode
+Send a Request
+Image Feature
+Ready to earn?
+Get Started
+Leave a Reply
+Your email address will not be published. Required fields are marked *
+Your name*
+Your email*
+Comment*
+POST COMMENT
+%s comment
+%s comments
+Start Time
+End Time
+Fixed Price
+Price per %s
+Book Now
+Your Item
+Have a coupon?
+Summary
+Car Rental Price
+(remove)
+(included)
+[0::%s reviews][1::%s review][2::%s reviews]
+View Photos
+View Video
+Passenger:
+Gear Shift:
+Baggage:
+Door:
+Features
+Policies
+Cancellation:
+enable
+before %s day(s)
+On Map
+Hosted by %s
+Joined in %s
+External
+Instant
+Enquiry
+Cars Near By
+Check Availability
+km
+No.Passenger
+Gear Shift
+Baggage
+No.Door
+[1::%s review for this car][2::%s review for this cars]
+Leave a Review
+Comment title*
+Your rating
+Submit Review
+Your Location
+Enter a location ...
+More filters
+Filters
+Show map
+Show Map
+View filter result
+Search for Cheap Rental Cars
+Where
+Price Range
+%s Cars
+%s Car
+in %s
+from %s to %s
+Found
+Searching car...
+Search as I move the map
+Checkout
+1. Customer Information
+2. Payment Selection
+Use last your information
+Phone:
+Address:
+First name
+City (Optional)
+Postcode
+Note (Optional)
+Create an account?
+Return to Home
+Continue to Payment
+Agree with <a href="%s" target="_blank">The Terms and Conditions</a>
+Back to Customer Information
+Complete Booking
+The cart is empty
+Clear cache this page
+Homepage
+Please setup Mailchimp in Settings
+Top Menu
+Don\'t have an account?
+Have an account?
+Select Language
+Select Currency
+Become a Partner
+Recent posts
+Invalid url.
+Thank you for your confirmation.
+You will receive a booking email. Please check your inbox!
+You have already confirmed
+Stay in touch with us
+Your Message
+Send Message
+Hello
+Thank you for using our service!
+Here is your booking information:
+Hello %s
+There is a new booking on your system
+%s has booked your service.
+Here is the details of the booking:
+Booking ID:
+Name:
+Amount:
+Payment Method:
+Status:
+Created At:
+Price Detail:
+Price Car Rental
+Sub total
+Your information:
+Note:
+Your Bookings
+You have booked a service on our system.
+Please read the information below and click Confirm to let the system confirm the request.
+Confirm
+A new user registration needs approval
+Partner registration information
+User ID:
+First Name:
+Last Name:
+Yours sincerely,
+[1::Adult][2::Adults]
+[1::Child][2::Children]
+[1::Infant][2::Infants]
+Package:
+Extra Service
+[1::Price for %s night][2::Price for %s nights]
+A new registration partner needs approval
+Gender:
+City:
+Country:
+Zipcode:
+We have confirmed and paid your payout. in %s.
+Your payout has been paid.
+We have confirmed and paid your payout in %s.
+If something goes wrong, it may take up to a week for your bank to let us know. We will email you immediately if we discover any problems.
+We are processing your payout
+We are processing your payout in %s.
+Payout ID:
+This may take 2-4 business days, depending on your bank.
+Here is your new password:
+Password:
+Your partner registration request has been approved
+Hi, %s!
+Your partner registration request has been approved. You can login and upload your properties now.
+Your user registration request has been approved. You can login and user our service now.
+Welcome to the website %s
+Here is your information:
+[1::No. Adult: %s][2::No. Adults: %s]
+[1::No. Child: %s][2::No. Children: %s]
+[1::No. Infant: %s][2::No. Infants: %s]
+Packages
+AD
+CH
+IN
+Guests
+(required)
+Extra (optional)
+No. Pax
+[1::(%s review)][2::(%s reviews)]
+[1::%s person][2::%s people]
+Group size
+Not set
+What you will do
+Your host
+Your Itinerary
+Inclusions
+Exclusions
+Video
+Experiences Near By
+[1::%s review for this experience][2::%s reviews for this experience]
+Types
+One-of-a-kind experiences
+Dates
+Searching experience...
+%s Experiences
+%s Experience
+Check In
+[1::Price for %s hour][2::Price for %s hours]
+[1::%s review][2::%s reviews]
+Guests:
+Bedrooms:
+Bathrooms:
+Footage:
+Amenities
+Check-in Time:
+Check-out Time:
+Homes Near By
+[1::%s guest][2::%s guests]
+[1::%s bedroom][2::%s bedrooms]
+[1::%s bathroom][2::%s bathrooms]
+Previous
+Next
+%s review
+%s reviews
+No reviews
+[1::%s review for this home][2::%s reviews for this home]
+Book unique places to stay
+per Night
+per Hour
+Searching home...
+%s Homes
+%s Home
+Find a Car type
+Featured Cars
+Book incredible things to do around the world.
+The most exciting trip this summer
+Enjoy moments at the beach Maldives with friends
+Watch now
+Top destinations
+Most popular destinations
+Car in Paris
+Say about Us
+Browse beautiful places to stay with all the comforts of home, plus more
+on %s
+The latest from Blog
+Keep Reading
+Explore AweBooking
+Homes in New York
+Find a Experience type
+Popular experiences in Ha Noi
+Book activities led by local hosts on your next trip
+Featured Experiences
+Every experience is reviewed for unique access.
+Find a Home type
+Featured Homes
+Email booking details will be sent to the email address: %s
+Your Information
+Go to Your Booking
+Account registration successful!
+An email has been sent to <b>%s</b>.
+Please check your inbox to confirm your login information.
+Back to Home
+No data
+Copied
+Copy Url
+Street Address
+Add to the map
+State
+PostCode
+Latitude
+Longtitude
+Select photo
+Browse Image
+set is featured
+Change the permalink
+leave empty to apply from the title
+Add new Price
+Choose ...
+Days of Week
+Days of Month
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+Sunday
+Months
+Years
+Primary
+Default - 0
+Custom Price
+No Data
+Add Images
+Save & Next
+Save & Finish
+Save Options
+System Tools
+Import Data
+Clear All Cache
+Clear View Cache
+Update New Version
+Create Storage Link
+Turn Off Coming Soon
+Turn On Coming Soon
+Enter System Password
+Run
+You already have imported! However, you can still re-import.
+Note: Your database will be reset before import demo data.
+Import Progress
+Note: Your database will be reset before import demo data. Are you sure want to install demo data?
+Select Item

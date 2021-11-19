@@ -1,0 +1,279 @@
+.awe-booking.rtl{
+    .nice-select .option{
+        text-align: right;
+    }
+    .right{
+        float: left;
+    }
+    .left{
+        float: right;
+    }
+    .admin-bar{
+        justify-content: right;
+    }
+    .admin-bar .admin-bar__logo{
+        border-right: none;
+        border-left: 1px solid #535252;
+        padding-left: 10px;
+        padding-right: 0;
+    }
+    #header #right-navigation{
+        right: auto;
+        left: 30px;
+    }
+    #header #right-navigation ul li .nav-item .ti-angle-down{
+        margin-right: 3px;
+        margin-left: 0;
+    }
+    #header #right-navigation ul li:last-child:not(.li-become) a{
+        padding-left: 0 !important;
+        padding-right: 20px !important;
+    }
+    #header #site-navigation .main-menu li .sub-menu{
+        left: auto;
+        right: 2rem;
+    }
+    #header #site-navigation .main-menu li .toggle-submenu{
+        right: auto !important;
+        left: 5px;
+    }
+    #header #site-navigation .main-menu li .sub-menu li .toggle-submenu{
+        transform: rotate(90deg);
+    }
+    #header #site-navigation .main-menu li .sub-menu li:hover .sub-menu{
+        right: 100%;
+        left: auto;
+    }
+    .hh-search-form .radio{
+        margin-left: 20px !important;
+    }
+    .list-of-featured-services .item .thumbnail{
+        border-radius: 0 5px 5px 0;
+    }
+    .hh-list-terms .hh-term-item .thumbnail{
+        border-radius: 0 5px 5px 0;
+    }
+    .hh-service-item.home.grid .thumbnail .author{
+        right: auto;
+        left: 15px;
+    }
+    .hh-star-rating .star-text{
+        margin-right: 5px;
+        margin-left: auto;
+        &:after{
+            right: 0;
+            left: auto;
+        }
+    }
+    .hh-service-item.experience.list .detail .footer-content{
+        padding-right: 0;
+        padding-left: 15px;
+    }
+    .call-to-action{
+        padding-left: 3rem !important;
+        padding-right: 3rem !important;
+    }
+    .hh-service-item.car.grid .thumbnail .is-featured{
+        right: 0;
+        left: auto;
+    }
+    .hh-testimonials .testimonial-item .testimonial-inner .author-avatar .hh-icon{
+        left: 0;
+        right: auto;
+    }
+    .hh-list-of-blog .hh-blog-item.style-2 .category .date{
+        margin-right: 20px;
+        margin-left: 0;
+        &:after{
+            right: -15px;
+            left: auto;
+        }
+    }
+
+    .hh-list-of-blog .hh-blog-item.style-2 .read-more .hh-icon{
+        display: inline-block;
+        transform: rotate(180deg);
+    }
+    #footer .social li{
+        float: right;
+    }
+    #footer .subscribe-form input{
+        padding-left: 80px;
+        padding-right: 15px;
+    }
+    #footer .subscribe-form button{
+        left: 0;
+        right: auto;
+        float: left;
+        border-radius: .2rem 0 0 .2rem;
+    }
+    .daterangepicker .td-date{
+        float: right;
+    }
+    .daterangepicker .table-sub-header .day-of-week{
+        float: right;
+    }
+    .daterangepicker .table-header .next{
+        left: 0;
+        right: auto;
+        transform: rotate(180deg);
+    }
+    .daterangepicker .table-header .prev{
+        right: 0;
+        left: 0;
+        transform: rotate(180deg);
+    }
+    .date-wrapper .check-in-render, .date-wrapper .check-out-render{
+        float: right;
+    }
+    .hh-search-bar-wrapper .hh-toggle-map-search{
+        margin-left: 30px;
+        margin-right: 0;
+    }
+
+    .hh-search-bar-wrapper .hh-search-bar-buttons .hh-button-item.show-map{
+        float: left;
+    }
+    .hh-search-result .hh-search-content-wrapper .hh-search-results-map .hh-mapbox-search .mapboxgl-canvas-container{
+        position: relative;
+        .mapboxgl-canvas{
+            top: 0;
+            left: 0;
+        }
+    }
+    .hh-search-bar-wrapper .hh-search-bar-buttons .hh-button-item.button-time .hh-icon{
+        transform: rotate(180deg);
+    }
+    .hh-search-result .hh-search-content-wrapper .hh-search-results-render .render .item-layout{
+        margin-right: 10px;
+        margin-left: 0;
+    }
+    .hh-search-result .hh-search-content-wrapper .hh-search-results-render .render .item-layout span{
+        margin-left: 10px;
+        margin-right: 0;
+    }
+    .guest-group .dropdown-toggle{
+        text-align: right;
+    }
+    .guest-group .dropdown-menu .group .control-item{
+        float: left;
+        margin-right: auto;
+        margin-left: 0;
+    }
+    .single-page .form-book .extra-services .extra-item .price{
+        margin-left: 0 !important;
+    }
+    .amenities .amenity-item .title{
+        margin-right: 5px;
+        margin-left: 0;
+    }
+    .hh-mapbox-single{
+        .mapboxgl-canvas-container{
+            position: relative;
+            .mapboxgl-canvas{
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+    .single-page .post-comment .comment-form-wrapper .comment-form .review-select-rate span{
+        margin-left: 10px;
+        margin-right: 0;
+    }
+    .single-page .breadcrumb .breadcrumb-item:not(:first-child)::before{
+        right: -1px;
+        left: auto;
+        padding-right: 0;
+        padding-left: 0;
+    }
+   .single-page .breadcrumb .breadcrumb-item{
+       padding-left: 1rem;
+       padding-right: 1rem;
+   }
+    .single-page .breadcrumb .breadcrumb-item:last-child{
+        padding-right: 1rem;
+        padding-left: 0;
+    }
+    .single-page .hh-thumbnail .controls{
+        left: 30px;
+        right: auto;
+        @media(max-width: 757px){
+            left: 15px;
+        }
+    }
+    .single-page .hh-thumbnail .controls .item-link span{
+        margin-left: 5px;
+        margin-right: 0;
+    }
+    .price-wrapper .prefix{
+        margin-left: 5px;
+        margin-right: 0;
+    }
+    .single-page.single-experience .tour-featured .item{
+        text-align: right;
+    }
+    .single-page.single-experience .itinerary-tour .item .title{
+        margin-right: 15px;
+        margin-left: 0;
+    }
+    .single-page .form-book .popup-booking-form-close{
+        left: 30px;
+        right: auto;
+    }
+    .single-page .hh-grid-gallery .controls{
+        left: 30px;
+        right: auto;
+        @media(max-width: 757px){
+            left: 15px;
+        }
+    }
+    .single-page .hh-grid-gallery .controls .item-link span{
+        margin-left: 5px;
+        margin-right: 0;
+    }
+
+    .page-archive .page-content .page-content-inner .post-meta li{
+        float: right;
+    }
+    .page-archive .page-content .page-content-inner .post-meta li:not(:last-child){
+        margin-left: 15px;
+        margin-right: 0;
+    }
+    .page-archive .page-content .page-content-inner .post-meta li:not(:last-child)::after{
+        margin-right: 15px;
+        margin-left: 0;
+    }
+    .page-archive .page-sidebar .widget-item.post-recent .widget-content .post-item .thumbnail-wrapper{
+        margin-left: 15px;
+        margin-right: 0;
+    }
+
+    .page-archive .page-sidebar .widget-item.category .widget-content a::before{
+        margin-left: 7px;
+        margin-right: 0;
+    }
+    .page-archive.blog-page .page-content .page-content-inner .post-item .post-thumbnail .post-date{
+        right: 15px;
+        left: auto;
+    }
+    .page-archive.blog-page .page-content .page-content-inner .post-item .post-meta li{
+        margin-left: 10px;
+        margin-right: 0;
+        float: right;
+    }
+    .page-archive.blog-page .page-content .page-content-inner .post-item .post-meta li::after{
+        margin-right: 10px;
+        margin-left: 0;
+    }
+    .page-archive .page-content .page-content-inner .post-meta li a{
+        margin-right: 5px;
+        margin-left: 0;
+    }
+    .mapboxgl-canvas-container{
+        position: relative;
+        .mapboxgl-canvas{
+            top: 0;
+            left: 0;
+        }
+    }
+}
