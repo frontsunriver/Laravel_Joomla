@@ -192,6 +192,45 @@ global $post;
                         @endforeach
                     </div>
                 @endif
+                <h2 class="heading mt-3 mb-2">{{__('Facilities')}}</h2>
+                <div class="amenities row">
+                    <?php 
+                        $facilities = $post->facilities;
+                        if(!empty($facilities)){
+                            $facilities = (array)json_decode($facilities);
+                            
+                            foreach ($facilities as $key => $value) {
+                                if(!empty($value)){ ?>
+                                    <div class="col-6 col-sm-4 col-lg-3">
+                                        <h4 class="mt-2 mb-2"><i class="fe-check"></i>{{$key}}</h4>
+                                        <?php foreach ($value as $item) { ?>
+                                            <div class="amenity-item" data-toggle="ots-tooltip">
+                                                <span class="title">{{$item}}</span>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                <?php }
+                            }    
+                        }
+                    ?>
+                </div>
+                <h2 class="heading mt-3 mb-2">{{__('Distance')}}</h2>
+                <div class="amenities row">
+                    <?php 
+                        $distance = $post->distance;
+                        if(!empty($distance)){
+                            $distance = (array)json_decode($distance);
+                            
+                            foreach ($distance as $key => $value) {
+                                if(!empty($value)){ ?>
+                                    <div class="col-6 col-sm-4 col-lg-3">
+                                        <h4 class="mt-2 mb-2"><i class="fe-check"></i>{{$key}}-{{$value}}</h4>
+                                    </div>
+                                <?php }
+                            }    
+                        }
+                    ?>
+                </div>
                 <h2 class="heading mt-3 mb-2">{{__('Policies')}}</h2>
                 <?php
                 $checkIn = $post->checkin_time;
