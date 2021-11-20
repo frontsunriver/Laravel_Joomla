@@ -1413,8 +1413,20 @@ class HomeController extends Controller
             // $tmp[$value['title']] = request()->get($idName);
         }
 
+        $distance = get_terms('home-distance');
+        $distance_tmp = array();
+        foreach ($distance as $key => $value) {
+            $idName = 'distance_'.str_replace(' ', '-', str_replace(['[', ']'], '_', strtolower($value)));
+            if(isset($_POST[$idName])){
+                $distance_tmp[$value] = $_POST[$idName];
+            }else {
+                $distance_tmp[$value] = null;
+            }
+        }
+
         $fields = request()->get('currentOptions');
         $fields = unserialize(base64_decode($fields));
+
         if ($fields) {
             $postID = request()->get('postID');
             $postEncrypt = request()->get('postEncrypt');
@@ -1443,6 +1455,7 @@ class HomeController extends Controller
             }
 
             $data['facilities'] = json_encode($tmp);
+            $data['distance'] = json_encode($distance_tmp);
             foreach ($fields as $field) {
                 $field = \ThemeOptions::mergeField($field);
                 $value = \ThemeOptions::fetchField($field);
@@ -1450,14 +1463,16 @@ class HomeController extends Controller
                     if ($field['field_type'] == 'meta') {
                         $data[$field['id']] = $value;
                     } elseif ($field['field_type'] == 'taxonomy') {
-                        $value = (array)$value;
-                        $taxonomy = explode(':', $field['choices'])[1];
-                        $termRelation = new TermRelation();
-                        $termRelation->deleteRelationByServiceID($postID, $taxonomy);
-                        foreach ($value as $termID) {
-                            $termRelation->createRelation($termID, $postID, 'home');
+                        if(explode(':', $field['choices'])[1] != 'home-distance'){
+                            $value = (array)$value;
+                            $taxonomy = explode(':', $field['choices'])[1];
+                            $termRelation = new TermRelation();
+                            $termRelation->deleteRelationByServiceID($postID, $taxonomy);
+                            foreach ($value as $termID) {
+                                $termRelation->createRelation($termID, $postID, 'home');
+                            }
+                            $data[$field['id']] = implode(',', $value);
                         }
-                        $data[$field['id']] = implode(',', $value);
                     } elseif ($field['field_type'] == 'location') {
                         if (is_array($value)) {
                             foreach ($value as $key => $_val) {
@@ -1467,6 +1482,7 @@ class HomeController extends Controller
                     }
                 }
             }
+
             if (!empty($data)) {
                 if (isset($_POST['post_slug']) && (!isset($data['post_slug']) || empty($data['post_slug']))) {
                     $data['post_slug'] = Str::slug(esc_html(request()->get($post_title_field, 'new-home-' . time())));

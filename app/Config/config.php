@@ -395,6 +395,11 @@ return [
                     'label' => awe_lang('Facilities Fields'),
                     'screen' => 'get-terms/home-facilities',
                 ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Dastance'),
+                    'screen' => 'get-terms/home-distance',
+                ],
             ],
             'screen' => ['add-new-home', 'my-home', 'edit-home', 'review/home', 'get-terms/home-type', 'get-terms/home-amenity', 'get-terms/home-facilities']
         ],

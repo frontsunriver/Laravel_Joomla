@@ -13,8 +13,29 @@ if (!empty($maxlength) && is_array($maxlength)) {
         }
     }
 }
-$idName = str_replace(['[', ']'], '_', $id);
+$idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $id));
 $langs = $translation == false ? [""] : get_languages_field();
+if(!empty($choices)){
+    if (!is_array($choices)){
+        $choicesTemp = explode(':', $choices);
+        if ($choicesTemp[0] == 'terms') {
+            if($choicesTemp[1] == 'home-distance'){
+                if(!empty($value)) {
+                    $tmpValue = json_decode($value);
+                    foreach ($tmpValue as $key => $val) {
+                        if($key == $label) {
+                            if($val != null) {
+                                $value = $val;
+                            }else{
+                                $value = '';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 ?>
 <div id="setting-{{ $idName }}" data-condition="{{ $condition }}"
      data-unique="{{ $unique }}"
@@ -37,7 +58,7 @@ $langs = $translation == false ? [""] : get_languages_field();
                data-validation="{{ $validation }}"
                class="form-control {{$class_seo}} {{get_lang_class($key, $item)}} @if(!empty($maxlengthHtml)) has-maxLength @endif  @if(!empty($validation)) has-validation @endif"
                @if (isset($maxlengthHtml)) {!! balanceTags($maxlengthHtml) !!} @endif
-               name="{{ $id }}{{get_lang_suffix($item)}}" value="{{ get_translate($value, $item) }}"
+               name="{{ $idName }}{{get_lang_suffix($item)}}" value="{{ get_translate($value, $item) }}"
                data-post-id="{{$post_id}}"
                data-seo-detect="{{$seo_put_to}}"
                @if(!empty($item)) data-lang="{{$item}}" @endif>

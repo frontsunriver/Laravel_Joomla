@@ -18,6 +18,19 @@ foreach ($facilities as $key => $field) {
     ];
     array_push($options['fields'],$item);
 } 
+$distance = get_terms('home-distance');
+foreach ($distance as $key => $field) {
+    $item = [
+        'id' => 'distance_'.strtolower($field),
+        'label' => awe_lang($field),
+        'type' => 'text',
+        'choices' => 'terms:home-distance',
+        'field_type' => 'taxonomy',
+        'layout' => 'col-12 col-md-4',
+        'section' => 'amenities_options',
+    ];
+    array_push($options['fields'],$item);
+}
 $availableField = \ThemeOptions::filterFields($options);
 ?>
 <?php

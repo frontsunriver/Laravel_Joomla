@@ -107,8 +107,10 @@ class ThemeOptions
             if (is_array($choices) && $choices[0] === 'terms') {
                 $value = [];
                 if($choices[1] == 'home-facilities'){
-                    
-                }else {
+                    $field['value'] = $meta['facilities'];
+                } else if($choices[1] == 'home-distance'){
+                    $field['value'] = $meta['distance'];
+                } else {
                     $terms = get_the_terms($serviceID, $choices[1]);
                     if (!is_null($terms)) {
                         foreach ($terms as $term) {

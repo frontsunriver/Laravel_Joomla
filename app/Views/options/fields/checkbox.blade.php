@@ -3,10 +3,13 @@ $layout = (!empty($layout)) ? $layout : 'col-12';
 if (empty($value) && !is_array($value)) {
     $value = $std;
 }
+
+$tempValue = $value;
 $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $id));
-echo $idName;
 $value = explode(',', $value);
 $langs = $translation == false ? [""] : get_languages_field();
+
+$facilities_check = array();
 ?>
 
 <div id="setting-{{ $idName }}" data-condition="{{ $condition }}"
@@ -29,11 +32,25 @@ $langs = $translation == false ? [""] : get_languages_field();
                 if ($choicesTemp[0] == 'taxonomy') {
                     $choicesTemp = get_taxonomies();
                 } elseif ($choicesTemp[0] == 'terms') {
+                    // if($choicesTemp[1] == 'home-facilities'){
+                    //     $choicesTemp = get_terms('home-amenity');
+                    // }else {
+                    //     $choicesTemp = get_terms($choicesTemp[1]);
+                    // }
                     if($choicesTemp[1] == 'home-facilities'){
-                        $choicesTemp = get_terms('home-amenity');
-                    }else {
-                        $choicesTemp = get_terms($choicesTemp[1]);
+                        if(!empty($tempValue)){
+                            $selectedValue = json_decode($tempValue);
+                            foreach ($selectedValue as $key => $val) {
+                                if($key == $label){
+                                    if($val != null){
+                                        $facilities_check = $val;
+                                    }
+                                }
+                            }
+                        }
+                        
                     }
+                    $choicesTemp = get_terms($choicesTemp[1]);
                 } 
                 ?>
             @else
@@ -43,7 +60,7 @@ $langs = $translation == false ? [""] : get_languages_field();
                 @if ($style == 'col')
                     <div class="row">
                         @endif
-
+                            @if(explode(':', $choices)[1] == 'home-facilities')
                             @if(!empty($selection_val))
                                 <?php
                                     $selection_val = json_decode($selection_val);
@@ -53,10 +70,14 @@ $langs = $translation == false ? [""] : get_languages_field();
                                         @if ($style == 'col')
                                             <div class="col-12 col-sm-4 col-md-3">
                                                 @endif
+                                                <?php
+                                                    
+                                                ?>
                                                 <div class="checkbox  checkbox-success @if ($style != 'col') {{$style}} @endif">
                                                     <input type="checkbox"
                                                         id="{{ $idName }}-{{ $item }}"
                                                         value="{{ $item }}"
+                                                        @if(in_array($item, $facilities_check)) checked @endif
                                                         name="{{ $idName }}[]">
 
                                                     <label for="{{ $idName }}-{{ $item }}">
@@ -69,37 +90,38 @@ $langs = $translation == false ? [""] : get_languages_field();
                                     @endforeach
                                 @endif
                             @endif
-
-
-
-
-
-
-                        @foreach ($choicesTemp as $key => $title)
-                            @if ($style == 'col')
-                                <div class="col-12 col-sm-4 col-md-3">
-                                    @endif
-                                    <div class="checkbox  checkbox-success @if ($style != 'col') {{$style}} @endif">
-                                        <input type="checkbox"
-                                               name="{{ $idName }}[]"
-                                               value="{{ $key }}"
-                                               @if(in_array($key, $value)) checked @endif
-                                               id="{{ $idName }}-{{ $key }}">
-
-                                        <label for="{{ $idName }}-{{ $key }}">
-                                            @foreach($langs as $key => $item)
-                                                <span class="{{get_lang_class($key, $item)}}"
-                                                      @if(!empty($item)) data-lang="{{$item}}" @endif>
-                                                {!! balanceTags(get_translate($title, $item)) !!}
-                                            </span>
-                                            @endforeach
-                                        </label>
-                                    </div>
+                            @else
+                                @foreach ($choicesTemp as $key => $title)
                                     @if ($style == 'col')
-                                </div>
-                            @endif
-                        @endforeach
+                                        <div class="col-12 col-sm-4 col-md-3">
+                                            @endif
+                                            <div class="checkbox  checkbox-success @if ($style != 'col') {{$style}} @endif">
+                                                <input type="checkbox"
+                                                    name="{{ $idName }}[]"
+                                                    value="{{ $key }}"
+                                                    @if(in_array($key, $value)) checked @endif
+                                                    id="{{ $idName }}-{{ $key }}">
 
+                                                <label for="{{ $idName }}-{{ $key }}">
+                                                    @foreach($langs as $key => $item)
+                                                        <span class="{{get_lang_class($key, $item)}}"
+                                                            @if(!empty($item)) data-lang="{{$item}}" @endif>
+                                                        {!! balanceTags(get_translate($title, $item)) !!}
+                                                    </span>
+                                                    @endforeach
+                                                </label>
+                                            </div>
+                                            @if ($style == 'col')
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @endif
+
+
+
+
+
+                        
                         @if ($style == 'col')
                     </div>
                 @endif

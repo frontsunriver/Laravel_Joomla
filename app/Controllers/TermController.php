@@ -52,6 +52,8 @@ class TermController extends Controller
             echo view("dashboard.screens.{$folder}.services.car.quick-add-car-equipment")->render();
         }elseif ($screen == 'get-terms/car-feature') {
             echo view("dashboard.screens.{$folder}.services.car.quick-add-car-feature")->render();
+        }elseif ($screen == 'get-terms/home-distance') {
+            echo view("dashboard.screens.{$folder}.services.home.quick-add-home-distance")->render();
         }
     }
 
@@ -383,6 +385,37 @@ class TermController extends Controller
         }
 
         $html = view("dashboard.screens.{$this->getFolder()}.services.home.home-facilities-form", ['termObject' => $termObject])->render();
+
+        $this->sendJson([
+            'status' => 1,
+            'html' => $html
+        ], true);
+    }
+
+    public function _getHomeDistanceItem(Request $request)
+    {
+        $termID = request()->get('termID');
+        $termEncrypt = request()->get('termEncrypt');
+
+        if (!hh_compare_encrypt($termID, $termEncrypt)) {
+            $this->sendJson([
+                'status' => 0,
+                'title' => __('System Alert'),
+                'message' => __('This term is invalid')
+            ], true);
+        }
+
+        $term = new Term();
+        $termObject = $term->getById($termID);
+        if (is_null($termObject)) {
+            $this->sendJson([
+                'status' => 0,
+                'title' => __('System Alert'),
+                'message' => __('This term is invalid')
+            ], true);
+        }
+
+        $html = view("dashboard.screens.{$this->getFolder()}.services.home.home-distance-form", ['termObject' => $termObject])->render();
 
         $this->sendJson([
             'status' => 1,

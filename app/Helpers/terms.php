@@ -28,7 +28,7 @@ function get_terms($taxonomy = 'home-type', $is_object = false)
 {
     $return = [];
 
-    $home_taxonomy = ['home-type', 'home-amenity', 'home-facilities'];
+    $home_taxonomy = ['home-type', 'home-amenity', 'home-facilities', 'home-distance'];
     $experience_taxonomy = ['experience-type', 'experience-languages', 'experience-inclusions', 'experience-exclusions'];
     $car_taxonomy = ['car-type', 'car-equipment', 'car-feature'];
 
