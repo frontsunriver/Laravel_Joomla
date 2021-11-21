@@ -24,3 +24,15 @@ var showFacilitiesModal = function() {
     $('#subnameGroup_add').html(html);
     $("#hh-add-new-term-modal").modal('show');
 }
+
+$('input[type=radio][name=type_of_bulk]').change(function() {
+    if (this.value == 'days_of_custom') {
+        $("#setting-month_bulk").hide();
+        $("#setting-year_bulk").hide();
+        $("#bulk_price").hide();
+    }else{
+        $("#setting-month_bulk").show();
+        $("#setting-year_bulk").show();
+        $("#bulk_price").show();
+    }
+})

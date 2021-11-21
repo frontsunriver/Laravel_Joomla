@@ -225,6 +225,9 @@ class CustomPriceController extends Controller
 
     private function _validation($type = 'home')
     {
+        $param = request()->get('type_of_bulk', '');
+        $start_date = request()->get('start_date');
+        $end_date = request()->get('end_date');
         $month = request()->get('month_bulk');
         $year = request()->get('year_bulk');
         $price = request()->get('price_bulk');
@@ -280,21 +283,33 @@ class CustomPriceController extends Controller
 	        }
         }
 
-        if (empty($month) || !is_array($month)) {
-            return [
-                'status' => 0,
-                'title' => __('System Alert'),
-                'message' => __('Month is incorrect')
-            ];
+        if($param != 'days_of_custom') {
+            if (empty($month) || !is_array($month)) {
+                return [
+                    'status' => 0,
+                    'title' => __('System Alert'),
+                    'message' => __('Month is incorrect')
+                ];
+            }
+
+            if (empty($year) || !is_array($year)) {
+                return [
+                    'status' => 0,
+                    'title' => __('System Alert'),
+                    'message' => __('Year is incorrect')
+                ];
+            }
+        } else {
+            if (empty($start_date) || empty($end_date)){
+                return [
+                    'status' => 0,
+                    'title' => __('System Alert'),
+                    'message' => __('Please insert the start or end date')
+                ];
+            }
         }
 
-        if (empty($year) || !is_array($year)) {
-            return [
-                'status' => 0,
-                'title' => __('System Alert'),
-                'message' => __('Year is incorrect')
-            ];
-        }
+        
 
         return [
             'status' => 1,
@@ -547,103 +562,113 @@ class CustomPriceController extends Controller
             $this->sendJson($validation, true);
         }
         $type = request()->get('type_of_bulk', '');
-
         $month = request()->get('month_bulk');
         $year = request()->get('year_bulk');
         $price = request()->get('price_bulk');
         $available = request()->get('available_bulk', 'on');
         $postID = request()->get('post_id_bulk');
+        $start_date = request()->get('start_date');
+        $end_date = request()->get('end_date');
+        $price_per_night = request()->get('price_per_night');
+        $min_stay_date = request()->get('min_stay_date');
 
         $price = (float)$price;
+        $price_per_night = (float)$price_per_night;
+        $min_stay_date = (int)$min_stay_date;
 
         $priceModel = new HomePrice();
         $availability_model = new HomeAvailability();
 
-        $data_week = $this->_day_off_week();
-        list($group, $alone) = $this->get_group_alone();
-
-        if (!empty($group) || !empty($alone)) {
-            $data_week = array_flip($data_week);
-            if (!empty($group)) {
-                foreach ($year as $_year) {
-                    foreach ($month as $_month) {
-                        if ($type == 'days_of_week') {
-                            foreach ($group as $group_item) {
-                                $start = strtotime('first ' . $data_week[$group_item[0]] . ' of ' . $_year . '-' . sprintf('%02d', $_month));
-                                $_start = strtotime('last ' . $data_week[$group_item[0]] . ' of ' . $_year . '-' . sprintf('%02d', $_month));
-                                if ($start) {
-                                    for ($i = $start; $i <= $_start; $i = strtotime('+1 week', $i)) {
-                                        $start_item = $i;
-                                        $end_item = strtotime('first ' . $data_week[$group_item[count($group_item) - 1]], $i);
-                                        if (date('Ym', $start_item) != date('Ym', $end_item)) {
-                                            $last_date = strtotime(date('Y-m-t', $i));
-                                            if ($last_date < $end_item) {
-                                                $end_item = $last_date;
+        if($type != 'days_of_custom'){
+            $data_week = $this->_day_off_week();
+            list($group, $alone) = $this->get_group_alone();
+    
+            if (!empty($group) || !empty($alone)) {
+                $data_week = array_flip($data_week);
+                if (!empty($group)) {
+                    foreach ($year as $_year) {
+                        foreach ($month as $_month) {
+                            if ($type == 'days_of_week') {
+                                foreach ($group as $group_item) {
+                                    $start = strtotime('first ' . $data_week[$group_item[0]] . ' of ' . $_year . '-' . sprintf('%02d', $_month));
+                                    $_start = strtotime('last ' . $data_week[$group_item[0]] . ' of ' . $_year . '-' . sprintf('%02d', $_month));
+                                    if ($start) {
+                                        for ($i = $start; $i <= $_start; $i = strtotime('+1 week', $i)) {
+                                            $start_item = $i;
+                                            $end_item = strtotime('first ' . $data_week[$group_item[count($group_item) - 1]], $i);
+                                            if (date('Ym', $start_item) != date('Ym', $end_item)) {
+                                                $last_date = strtotime(date('Y-m-t', $i));
+                                                if ($last_date < $end_item) {
+                                                    $end_item = $last_date;
+                                                }
                                             }
+                                            $priceModel->_savePrice($postID, $start_item, $end_item, $price, $available);
+                                            $availability_model->_saveAvailability($postID, $start_item, $end_item, $available);
+    
                                         }
-                                        $priceModel->_savePrice($postID, $start_item, $end_item, $price, $available);
-                                        $availability_model->_saveAvailability($postID, $start_item, $end_item, $available);
-
                                     }
                                 }
-                            }
-                        } elseif ($type == 'days_of_month') {
-                            foreach ($group as $group_item) {
-                                $start = strtotime($_year . '-' . sprintf('%02d', $_month) . '-' . sprintf('%02d', $group_item[0]));
-                                $end = strtotime($_year . '-' . sprintf('%02d', $_month) . '-' . sprintf('%02d', $group_item[count($group_item) - 1]));
-                                $last_date = strtotime(date('Y-m-t', $start));
-                                if ($end > $last_date) {
-                                    $end = $last_date;
+                            } elseif ($type == 'days_of_month') {
+                                foreach ($group as $group_item) {
+                                    $start = strtotime($_year . '-' . sprintf('%02d', $_month) . '-' . sprintf('%02d', $group_item[0]));
+                                    $end = strtotime($_year . '-' . sprintf('%02d', $_month) . '-' . sprintf('%02d', $group_item[count($group_item) - 1]));
+                                    $last_date = strtotime(date('Y-m-t', $start));
+                                    if ($end > $last_date) {
+                                        $end = $last_date;
+                                    }
+                                    if ($start && $end) {
+                                        $priceModel->_savePrice($postID, $start, $end, $price, $available);
+                                        $availability_model->_saveAvailability($postID, $start, $end, $available);
+    
+                                    }
                                 }
-                                if ($start && $end) {
-                                    $priceModel->_savePrice($postID, $start, $end, $price, $available);
-                                    $availability_model->_saveAvailability($postID, $start, $end, $available);
-
-                                }
+    
                             }
-
                         }
                     }
                 }
-            }
-            if (!empty($alone)) {
+                if (!empty($alone)) {
+                    foreach ($year as $_year) {
+                        foreach ($month as $_month) {
+                            if ($type == 'days_of_week') {
+                                foreach ($alone as $day) {
+                                    $start = strtotime('first ' . $data_week[$day] . ' of ' . $_year . '-' . sprintf('%02d', $_month));
+                                    $_start = strtotime('last ' . $data_week[$day] . ' of ' . $_year . '-' . sprintf('%02d', $_month));
+                                    if ($start) {
+                                        for ($i = $start; $i <= $_start; $i = strtotime('+1 week', $i)) {
+                                            $priceModel->_savePrice($postID, $i, $i, $price, $available);
+                                            $availability_model->_saveAvailability($postID, $i, $i, $available);
+                                        }
+                                    }
+                                }
+                            } elseif ($type == 'days_of_month') {
+                                foreach ($alone as $day) {
+                                    $start = strtotime($_year . '-' . sprintf('%02d', $_month) . '-' . sprintf('%02d', $day));
+                                    if ($start) {
+                                        $priceModel->_savePrice($postID, $start, $start, $price, $available);
+                                        $availability_model->_saveAvailability($postID, $start, $start, $available);
+                                    }
+                                }
+                            }
+    
+                        }
+                    }
+                }
+    
+            } else {
                 foreach ($year as $_year) {
                     foreach ($month as $_month) {
-                        if ($type == 'days_of_week') {
-                            foreach ($alone as $day) {
-                                $start = strtotime('first ' . $data_week[$day] . ' of ' . $_year . '-' . sprintf('%02d', $_month));
-                                $_start = strtotime('last ' . $data_week[$day] . ' of ' . $_year . '-' . sprintf('%02d', $_month));
-                                if ($start) {
-                                    for ($i = $start; $i <= $_start; $i = strtotime('+1 week', $i)) {
-                                        $priceModel->_savePrice($postID, $i, $i, $price, $available);
-                                        $availability_model->_saveAvailability($postID, $i, $i, $available);
-                                    }
-                                }
-                            }
-                        } elseif ($type == 'days_of_month') {
-                            foreach ($alone as $day) {
-                                $start = strtotime($_year . '-' . sprintf('%02d', $_month) . '-' . sprintf('%02d', $day));
-                                if ($start) {
-                                    $priceModel->_savePrice($postID, $start, $start, $price, $available);
-                                    $availability_model->_saveAvailability($postID, $start, $start, $available);
-                                }
-                            }
-                        }
-
+                        $start = strtotime($_year . '-' . sprintf('%02d', $_month) . '-01');
+                        $end = strtotime(date($_year . '-' . sprintf('%02d', $_month) . '-t'));
+                        $priceModel->_savePrice($postID, $start, $end, $price, $available);
+                        $availability_model->_saveAvailability($postID, $start, $end, $available);
                     }
                 }
             }
-
         } else {
-            foreach ($year as $_year) {
-                foreach ($month as $_month) {
-                    $start = strtotime($_year . '-' . sprintf('%02d', $_month) . '-01');
-                    $end = strtotime(date($_year . '-' . sprintf('%02d', $_month) . '-t'));
-                    $priceModel->_savePrice($postID, $start, $end, $price, $available);
-                    $availability_model->_saveAvailability($postID, $start, $end, $available);
-                }
-            }
+            $priceModel->_savePricePerNight($postID, $start_date, $end_date, $price_per_night, $available, $min_stay_date);
         }
+        
 
         $this->sendJson([
             'status' => 1,

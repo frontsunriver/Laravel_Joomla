@@ -83,6 +83,17 @@ $booking_type = isset($post->booking_type) ? $post->booking_type : '';
                                 <label for="type_of_bulk_month">{{ __('Days of Month') }}</label>
                             </div>
                         </div>
+                        @if($post_type == 'home')
+                        <div class="col">
+                            <div class="radio radio-success">
+                                <input type="radio"
+                                       name="type_of_bulk"
+                                       value="days_of_custom"
+                                       id="type_of_bulk_custom">
+                                <label for="type_of_bulk_custom">{{ __('Custom Date') }}</label>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                 </div>
                 <?php
@@ -114,6 +125,30 @@ $booking_type = isset($post->booking_type) ? $post->booking_type : '';
                             <option value="{{ $i }}">{{ sprintf('%02d', $i) }}</option>
                         @endfor
                     </select>
+                </div>
+                <div id="setting-days_of_month_bulk" class="form-group field-select2_multiple has-validation"
+                     data-unique="" data-operator="and"
+                     data-condition="type_of_bulk:is(days_of_custom)">
+                    <label for="days_of_month_bulk">{{ __('Start Date') }} <span class="text-muted f11">(Select rent Start date)</span></label>
+                    <input type="text" class="form-control"
+                        data-plugin="datepicker"
+                        data-min-date="{{ date('Y-m-d')}}"
+                        id="start_date"
+                        name="start_date" value="">
+                    <label for="days_of_month_bulk">{{ __('End Date') }} <span class="text-muted f11">(Select rent End date)</span></label>
+                    <input type="text" class="form-control"
+                        data-plugin="datepicker"
+                        data-min-date="{{ date('Y-m-d')}}"
+                        id="end_date"
+                        name="end_date" value="">
+                    
+                    <label for="price_bulk">{{ __('Price per night') }}</label>
+                    <input type="text" name="price_per_night" value="0" id="price_per_night" 
+                            class="form-control">
+
+                    <label for="price_bulk">{{ __('Minimum stay Date') }}</label>
+                    <input type="number" name="min_stay_date" min="1" id="min_stay_date" value="1" 
+                            class="form-control">
                 </div>
                 <div id="setting-month_bulk" class="form-group field-select2_multiple">
                     <label for="month_bulk">{{ __('Months') }} <span class="text-danger">*</span></label>
@@ -179,14 +214,14 @@ $booking_type = isset($post->booking_type) ? $post->booking_type : '';
 
                         <input type="hidden" name="booking_type_bulk" data-hh-bind-value-from="#booking_type" value="">
                     @elseif($post_type == 'home')
-                        <div class="col">
+                        <div class="col" id="bulk_price">
                             <div class="form-group form-sm">
                                 <label for="price_bulk">{{ __('Price') }} <span class="text-danger">*</span></label>
                                 <input id="price_bulk" type="text" name="price" value="0"
                                        class="form-control has-validation" data-validation="required">
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col" id="bulk_available">
                             <div class="form-group form-sm">
                                 <label for="available_bulk">{{ __('Available') }}</label>
                                 <div class="w-100"></div>
@@ -196,14 +231,14 @@ $booking_type = isset($post->booking_type) ? $post->booking_type : '';
                             </div>
                         </div>
                     @else
-                        <div class="col">
+                        <div class="col" >
                             <div class="form-group form-sm">
                                 <label for="price_bulk">{{ __('Price') }} <span class="text-danger">*</span></label>
                                 <input id="price_bulk" type="text" name="price" value="0"
                                        class="form-control has-validation" data-validation="required">
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col" >
                             <div class="form-group form-sm">
                                 <label for="available_bulk">{{ __('Available') }}</label>
                                 <div class="w-100"></div>

@@ -1,9 +1,20 @@
 @include('frontend.components.header')
+<style>
+    .table thead th {
+        border: 0px;
+        text-align: center;
+    }
+    .table td, .table th {
+        border: 0px;
+        text-align: center;
+    }
+</style>
 <?php
 enqueue_script('scroll-magic-js');
 enqueue_style('image-gallery-css');
 global $post;
 ?>
+
 <div class="single-page single-home pb-5">
     <!-- Gallery -->
     <?php
@@ -230,6 +241,34 @@ global $post;
                             }    
                         }
                     ?>
+                </div>
+
+                <h2 class="heading mt-5 mb-5" style="text-align:center;">{{__('Home Period Price')}}</h2>
+                <div class="table-responsive-sm mb-5">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">From</th>
+                                <th scope="col">To</th>
+                                <th scope="col">Per Night Price</th>
+                                <th scope="col">Minimum Stay</th>
+                                <th scope="col">Weekly price</th>
+                            </tr>
+                        </thead>
+                        @if (!empty($post->period_stay_date['total']))
+                            <tbody>
+                            @foreach ($post->period_stay_date['results'] as $key => $item)
+                                <tr>
+                                    <td>{{ date('Y-m-d', $item->start_time) }}</td>
+                                    <td>{{ date('Y-m-d', $item->end_time) }}</td>
+                                    <td>{{ convert_price($item->price_per_night) }}</td>
+                                    <td>{{ $item->stay_min_date }}</td>
+                                    <td>{{ convert_price($item->price_per_night * 7) }}</td>
+                                </tr>
+                            @endforeach
+                            <tbody>
+                        @endif
+                    </table>
                 </div>
                 <h2 class="heading mt-3 mb-2">{{__('Policies')}}</h2>
                 <?php

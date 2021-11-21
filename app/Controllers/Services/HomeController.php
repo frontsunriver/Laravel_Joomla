@@ -576,6 +576,8 @@ class HomeController extends Controller
         }
         if ($global) {
             global $post;
+            $home_price = new HomePrice();
+            $post_item->period_stay_date = $home_price->getAllPrices($home_id);
             $post = $post_item;
         }
 

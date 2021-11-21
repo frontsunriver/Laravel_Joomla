@@ -9,6 +9,9 @@ $post_type = isset($post_type) ? $post_type : 'home';
             <th scope="col">#</th>
             <th scope="col">{{__('Start Date')}}</th>
             <th scope="col">{{__('End Date')}}</th>
+            <th scope="col">{{__('Price per Night')}}</th>
+            <th scope="col">{{__('Weekly price')}}</th>
+            <th scope="col">{{__('Minimum Stay')}}</th>
             <th scope="col">{{__('Price')}}</th>
             @if($post_type != 'experience' )
                 <th scope="col">{{__('Available')}}</th>
@@ -23,6 +26,9 @@ $post_type = isset($post_type) ? $post_type : 'home';
                     <td>{{ $key + 1 }}</td>
                     <td>{{ date('Y-m-d', $item->start_time) }}</td>
                     <td>{{ date('Y-m-d', $item->end_time) }}</td>
+                    <td>{{ convert_price($item->price_per_night) }}</td>
+                    <td>{{ convert_price($item->price_per_night * 7) }}</td>
+                    <td>{{ $item->stay_min_date }}</td>
                     <td>{{ convert_price($item->price) }}</td>
                     <td>
                         <?php

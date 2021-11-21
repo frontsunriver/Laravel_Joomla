@@ -76,6 +76,18 @@ class HomePrice extends Model
         ] );
     }
 
+    public function _savePricePerNight( $home_id, $start, $end, $price_per_night, $status, $min_stay_date )
+    {
+        return $this->createPrice( [
+            'home_id' => $home_id,
+            'start_time' => strtotime($start),
+            'end_time' => strtotime($end),
+            'price_per_night' => $price_per_night,
+            'available' => $status,
+            'stay_min_date' => $min_stay_date
+        ] );
+    }
+
 
     public function getByID($price_id)
     {
