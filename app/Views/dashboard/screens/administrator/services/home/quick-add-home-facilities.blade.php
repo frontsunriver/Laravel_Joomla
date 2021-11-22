@@ -20,7 +20,7 @@
                     $langs = get_languages_field();
                     ?>
                     <div class="form-group">
-                        <label for="term_name">{{__('Name')}}</label>
+                        <label for="term_name">{{__('Field Name')}}</label>
                         @foreach($langs as $key => $item)
                             <input type="text" class="form-control has-validation {{get_lang_class($key, $item)}}"
                                    data-validation="required" id="term_name{{get_lang_suffix($item)}}"
@@ -29,17 +29,20 @@
                                    placeholder="{{__('Name')}}">
                         @endforeach
                     </div>
-                    <div class="form-group" id="subnameGroup_add">
+
+                    <div class="form-group mb-5">
                         <label for="term_sub_update">
-                            {{__('Subname')}}
+                            {{__('Value name')}}
                         </label>
-                        <a href="javascript:addSubname();" class="btn btn-info float-right mb-3">Add</a>
+                        <div id="subnameGroup_add">
+                            <input type="text" class="form-control hh-icon-input mb-3 has-validation has-translation"
+                                id="sub_name_add_1" name="sub_name_add_1"
+                                placeholder="Value name">
+                        </div>
                         <input type="hidden" id="currentNum" name="currentNum" value="1">
-                        <input type="text" class="form-control hh-icon-input mb-3 has-validation has-translation"
-                            id="sub_name_add_1" name="sub_name_add_1"
-                            placeholder="">
-                        
+                        <a href="javascript:addSubname();" class="btn btn-info float-right mb-3">Add Value</a>
                     </div>
+
                     <div class="form-group field-icon relative">
                         <label for="term_icon">
                             {{__('Icon')}}

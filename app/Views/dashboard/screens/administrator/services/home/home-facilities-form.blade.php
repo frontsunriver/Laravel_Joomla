@@ -4,7 +4,7 @@ $langs = get_languages_field();
 ?>
 <div class="form-group">
     <label for="term_name_update">
-        {{__('Name')}}
+        {{__('Field Name')}}
     </label>
     @foreach($langs as $key => $item)
         <input type="text" class="form-control has-validation {{get_lang_class($key, $item)}}"
@@ -17,11 +17,11 @@ $langs = get_languages_field();
     <input type="hidden" name="term_id" value="{{ $termObject->term_id }}">
     <input type="hidden" name="term_encrypt" value="{{ hh_encrypt($termObject->term_id) }}">
 </div>
-<div class="form-group" id="subnameGroup_update">
+<div class="form-group mb-5">
     <label for="term_sub_update">
-        {{__('Subname')}}
+        {{__('Value name')}}
     </label>
-    <a href="javascript:updateSubname();" class="btn btn-info float-right mb-3">Add</a>
+    
     <?php 
         $current = 1;
         $sub_val = array();
@@ -34,19 +34,23 @@ $langs = get_languages_field();
             $sub_val = $val;
         }
     ?>
-    <input type="hidden" id="currentNum_update" name="currentNum_update" value="<?=$current?>">
-    @if(empty($sub_val))
-        <input type="text" class="form-control hh-icon-input mb-3 has-validation has-translation"
-           id="sub_name_update_1" name="sub_name_update_1"
-           placeholder="">
-    @else
-        @foreach($sub_val as $key=>$value)
+    <div id="subnameGroup_update">
+        <input type="hidden" placeholer="Value name" id="currentNum_update" name="currentNum_update" value="<?=$current?>">
+        @if(empty($sub_val))
             <input type="text" class="form-control hh-icon-input mb-3 has-validation has-translation"
-                id="sub_name_update_<?=$key + 1?>" name="sub_name_update_<?=$key + 1?>" value="<?=$value?>"
-                placeholder="">
-        @endforeach
-    @endif
+            id="sub_name_update_1" name="sub_name_update_1"
+            placeholder="">
+        @else
+            @foreach($sub_val as $key=>$value)
+                <input type="text" class="form-control hh-icon-input mb-3 has-validation has-translation"
+                    id="sub_name_update_<?=$key + 1?>" name="sub_name_update_<?=$key + 1?>" value="<?=$value?>"
+                    placeholder="">
+            @endforeach
+        @endif
+    </div>
     
+    
+    <a href="javascript:updateSubname();" class="btn btn-info float-right mb-3">Add Value</a>
 </div>
 <div class="form-group field-icon ">
     <label for="term_icon_update">

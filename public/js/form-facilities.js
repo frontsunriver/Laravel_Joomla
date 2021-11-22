@@ -1,7 +1,7 @@
 var updateSubname = function(){
     var current = $('#currentNum_update').val();
     var key = Number(current) + 1;
-    var html = '<input type="text" class="form-control hh-icon-input mb-3 has-validation has-translation" id="sub_name_update_'+key+'" name="sub_name_update_'+key+'" placeholder="">';
+    var html = '<input type="text" class="form-control hh-icon-input mb-3 has-validation has-translation" id="sub_name_update_'+key+'" name="sub_name_update_'+key+'" placeholder="Value name">';
     $('#subnameGroup_update').append(html);
     $('#currentNum_update').val(key);
 }
@@ -9,18 +9,18 @@ var updateSubname = function(){
 var addSubname = function(){
     var current = $('#currentNum').val();
     var key = Number(current) + 1;
-    var html = '<input type="text" class="form-control hh-icon-input mb-3 has-validation has-translation" id="sub_name_add_'+key+'" name="sub_name_add_'+key+'" placeholder="">';
+    var html = '<input type="text" class="form-control hh-icon-input mb-3 has-validation has-translation" id="sub_name_add_'+key+'" name="sub_name_add_'+key+'" placeholder="Value name">';
     $('#subnameGroup_add').append(html);
     $('#currentNum').val(key);
 }
 
 var showFacilitiesModal = function() {
     $('#currentNum').val(1);
-    var html = `<a href="javascript:addSubname();" class="btn btn-info float-right mb-3">Add</a>
+    var html = `
     <input type="hidden" id="currentNum" name="currentNum" value="1">
     <input type="text" class="form-control hh-icon-input mb-3 has-validation has-translation"
         id="sub_name_add_1" name="sub_name_add_1"
-        placeholder="">`;
+        placeholder="Value name">`;
     $('#subnameGroup_add').html(html);
     $("#hh-add-new-term-modal").modal('show');
 }

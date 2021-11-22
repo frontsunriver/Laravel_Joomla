@@ -392,12 +392,12 @@ return [
                 ],
                 [
                     'type' => 'item',
-                    'label' => awe_lang('Facilities Fields'),
+                    'label' => awe_lang('Facilities'),
                     'screen' => 'get-terms/home-facilities',
                 ],
                 [
                     'type' => 'item',
-                    'label' => awe_lang('Dastance'),
+                    'label' => awe_lang('Distances'),
                     'screen' => 'get-terms/home-distance',
                 ],
             ],
