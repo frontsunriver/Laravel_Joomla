@@ -33,9 +33,14 @@ class Currencies
             foreach ($currency_list as $item) {
                 $unit = trim($item['unit']);
                 if ($currency == $unit) {
-                    $rate = (float)$item['exchange'];
-                    $currency_position = $item['position'];
-                    $symbol = $item['symbol'];
+                    // $rate = (float)$item['exchange'];
+                    // $currency_position = $item['position'];
+                    // $symbol = $item['symbol'];
+                    $rate = 1;
+                    $currency_position = 'right';
+                    $symbol = '€';
+
+
                     $decimal = (int)$item['currency_decimal'];
                     $thousand_separator = $item['thousand_separator'];
                     $decimal_separator = $item['decimal_separator'];

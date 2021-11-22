@@ -259,11 +259,11 @@ global $post;
                             <tbody>
                             @foreach ($post->period_stay_date['results'] as $key => $item)
                                 <tr>
-                                    <td>{{ date('Y-m-d', $item->start_time) }}</td>
-                                    <td>{{ date('Y-m-d', $item->end_time) }}</td>
-                                    <td>{{ convert_price($item->price_per_night) }}</td>
+                                    <td>{{ date('d.m.Y', $item->start_time) }}</td>
+                                    <td>{{ date('d.m.Y', $item->end_time) }}</td>
+                                    <td>{{ convert_price($item->price_per_night, '€', true, array('unit' => 'EUR')) }}</td>
                                     <td>{{ $item->stay_min_date }}</td>
-                                    <td>{{ convert_price($item->price_per_night * 7) }}</td>
+                                    <td>{{ convert_price($item->price_per_night * 7, '€', true, array('unit' => 'EUR')) }}</td>
                                 </tr>
                             @endforeach
                             <tbody>
@@ -378,7 +378,7 @@ global $post;
                     <div class="popup-booking-form-close">{!! get_icon('001_close', '#FFFFFF', '28px', '28px') !!}</div>
                     <div class="form-head">
                         <div class="price-wrapper">
-                            <span class="price">{{ convert_price($post->base_price) }}</span>
+                            <span class="price">{{ convert_price($post->base_price, '€', true, array('unit' => 'EUR')) }}</span>
                             @if($post->booking_type != 'external_link')
                                 <span class="unit">/{{$post->unit}}</span>
                             @endif
@@ -507,7 +507,7 @@ global $post;
         <div class="container">
             <div class="action-inner">
                 <div class="action-price-wrapper">
-                    <span class="price">{{ convert_price($post->base_price) }}</span>
+                    <span class="price">{{ convert_price($post->base_price, '€', true, array('unit' => 'EUR')) }}</span>
                     <span class="unit">/{{$post->unit}}</span>
                 </div>
                 <a class="btn btn-primary action-button" id="mobile-check-availability">{{__('Check Availability')}}</a>

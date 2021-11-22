@@ -1100,11 +1100,19 @@ class HomeController extends Controller
         if (hh_compare_encrypt($homeID, $homeEncrypt) && $startDate && $endDate) {
             $home = $this->getById($homeID);
             if ($home->booking_type == 'per_night') {
-                $numberNight = hh_date_diff($startDate, $endDate);
-                $price = $this->getRealPrice($home, $startDate, $endDate, $number_adults + $number_children);
-                $requiredExtra = $this->getRequiredExtraPrice($home, $numberNight);
-                $extra = $this->getExtraPrice($home, $extraServices, $numberNight);
-                $total = $price + $requiredExtra + $extra;
+                $homePriceModel = new HomePrice();
+                $checkRentValidate = $homePriceModel->getPriceItems($homeID, $startDate, $endDate, 'on');
+                if($checkRentValidate['total'] > 0){
+                    $numberNight = hh_date_diff($startDate, $endDate);
+                    $extra = $this->getExtraPrice($home, $extraServices, $numberNight);
+                    $total = $checkRentValidate['results'][0]->price_per_night * $numberNight + $extra;
+                }else {
+                    $numberNight = hh_date_diff($startDate, $endDate);
+                    $price = $this->getRealPrice($home, $startDate, $endDate, $number_adults + $number_children);
+                    $requiredExtra = $this->getRequiredExtraPrice($home, $numberNight);
+                    $extra = $this->getExtraPrice($home, $extraServices, $numberNight);
+                    $total = $price + $requiredExtra + $extra;
+                }
             } elseif ($home->booking_type == 'per_hour') {
                 $startTime = strtotime(date('Y-m-d', $startDate) . ' ' . $startTime);
                 $endTime = strtotime(date('Y-m-d', $endDate) . ' ' . $endTime);
