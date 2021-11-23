@@ -103,12 +103,13 @@ function get_home_terms_filter()
     $filter_type = [
         'home-type' => __('Home Type'),
         'home-amenity' => __('Home Amenity'),
-        'home-facilities' => __('Home Facilities Fields')
+        'home-facilities' => __('Home Facilities Fields'),
+        // 'home-distance' => __('Home Distances')
     ];
     foreach ($filter_type as $k => $v) {
         $res[$k] = [
             'label' => $v,
-            'items' => get_terms($k)
+            'items' => get_terms_search($k)
         ];
     }
     return $res;

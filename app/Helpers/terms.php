@@ -65,6 +65,40 @@ function get_terms($taxonomy = 'home-type', $is_object = false)
     return $return;
 }
 
+function get_terms_search($taxonomy = 'home-type', $is_object = false)
+{
+    $return = [];
+
+    $home_taxonomy = ['home-type', 'home-amenity', 'home-facilities', 'home-distance'];
+    $experience_taxonomy = ['experience-type', 'experience-languages', 'experience-inclusions', 'experience-exclusions'];
+    $car_taxonomy = ['car-type', 'car-equipment', 'car-feature'];
+
+    if ((in_array($taxonomy, $home_taxonomy) && !is_enable_service('home')) ||
+        (in_array($taxonomy, $experience_taxonomy) && !is_enable_service('experience')) ||
+        (in_array($taxonomy, $car_taxonomy) && !is_enable_service('car'))) {
+        return $return;
+    }
+
+    $term = new Term();
+    $tax = new Taxonomy();
+
+    $taxObject = $tax->getByName($taxonomy);
+    if (!empty($taxObject) && is_object($taxObject)) {
+        $terms = $term->getTerms($taxObject->taxonomy_id);
+        if ($is_object) {
+            $return = $terms;
+        } else {
+            if ($terms) {
+                foreach ($terms as $item) {
+                    $return[$item->term_id] = esc_attr(get_translate($item->term_title));
+                }
+            }
+        }
+    }
+
+    return $return;
+}
+
 
 function get_term_by($by = 'id', $term_id)
 {

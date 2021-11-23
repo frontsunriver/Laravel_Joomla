@@ -133,7 +133,7 @@ enqueue_script('iconrange-slider');
                 <span class="text"><?php echo __('More filters'); ?></span>
                 <div class="dropdown-menu">
                     <?php
-                    $terms = get_home_terms_filter();
+                        $terms = get_home_terms_filter();
                     ?>
                     @if (!empty($terms))
                         @foreach ($terms as $term_name => $term)
@@ -161,7 +161,7 @@ enqueue_script('iconrange-slider');
                                                         <input type="checkbox" value="{{ $term_id }}"
                                                                id="{{$term_name}}{{ $term_id }}" {{ $checked }}/>
                                                         <label
-                                                            for="{{ $term_name }}{{ $term_id }}">{{ get_translate($term_title) }}</label>
+                                                            for="{{ $term_name }}{{ $term_id }}">{{ $term_title }}</label>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -314,7 +314,7 @@ enqueue_script('iconrange-slider');
                                                     <input type="checkbox" value="{{ $term_id }}"
                                                            id="popup-{{$term_name}}{{ $term_id }}" {{ $checked }}/>
                                                     <label
-                                                        for="popup-{{ $term_name }}{{ $term_id }}">{{ get_translate($term_title) }}</label>
+                                                        for="popup-{{ $term_name }}{{ $term_id }}">{{ $term_title }}</label>
                                                 </div>
                                             </div>
                                         @endforeach
