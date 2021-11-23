@@ -259,8 +259,8 @@ global $post;
                             <tbody>
                             @foreach ($post->period_stay_date['results'] as $key => $item)
                                 <tr>
-                                    <td>{{ date('d.m.Y', $item->start_time) }}</td>
-                                    <td>{{ date('d.m.Y', $item->end_time) }}</td>
+                                    <td>{{ date('d.m.Y.', $item->start_time) }}</td>
+                                    <td>{{ date('d.m.Y.', $item->end_time) }}</td>
                                     <td>{{ convert_price($item->price_per_night, '€', true, array('unit' => 'EUR')) }}</td>
                                     <td>{{ $item->stay_min_date }}</td>
                                     <td>{{ convert_price($item->price_per_night * 7, '€', true, array('unit' => 'EUR')) }}</td>

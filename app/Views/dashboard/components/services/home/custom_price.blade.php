@@ -24,12 +24,12 @@ $post_type = isset($post_type) ? $post_type : 'home';
             @foreach ($custom_price['results'] as $key => $item)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ date('Y-m-d', $item->start_time) }}</td>
-                    <td>{{ date('Y-m-d', $item->end_time) }}</td>
-                    <td>{{ convert_price($item->price_per_night) }}</td>
-                    <td>{{ convert_price($item->price_per_night * 7) }}</td>
+                    <td>{{ date('m.d.Y.', $item->start_time) }}</td>
+                    <td>{{ date('m.d.Y.', $item->end_time) }}</td>
+                    <td>{{ convert_price($item->price_per_night, '€', true, array('unit' => 'EUR')) }}</td>
+                    <td>{{ convert_price($item->price_per_night * 7, '€', true, array('unit' => 'EUR')) }}</td>
                     <td>{{ $item->stay_min_date }}</td>
-                    <td>{{ convert_price($item->price) }}</td>
+                    <td>{{ convert_price($item->price, '€', true, array('unit' => 'EUR')) }}</td>
                     <td>
                         <?php
                         $data = [

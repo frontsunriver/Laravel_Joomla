@@ -680,11 +680,16 @@ class HomeController extends Controller
             $inCustom = false;
             foreach ($customPrice['results'] as $item) {
                 if ($i >= $item->start_time && $i <= $item->end_time) {
-                    $total += (float)$item->price;
+                    if($item->price == 0){
+                        $total += (float)$item->price_per_night;
+                    }else {
+                        $total += (float)$item->price;
+                    }
                     $inCustom = true;
                     break;
                 }
             }
+            
             if (!$inCustom) {
                 if ($use_long_price == 'on') {
                     if ($totalDay >= 30) {
@@ -754,7 +759,11 @@ class HomeController extends Controller
         $inCustom = false;
         foreach ($customPrice['results'] as $item) {
             if ($start_date >= $item->start_time && $start_date <= $item->end_time) {
-                $total += (float)$item->price;
+                if($item->price == 0){
+                    $total += (float)$item->price_per_night;
+                }else {
+                    $total += (float)$item->price;
+                }
                 $inCustom = true;
                 break;
             }
@@ -847,6 +856,7 @@ class HomeController extends Controller
                 'endTime' => strtotime(date('Y-m-d', $endDate) . ' ' . $endTime),
                 'bookingType' => $homeObject->booking_type
             ];
+            
 
             $checkAvailability = $this->homeValidation($data);
             if ($checkAvailability['status'] == 0) {
@@ -867,16 +877,26 @@ class HomeController extends Controller
                 $bookingType = $homeObject->booking_type;
 
                 if ($bookingType == 'per_night') {
+                    // $homePriceModel = new HomePrice();
+                    // $checkRentValidate = $homePriceModel->getPriceItems($homeID, $startDate, $endDate, 'on');
+                    // if($checkRentValidate['total'] > 0){
+                    //     $basePrice = $checkRentValidate['results'][0]->price_per_night;
+                    //     $requiredExtra = $this->getRequiredExtraPrice($homeObject, $numberNight);
+                    //     $extra = $this->getExtraPrice($homeObject, $extraParams, $numberNight);
+                    // }else {
+                        
+                    // }
                     $basePrice = $this->getRealPrice($homeObject, $startDate, $endDate, $numberGuest);
                     $requiredExtra = $this->getRequiredExtraPrice($homeObject, $numberNight);
                     $extra = $this->getExtraPrice($homeObject, $extraParams, $numberNight);
+                    
                 } elseif ($bookingType == 'per_hour') {
                     $numberNight = ceil(hh_date_diff($data['startTime'], $data['endTime'], 'minute') / 60);
                     $basePrice = $this->getRealPriceByTime($homeObject, $data['startTime'], $data['endTime'], $numberGuest);
                     $requiredExtra = $this->getRequiredExtraPrice($homeObject, $numberNight);
                     $extra = $this->getExtraPrice($homeObject, $extraParams, $numberNight);
                 }
-
+                
                 $rules = [
                     [
                         'unit' => '+',
@@ -1100,19 +1120,24 @@ class HomeController extends Controller
         if (hh_compare_encrypt($homeID, $homeEncrypt) && $startDate && $endDate) {
             $home = $this->getById($homeID);
             if ($home->booking_type == 'per_night') {
-                $homePriceModel = new HomePrice();
-                $checkRentValidate = $homePriceModel->getPriceItems($homeID, $startDate, $endDate, 'on');
-                if($checkRentValidate['total'] > 0){
-                    $numberNight = hh_date_diff($startDate, $endDate);
-                    $extra = $this->getExtraPrice($home, $extraServices, $numberNight);
-                    $total = $checkRentValidate['results'][0]->price_per_night * $numberNight + $extra;
-                }else {
-                    $numberNight = hh_date_diff($startDate, $endDate);
-                    $price = $this->getRealPrice($home, $startDate, $endDate, $number_adults + $number_children);
-                    $requiredExtra = $this->getRequiredExtraPrice($home, $numberNight);
-                    $extra = $this->getExtraPrice($home, $extraServices, $numberNight);
-                    $total = $price + $requiredExtra + $extra;
-                }
+                // $homePriceModel = new HomePrice();
+                // $checkRentValidate = $homePriceModel->getPriceItems($homeID, $startDate, $endDate, 'on');
+                // if($checkRentValidate['total'] > 0){
+                //     $numberNight = hh_date_diff($startDate, $endDate);
+                //     $extra = $this->getExtraPrice($home, $extraServices, $numberNight);
+                //     $total = $checkRentValidate['results'][0]->price_per_night * $numberNight + $extra;
+                // }else {
+                //     $numberNight = hh_date_diff($startDate, $endDate);
+                //     $price = $this->getRealPrice($home, $startDate, $endDate, $number_adults + $number_children);
+                //     $requiredExtra = $this->getRequiredExtraPrice($home, $numberNight);
+                //     $extra = $this->getExtraPrice($home, $extraServices, $numberNight);
+                //     $total = $price + $requiredExtra + $extra;
+                // }
+                $numberNight = hh_date_diff($startDate, $endDate);
+                $price = $this->getRealPrice($home, $startDate, $endDate, $number_adults + $number_children);
+                $requiredExtra = $this->getRequiredExtraPrice($home, $numberNight);
+                $extra = $this->getExtraPrice($home, $extraServices, $numberNight);
+                $total = $price + $requiredExtra + $extra;
             } elseif ($home->booking_type == 'per_hour') {
                 $startTime = strtotime(date('Y-m-d', $startDate) . ' ' . $startTime);
                 $endTime = strtotime(date('Y-m-d', $endDate) . ' ' . $endTime);
@@ -1183,7 +1208,11 @@ class HomeController extends Controller
                     if ($status == 'available') {
                         foreach ($priceItems['results'] as $range) {
                             if ($i >= $range->start_time && $i <= $range->end_time) {
-                                $event = convert_price($range->price);
+                                if ($range->price != 0){
+                                    $event = convert_price($range->price);
+                                }else {
+                                    $event = convert_price($range->price_per_night);
+                                }
                                 $inCustom = true;
                                 break;
                             }

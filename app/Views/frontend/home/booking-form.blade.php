@@ -17,10 +17,10 @@ global $post;
                 <input type="text" class="input-hidden check-out-field"
                        name="checkOut">
                 <span class="check-in-render"
-                      data-date-format="{{ hh_date_format_moment() }}"></span>
+                      data-date-format="DD.MM.YYYY."></span>
                 <span class="divider"></span>
                 <span class="check-out-render"
-                      data-date-format="{{ hh_date_format_moment() }}"></span>
+                      data-date-format="DD.MM.YYYY."></span>
             </div>
         </div>
     @elseif($post->booking_type == 'per_hour')

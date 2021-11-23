@@ -26,8 +26,8 @@ class Currencies
         $symbol = '';
         $currency_position = 'right';
         $decimal = 2;
-        $thousand_separator = ',';
-        $decimal_separator = '.';
+        $thousand_separator = '.';
+        $decimal_separator = ',';
 
         if (!empty($currency_list) && $currency) {
             foreach ($currency_list as $item) {
@@ -36,14 +36,15 @@ class Currencies
                     // $rate = (float)$item['exchange'];
                     // $currency_position = $item['position'];
                     // $symbol = $item['symbol'];
+                    // $thousand_separator = $item['thousand_separator'];
+                    // $decimal_separator = $item['decimal_separator'];
+                    // $decimal = (int)$item['currency_decimal'];
                     $rate = 1;
                     $currency_position = 'right';
-                    $symbol = '€';
-
-
+                    $symbol = ' €';
                     $decimal = (int)$item['currency_decimal'];
-                    $thousand_separator = $item['thousand_separator'];
-                    $decimal_separator = $item['decimal_separator'];
+                    $thousand_separator = '.';
+                    $decimal_separator = ',';
                     break;
                 }
             }

@@ -132,13 +132,15 @@ $booking_type = isset($post->booking_type) ? $post->booking_type : '';
                     <label for="days_of_month_bulk">{{ __('Start Date') }} <span class="text-muted f11">(Select rent Start date)</span></label>
                     <input type="text" class="form-control"
                         data-plugin="datepicker"
-                        data-min-date="{{ date('Y-m-d')}}"
+                        data-date-format="d.m.Y."
+                        data-min-date="{{ date('d.m.Y.')}}"
                         id="start_date"
                         name="start_date" value="">
                     <label for="days_of_month_bulk">{{ __('End Date') }} <span class="text-muted f11">(Select rent End date)</span></label>
                     <input type="text" class="form-control"
                         data-plugin="datepicker"
-                        data-min-date="{{ date('Y-m-d')}}"
+                        data-date-format="d.m.Y."
+                        data-min-date="{{ date('d.m.Y.')}}"
                         id="end_date"
                         name="end_date" value="">
                     

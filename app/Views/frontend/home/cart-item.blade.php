@@ -38,7 +38,7 @@ $homeObject = unserialize($cart['serviceObject']);
             @if($homeObject->booking_type == 'per_night')
                 <span>{{__('Check In/Out')}}</span>
                 <span>
-                {{ date(hh_date_format(), $checkIn) }} <i class="fe-arrow-right ml-2 mr-2"></i> {{ date(hh_date_format(), $checkOut) }}
+                {{ date('d.m.Y.', $checkIn) }} <i class="fe-arrow-right ml-2 mr-2"></i> {{ date('d.m.Y.', $checkOut) }}
                 </span>
             @elseif($homeObject->booking_type == 'per_hour')
                 <span>{{__('Date')}}</span>
@@ -50,7 +50,7 @@ $homeObject = unserialize($cart['serviceObject']);
         @if($homeObject->booking_type == 'per_hour')
             <li>
                 <span>{{__('Time')}}</span>
-                <span>{{ date(hh_time_format(), $startTime) }} <i class="fe-arrow-right ml-2 mr-2"></i> {{ date(hh_time_format(), $endTime) }}</span>
+                <span>{{ date('d.m.Y.', $startTime) }} <i class="fe-arrow-right ml-2 mr-2"></i> {{ date('d.m.Y.', $endTime) }}</span>
             </li>
         @endif
         @if ($adults > 0)
