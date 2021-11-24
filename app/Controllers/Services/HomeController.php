@@ -676,21 +676,40 @@ class HomeController extends Controller
         $price_14_day = (float)$post->price_14_day;
         $price_30_day = (float)$post->price_30_day;
         $totalDay = hh_date_diff($startTime, $endTime);
+
+        $specialPrice = array();
+
+        foreach ($customPrice['results'] as $item) {
+            if($item->first_minute == 'on' || $item->last_minute == 'on'){
+                array_push($specialPrice, $item);
+            }
+        }
+
         for ($i = $startTime; $i < $endTime; $i = strtotime('+1 day', $i)) {
             $inCustom = false;
-            foreach ($customPrice['results'] as $item) {
-                if ($i >= $item->start_time && $i <= $item->end_time) {
-                    if($item->first_minute == 'on' || $item->last_minute == 'on') {
-                        $total += (float)$post->base_price - ($post->base_price * ($item->discount_percent) / 100);
-                    }else if($item->price == 0 && $item->price_per_night > 0){
-                        $total += (float)$item->price_per_night;
-                    }else {
-                        $total += (float)$item->price;
-                    }
+            $special_flag = false;
+            foreach ($specialPrice as $record) {
+                if ($i >= $record->start_time && $i <= $record->end_time) {
+                    $special_flag = true;
                     $inCustom = true;
+                    $total += (float)$post->base_price - ($post->base_price * ($record->discount_percent) / 100);
                     break;
                 }
             }
+            if(!$special_flag){
+                foreach ($customPrice['results'] as $item) {
+                    if ($i >= $item->start_time && $i <= $item->end_time) {
+                        if($item->price == 0 && $item->price_per_night > 0){
+                            $total += (float)$item->price_per_night;
+                        }else {
+                            $total += (float)$item->price;
+                        }
+                        $inCustom = true;
+                        break;
+                    }
+                }
+            }
+            
             
             if (!$inCustom) {
                 if ($use_long_price == 'on') {
@@ -1222,10 +1241,10 @@ class HomeController extends Controller
                             if ($i >= $range->start_time && $i <= $range->end_time) {
                                 if($range->first_minute == 'on' || $range->last_minute == 'on') {
                                     $event = (float)$price - ($price * ($range->discount_percent) / 100);
-                                }else if($item->price == 0 && $item->price_per_night > 0){
+                                }else if($range->price == 0 && $range->price_per_night > 0){
                                     $event = (float)$range->price_per_night;
                                 }else {
-                                    $event = (float)$range->price;
+                                    $event = (float)$range->price_per_night;
                                 }
                                 $event = convert_price($event);
                             }

@@ -287,17 +287,14 @@ global $post;
                                         $base_price = 0;
                                         $i = strtotime(date('d.m.Y'));
                                         $special_flag = false;
-                                        if ($i >= $item->start_time && $i <= $item->end_time) {  
-                                            if($item->first_minute == 'on' || $item->last_minute == 'on'){
-                                                $special_flag = true;
-                                                $base_price = $post->base_price;
-                                            }else if($item->price == 0 && $item->price_per_night > 0){
-                                                $base_price = $item->price_per_night;
-                                            }else {
-                                                $base_price = $item->price;    
-                                            }
+                                        
+                                        if($item->first_minute == 'on' || $item->last_minute == 'on'){
+                                            $special_flag = true;
+                                            $base_price = $post->base_price;
+                                        }else if($item->price == 0 && $item->price_per_night > 0){
+                                            $base_price = $item->price_per_night;
                                         }else {
-                                            $base_price = $item->price;
+                                            $base_price = $item->price;    
                                         }
                                         echo convert_price($base_price, '€', true, array('unit' => 'EUR'));
                                     ?>
@@ -308,23 +305,19 @@ global $post;
                                             $special_price = 0;
                                             $i = strtotime(date('d.m.Y'));
                                             $special_flag = false;
-                                            if ($i >= $item->start_time && $i <= $item->end_time) {  
-                                                if($item->first_minute == 'on' || $item->last_minute == 'on'){
-                                                    $special_flag = true;
-                                                    $base_price = $post->base_price;
-                                                    $special_price = $post->base_price * ($item->discount_percent / 100);
-                                                }else if($item->price == 0 && $item->price_per_night > 0){
-                                                    $base_price = $item->price_per_night;
-                                                }else {
-                                                    $base_price = $item->price;
-                                                }
-                                            }else {
+                                            if($item->first_minute == 'on' || $item->last_minute == 'on'){
+                                                $special_flag = true;
+                                                $base_price = $post->base_price;
+                                                $special_price = $post->base_price * ($item->discount_percent / 100);
+                                            }else if($item->price == 0 && $item->price_per_night > 0){
                                                 $base_price = $item->price_per_night;
+                                            }else {
+                                                $base_price = $item->price;
                                             }
                                             if($special_flag){
                                                 ?>
                                                     <p style="text-decoration: line-through; margin-top: -20px;">{{convert_price($base_price * 7, '€', true, array('unit' => 'EUR')) }} </p>
-                                                    <p>{{convert_price(($base_price - $special_price) * 7, '€', true, array('unit' => 'EUR')) }} </p>
+                                                    <p style="color:#f1556c">{{convert_price(($base_price - $special_price) * 7, '€', true, array('unit' => 'EUR')) }} </p>
                                                 <?php
                                             }else {
                                                 ?>
