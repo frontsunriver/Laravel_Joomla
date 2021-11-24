@@ -7,11 +7,13 @@ $post_type = isset($post_type) ? $post_type : 'home';
         <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">{{__('Special Price')}}</th>
             <th scope="col">{{__('Start Date')}}</th>
             <th scope="col">{{__('End Date')}}</th>
             <th scope="col">{{__('Price per Night')}}</th>
             <th scope="col">{{__('Weekly price')}}</th>
             <th scope="col">{{__('Minimum Stay')}}</th>
+            <th scope="col">{{__('Discount Percent')}}</th>
             <th scope="col">{{__('Price')}}</th>
             @if($post_type != 'experience' )
                 <th scope="col">{{__('Available')}}</th>
@@ -24,11 +26,13 @@ $post_type = isset($post_type) ? $post_type : 'home';
             @foreach ($custom_price['results'] as $key => $item)
                 <tr>
                     <td>{{ $key + 1 }}</td>
+                    <td>@if($item->first_minute == 'on' || $item->last_minute == 'on')<span>Special price</span>@endif</td>
                     <td>{{ date('m.d.Y.', $item->start_time) }}</td>
                     <td>{{ date('m.d.Y.', $item->end_time) }}</td>
                     <td>{{ convert_price($item->price_per_night, '€', true, array('unit' => 'EUR')) }}</td>
                     <td>{{ convert_price($item->price_per_night * 7, '€', true, array('unit' => 'EUR')) }}</td>
                     <td>{{ $item->stay_min_date }}</td>
+                    <td>{{ $item->discount_percent }} %</td>
                     <td>{{ convert_price($item->price, '€', true, array('unit' => 'EUR')) }}</td>
                     <td>
                         <?php

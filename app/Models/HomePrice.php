@@ -88,6 +88,18 @@ class HomePrice extends Model
         ] );
     }
 
+    public function _saveSpecialPrice( $home_id, $start, $end, $price_discount, $status, $first_minute, $last_minute )
+    {
+        return $this->createPrice( [
+            'home_id' => $home_id,
+            'start_time' => strtotime($start),
+            'end_time' => strtotime($end),
+            'discount_percent' => $price_discount,
+            'available' => $status,
+            'first_minute' => $first_minute,
+            'last_minute' => $last_minute,
+        ] );
+    }
 
     public function getByID($price_id)
     {

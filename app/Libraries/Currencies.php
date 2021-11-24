@@ -110,11 +110,13 @@ class Currencies
     public function currentCurrency($key = '')
     {
         $currency = Session::get($this->sessionCurrency);
-        $currency['symbol'] = " €";
-        $currency['position'] = "right";
+        
 	    if(is_null($currency)){
 		    $currency = $this->primaryCurrency();
 	    }
+
+        $currency['symbol'] = " €";
+        $currency['position'] = "right";
 
         if ($key) {
             return isset($currency[$key]) ? $currency[$key] : false;

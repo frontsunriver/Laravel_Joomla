@@ -59,6 +59,27 @@ global $post;
                     @if($post->is_featured == 'on')
                         <span class="is-featured">{{ get_option('featured_text', __('Featured')) }}</span>
                     @endif
+                    <?php
+                    $special_flag = false;
+                    $discount_percent = 0;
+                    if (!empty($post->period_stay_date['total'])) {
+                        
+                        foreach ($post->period_stay_date['results'] as $key => $item) {
+                            $i = strtotime(date('d.m.Y'));
+                            
+                            if ($i >= $item->start_time && $i <= $item->end_time) {  
+                                if($item->first_minute == 'on' || $item->last_minute == 'on'){
+                                    $special_flag = true;
+                                    $discount_percent = $item->discount_percent;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    ?>
+                    @if($special_flag)
+                        <span class="is-featured">{{ -$discount_percent.'%' }}</span>
+                    @endif
                 </h1>
                 @if ($post->location_address)
                     <p class="location">
@@ -261,9 +282,57 @@ global $post;
                                 <tr>
                                     <td>{{ date('d.m.Y.', $item->start_time) }}</td>
                                     <td>{{ date('d.m.Y.', $item->end_time) }}</td>
-                                    <td>{{ convert_price($item->price_per_night, '€', true, array('unit' => 'EUR')) }}</td>
-                                    <td>{{ $item->stay_min_date }}</td>
-                                    <td>{{ convert_price($item->price_per_night * 7, '€', true, array('unit' => 'EUR')) }}</td>
+                                    <td>
+                                    <?php
+                                        $base_price = 0;
+                                        $i = strtotime(date('d.m.Y'));
+                                        $special_flag = false;
+                                        if ($i >= $item->start_time && $i <= $item->end_time) {  
+                                            if($item->first_minute == 'on' || $item->last_minute == 'on'){
+                                                $special_flag = true;
+                                                $base_price = $post->base_price;
+                                            }else if($item->price == 0 && $item->price_per_night > 0){
+                                                $base_price = $item->price_per_night;
+                                            }else {
+                                                $base_price = $item->price;    
+                                            }
+                                        }else {
+                                            $base_price = $item->price;
+                                        }
+                                        echo convert_price($base_price, '€', true, array('unit' => 'EUR'));
+                                    ?>
+                                    <td>@if($special_flag) {{$post->min_stay}} @else {{ $item->stay_min_date }} @endif</td>
+                                    <td>
+                                        <?php
+                                            $base_price = 0;
+                                            $special_price = 0;
+                                            $i = strtotime(date('d.m.Y'));
+                                            $special_flag = false;
+                                            if ($i >= $item->start_time && $i <= $item->end_time) {  
+                                                if($item->first_minute == 'on' || $item->last_minute == 'on'){
+                                                    $special_flag = true;
+                                                    $base_price = $post->base_price;
+                                                    $special_price = $post->base_price * ($item->discount_percent / 100);
+                                                }else if($item->price == 0 && $item->price_per_night > 0){
+                                                    $base_price = $item->price_per_night;
+                                                }else {
+                                                    $base_price = $item->price;
+                                                }
+                                            }else {
+                                                $base_price = $item->price_per_night;
+                                            }
+                                            if($special_flag){
+                                                ?>
+                                                    <p style="text-decoration: line-through; margin-top: -20px;">{{convert_price($base_price * 7, '€', true, array('unit' => 'EUR')) }} </p>
+                                                    <p>{{convert_price(($base_price - $special_price) * 7, '€', true, array('unit' => 'EUR')) }} </p>
+                                                <?php
+                                            }else {
+                                                ?>
+                                                    <p>{{convert_price($base_price * 7, '€', true, array('unit' => 'EUR')) }} </p>
+                                                <?php
+                                            }
+                                        ?>
+                                    </td>
                                 </tr>
                             @endforeach
                             <tbody>

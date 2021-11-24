@@ -109,7 +109,7 @@ $homeObject = unserialize($cart['serviceObject']);
             @elseif($homeObject->booking_type == 'per_hour')
                 <span>{{ _n("0::Price for %s hours][1::Price for %s hour][2::Price for %s hours]", $numberNight) }}</span>
             @endif
-            <span>{{ convert_price($basePrice) }}</span>
+            <span>{{ convert_price($basePrice, '€', true, array('unit' => 'EUR')) }}</span>
         </li>
         @if ($extraPrice > 0)
             <li>
@@ -153,7 +153,7 @@ $homeObject = unserialize($cart['serviceObject']);
         <?php } ?>
         <li class="amount">
             <span>{{__('Amount')}}</span>
-            <span>{{ convert_price($cart['amount']) }}</span>
+            <span>{{ convert_price($cart['amount'], '€', true, array('unit' => 'EUR')) }}</span>
         </li>
     </ul>
 </div>

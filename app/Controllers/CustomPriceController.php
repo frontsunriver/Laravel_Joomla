@@ -232,6 +232,10 @@ class CustomPriceController extends Controller
         $year = request()->get('year_bulk');
         $price = request()->get('price_bulk');
         $postID = request()->get('post_id_bulk');
+        $start_date_discount = request()->get('start_date_discount');
+        $end_date_discount = request()->get('end_date_discount');
+        $first_minute = request()->get('first_minute');
+        $last_minute = request()->get('last_minute');
         if (!$postID) {
             return [
                 'status' => 0,
@@ -239,7 +243,6 @@ class CustomPriceController extends Controller
                 'message' => __('Can not save data. This service is invalid')
             ];
         }
-
 
         if ($type == 'home') {
             if (!is_numeric($price) || (float)$price < 0) {
@@ -283,7 +286,30 @@ class CustomPriceController extends Controller
 	        }
         }
 
-        if($param != 'days_of_custom') {
+        if($param == 'days_of_custom') {
+            if (empty($start_date) || empty($end_date)){
+                return [
+                    'status' => 0,
+                    'title' => __('System Alert'),
+                    'message' => __('Please insert the start or end date')
+                ];
+            }
+        } else if ($param == 'days_of_discount'){
+            if (empty($start_date_discount) || empty($end_date_discount)){
+                return [
+                    'status' => 0,
+                    'title' => __('System Alert'),
+                    'message' => __('Please insert the start or end date')
+                ];
+            }
+            if ($first_minute == 'off' && last_minute == 'off') {
+                return [
+                    'status' => 0,
+                    'title' => __('System Alert'),
+                    'message' => __('Please select the First Minute or Last Minute')
+                ];
+            }
+        } else{
             if (empty($month) || !is_array($month)) {
                 return [
                     'status' => 0,
@@ -297,14 +323,6 @@ class CustomPriceController extends Controller
                     'status' => 0,
                     'title' => __('System Alert'),
                     'message' => __('Year is incorrect')
-                ];
-            }
-        } else {
-            if (empty($start_date) || empty($end_date)){
-                return [
-                    'status' => 0,
-                    'title' => __('System Alert'),
-                    'message' => __('Please insert the start or end date')
                 ];
             }
         }
@@ -569,8 +587,13 @@ class CustomPriceController extends Controller
         $postID = request()->get('post_id_bulk');
         $start_date = request()->get('start_date');
         $end_date = request()->get('end_date');
+        $start_date_discount = request()->get('start_date_discount');
+        $end_date_discount = request()->get('end_date_discount');
         $price_per_night = request()->get('price_per_night');
         $min_stay_date = request()->get('min_stay_date');
+        $first_minute = request()->get('first_minute');
+        $last_minute = request()->get('last_minute');
+        $discount_percent = request()->get('discount_percent');
 
         $price = (float)$price;
         $price_per_night = (float)$price_per_night;
@@ -579,7 +602,11 @@ class CustomPriceController extends Controller
         $priceModel = new HomePrice();
         $availability_model = new HomeAvailability();
 
-        if($type != 'days_of_custom'){
+        if($type == 'days_of_custom'){
+            $priceModel->_savePricePerNight($postID, $start_date, $end_date, $price_per_night, $available, $min_stay_date);
+        } else if($type == 'days_of_discount') {
+            $priceModel->_saveSpecialPrice($postID, $start_date_discount, $end_date_discount, $discount_percent, $available, $first_minute, $last_minute);
+        } else {
             $data_week = $this->_day_off_week();
             list($group, $alone) = $this->get_group_alone();
     
@@ -665,8 +692,6 @@ class CustomPriceController extends Controller
                     }
                 }
             }
-        } else {
-            $priceModel->_savePricePerNight($postID, $start_date, $end_date, $price_per_night, $available, $min_stay_date);
         }
         
 

@@ -680,7 +680,9 @@ class HomeController extends Controller
             $inCustom = false;
             foreach ($customPrice['results'] as $item) {
                 if ($i >= $item->start_time && $i <= $item->end_time) {
-                    if($item->price == 0){
+                    if($item->first_minute == 'on' || $item->last_minute == 'on') {
+                        $total += (float)$post->base_price - ($post->base_price * ($item->discount_percent) / 100);
+                    }else if($item->price == 0 && $item->price_per_night > 0){
                         $total += (float)$item->price_per_night;
                     }else {
                         $total += (float)$item->price;
@@ -1207,14 +1209,25 @@ class HomeController extends Controller
                     }
                     if ($status == 'available') {
                         foreach ($priceItems['results'] as $range) {
+                            // if ($i >= $range->start_time && $i <= $range->end_time) {
+
+                            //     if ($range->price != 0){
+                            //         $event = convert_price($range->price);
+                            //     }else if(){
+                            //         $event = convert_price($range->price_per_night);
+                            //     }
+                            //     $inCustom = true;
+                            //     break;
+                            // }
                             if ($i >= $range->start_time && $i <= $range->end_time) {
-                                if ($range->price != 0){
-                                    $event = convert_price($range->price);
+                                if($range->first_minute == 'on' || $range->last_minute == 'on') {
+                                    $event = (float)$price - ($price * ($range->discount_percent) / 100);
+                                }else if($item->price == 0 && $item->price_per_night > 0){
+                                    $event = (float)$range->price_per_night;
                                 }else {
-                                    $event = convert_price($range->price_per_night);
+                                    $event = (float)$range->price;
                                 }
-                                $inCustom = true;
-                                break;
+                                $event = convert_price($event);
                             }
                         }
                     }

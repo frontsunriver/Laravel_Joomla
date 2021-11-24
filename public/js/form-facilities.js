@@ -26,7 +26,7 @@ var showFacilitiesModal = function() {
 }
 
 $('input[type=radio][name=type_of_bulk]').change(function() {
-    if (this.value == 'days_of_custom') {
+    if (this.value == 'days_of_custom' || this.value == 'days_of_discount') {
         $("#setting-month_bulk").hide();
         $("#setting-year_bulk").hide();
         $("#bulk_price").hide();
@@ -34,5 +34,13 @@ $('input[type=radio][name=type_of_bulk]').change(function() {
         $("#setting-month_bulk").show();
         $("#setting-year_bulk").show();
         $("#bulk_price").show();
+    }
+
+    if(this.value == 'days_of_discount') {
+        $("#bulk_first_minute").show();
+        $("#bulk_last_minute").show();
+    }else {
+        $("#bulk_first_minute").hide();
+        $("#bulk_last_minute").hide();
     }
 })
