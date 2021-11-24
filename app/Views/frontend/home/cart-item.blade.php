@@ -111,6 +111,12 @@ $homeObject = unserialize($cart['serviceObject']);
             @endif
             <span>{{ convert_price($basePrice, '€', true, array('unit' => 'EUR')) }}</span>
         </li>
+        @if($cart['discount_percent'] > 0)
+        <li>
+            <span>{{_('Discount')."(".$cart['discount_percent']."%)"}}</span>
+            <span>{{ convert_price($cart['amount'], '€', true, array('unit' => 'EUR')) }}</span>
+        </li>
+        @endif
         @if ($extraPrice > 0)
             <li>
                 <span>{{__('Extra Service')}}</span>

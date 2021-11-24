@@ -917,7 +917,7 @@ class HomeController extends Controller
                     $requiredExtra = $this->getRequiredExtraPrice($homeObject, $numberNight);
                     $extra = $this->getExtraPrice($homeObject, $extraParams, $numberNight);
                 }
-                
+
                 $rules = [
                     [
                         'unit' => '+',
@@ -959,9 +959,16 @@ class HomeController extends Controller
                     'tax' => $taxData,
                     'amount' => $totalData['amount'],
                     'cartData' => $data,
+                    'discount_percent' => 0,
                 ];
 
                 $cartData = apply_filters('hh_cart_data_before_add_to_cart', $cartData);
+
+                $specialData = $this->checkAndGetSpecial($homeObject, $startDate, $endDate);
+                if($specialData['special_count'] > 0){
+                    $cartData['basePrice'] = $specialData['total_budget'];
+                    $cartData['discount_percent'] = $specialData['discount_percent'];
+                }
 
                 if ($api) {
                     return [
@@ -992,6 +999,65 @@ class HomeController extends Controller
                 ])->render()
             ], true);
         }
+    }
+
+    public function checkAndGetSpecial($post, $startTime, $endTime) {
+        $price_model = new HomePrice();
+        $price = $post->base_price;
+        $booking_type = $post->booking_type;
+        if($booking_type == 'per_night'){
+            $customPrice = $price_model->getPriceItems($post->post_id, $startTime, $endTime);
+            $total = 0;
+    
+            $specialPrices = array();
+            $periodPrices = array();
+            
+            foreach ($customPrice['results'] as $key => $item) {
+                if($item->first_minute == 'on' || $item->last_minute == 'on'){
+                    array_push($specialPrices, $item);
+                }else {
+                    array_push($periodPrices, $item);
+                }
+            }
+            $total_array = array();
+            foreach ($periodPrices as $item) {
+                $special_flag = false;
+                foreach ($specialPrices as $value) {
+                    if($value->start_time >= $item->start_time && $value->end_time <= $item->end_time){
+                        $special_flag = true;
+                        $item->discount_percent = $value->discount_percent;
+                        $item->first_minute = 'on';
+                        $item->last_minute = 'on';
+                        array_push($total_array, $item);
+                        break;
+                    }
+                }
+                if(!$special_flag) {
+                    array_push($total_array, $item);
+                }
+            }
+            $special_count = 0;
+            $discount_percent = 0;
+            for ($i = $startTime; $i < $endTime; $i = strtotime('+1 day', $i)) {
+                foreach ($total_array as $record) {
+                    if ($i >= $record->start_time && $i <= $record->end_time) {
+                        if($record->first_minute == 'on' || $record->last_minute == 'on'){
+                            $special_count++;
+                            $discount_percent = $record->discount_percent;
+                            $total += (float)$post->base_price;
+                        } else if($item->price == 0 && $item->price_per_night > 0){
+                            $total += (float)$item->price_per_night;
+                        }else {
+                            $total += (float)$item->price;
+                        }
+                    }
+                }
+            }
+            $result = array('special_count' => $special_count, 'total_budget' => $total, 'discount_percent' => $discount_percent);
+        }else {
+            $result = array('special_count' => 0, 'total_budget' => 0);
+        }
+        return $result;
     }
 
     public function homeValidation($data)

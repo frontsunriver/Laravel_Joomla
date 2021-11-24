@@ -21,6 +21,31 @@ global $post;
     $gallery = $post->gallery;
     $thumbnail_id = get_home_thumbnail_id($post->post_id);
     $thumbnailUrl = get_attachment_url($thumbnail_id, 'full');
+    $specialPrices = array();
+    $periodPrices = array();
+    foreach ($post->period_stay_date['results'] as $key => $item) {
+        if($item->first_minute == 'on' || $item->last_minute == 'on'){
+            array_push($specialPrices, $item);
+        }else {
+            array_push($periodPrices, $item);
+        }
+    }
+    $total_array = array();
+    foreach ($periodPrices as $item) {
+        $special_flag = false;
+        foreach ($specialPrices as $value) {
+            if($value->start_time >= $item->start_time && $value->end_time <= $item->end_time){
+                $special_flag = true;
+                $item->first_minute = 'on';
+                $item->last_minute = 'on';
+                array_push($total_array, $item);
+                break;
+            }
+        }
+        if(!$special_flag) {
+            array_push($total_array, $item);
+        }
+    }
     ?>
     <div class="hh-gallery hh-thumbnail has-background-image" data-src="{{ $thumbnailUrl }}"
          style="background-image: url({{ $thumbnailUrl }})">
@@ -278,7 +303,7 @@ global $post;
                         </thead>
                         @if (!empty($post->period_stay_date['total']))
                             <tbody>
-                            @foreach ($post->period_stay_date['results'] as $key => $item)
+                            @foreach ($total_array as $item)
                                 <tr>
                                     <td>{{ date('d.m.Y.', $item->start_time) }}</td>
                                     <td>{{ date('d.m.Y.', $item->end_time) }}</td>
