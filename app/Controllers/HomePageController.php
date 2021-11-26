@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Home;
 
 class HomePageController extends Controller
 {
@@ -76,5 +77,16 @@ class HomePageController extends Controller
     public function _carPage()
     {
         return view('frontend.homepage.car-demo');
+    }
+
+    public function searchCities(Request $request) {
+        $home = new Home();
+        $query = request()->get('query');
+        $result = $home->searchCitiesList($query);
+        $cities = array();
+        foreach ($result as $value) {
+            $cities[] = get_translate($value->location_city);
+        }
+        echo json_encode($cities);
     }
 }

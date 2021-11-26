@@ -7,7 +7,7 @@ if (!empty($address)) {
 
 $date_string = '';
 if (!empty($check_in) && !empty($check_out)) {
-    $date_string = sprintf(__('from <strong>%s</strong> to <strong>%s</strong>'), hh_get_date_from_request(esc_html($check_in)), hh_get_date_from_request(esc_html($check_out)));
+    $date_string = sprintf(__('from <strong>%s</strong> to <strong>%s</strong>'), date("d.m.Y.", strtotime($check_in)), date("d.m.Y.", strtotime($check_out)));
 }
 
 ?>

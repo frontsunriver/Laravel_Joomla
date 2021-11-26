@@ -37,6 +37,18 @@ class HomePrice extends Model
             'results' => $results
         ];
     }
+
+    public function getMinMaxPrice(){
+        $result = DB::table($this->getTable())->selectRaw("min(price_per_night) as min, max(price_per_night) as max")->get()->first();
+        if (!empty($result) && is_object($result)) {
+            if ($result->min == $result->max) {
+                $result->min = 0;
+            }
+            return (array)$result;
+        }
+        return ['min' => 0, 'max' => 500];
+    }
+
     public function _savePrice( $home_id, $start, $end, $price, $status )
     {
         $availability = $this->getPriceItems( $home_id, $start, $end );

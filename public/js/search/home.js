@@ -208,9 +208,14 @@
                             }
                         });
                         if (resTemp.length > 0) {
-                            inputData.val(resTemp.toString());
-                            base.dataFilter[$(this).data('type')] = resTemp.toString();
-                            base.pushStateToFilter($(this).data('type'), resTemp.toString());
+                            if(inputData[0].name != "home-facilities") {
+                                inputData.val(resTemp.toString());
+                                base.dataFilter[$(this).data('type')] = resTemp.toString();
+                                base.pushStateToFilter($(this).data('type'), resTemp.toString());
+                            }else {
+                                base.dataFilter[$(this).data('type')] = $("input[name='home-facilities']").val();
+                                base.pushStateToFilter($(this).data('type'), $("input[name='home-facilities']").val());
+                            }
                         } else {
                             inputData.val('');
                             base.dataFilter[$(this).data('type')] = '';
@@ -492,28 +497,63 @@
             urlToArray: function () {
                 let base = this;
                 let res = {};
-
-                if ($('.pagination li.active a', base.search_container).length) {
-                    let pagination = parseInt($('.pagination li.active a', base.search_container).data('pagination'));
-                    res['page'] = pagination <= 0 ? 1 : pagination;
-                } else {
-                    res['page'] = 1;
-                }
-                res['current_url'] = $('.hh-search-results-render', base.search_container).data('url');
-
-                let sPageURL = window.location.search.substring(1);
-                if (sPageURL !== '') {
-                    let sURLVariables = sPageURL.split('&');
-                    if (sURLVariables.length) {
-                        for (let i = 0; i < sURLVariables.length; i++) {
-                            let sParameterName = sURLVariables[i].split('=');
-                            if (sParameterName.length) {
-                                let val = decodeURIComponent(sParameterName[1]);
-                                res[decodeURIComponent(sParameterName[0])] = (val === 'undefined') ? '' : val;
+                let method = $("#request_method").val();
+                if(method == 'GET'){
+                    if ($('.pagination li.active a', base.search_container).length) {
+                        let pagination = parseInt($('.pagination li.active a', base.search_container).data('pagination'));
+                        res['page'] = pagination <= 0 ? 1 : pagination;
+                    } else {
+                        res['page'] = 1;
+                    }
+                    res['current_url'] = $('.hh-search-results-render', base.search_container).data('url');
+    
+                    let sPageURL = window.location.search.substring(1);
+                    if (sPageURL !== '') {
+                        let sURLVariables = sPageURL.split('&');
+                        if (sURLVariables.length) {
+                            for (let i = 0; i < sURLVariables.length; i++) {
+                                let sParameterName = sURLVariables[i].split('=');
+                                if (sParameterName.length) {
+                                    let val = decodeURIComponent(sParameterName[1]);
+                                    res[decodeURIComponent(sParameterName[0])] = (val === 'undefined') ? '' : val;
+                                }
                             }
                         }
                     }
+                }else {
+                    let post_checkIn = $("#post_checkIn").val();
+                    let post_checkOut = $("#post_checkOut").val();
+                    let post_num_children = $("#post_num_children").val();
+                    let post_num_adult = $("#post_num_adult").val();
+                    let post_num_infants = $("#post_num_infants").val();
+                    let post_price_filter = $("#post_price_filter").val();
+                    let post_facility_val = $("#post_facility_val").val();
+                    let post_hometype_val = $("#post_hometype_val").val();
+                    let post_amenity_val = $("#post_amenity_val").val();
+                    let address = $('input[name="address"]').val();
+                    let bathrooms = $("#post_bathrooms").val();
+                    let bedrooms = $("#post_bedrooms").val();
+                    res['current_url'] = $('.hh-search-results-render', base.search_container).data('url');
+                    if ($('.pagination li.active a', base.search_container).length) {
+                        let pagination = parseInt($('.pagination li.active a', base.search_container).data('pagination'));
+                        res['page'] = pagination <= 0 ? 1 : pagination;
+                    } else {
+                        res['page'] = 1;
+                    }
+                    res['checkIn'] = post_checkIn;
+                    res['checkOut'] = post_checkOut;
+                    res['num_children'] = post_num_children;
+                    res['num_adult'] = post_num_adult;
+                    res['num_infants'] = post_num_infants;
+                    res['price_filter'] = post_price_filter;
+                    res['facility_val'] = post_facility_val;
+                    res['home-type'] = post_hometype_val;
+                    res['amenity_val'] = post_amenity_val;
+                    res['address'] = address;
+                    res['bedrooms'] = bedrooms;
+                    res['bathrooms'] = bathrooms;
                 }
+                
                 return res;
             },
             pushStateToFilter: function (key, value, del = false) {

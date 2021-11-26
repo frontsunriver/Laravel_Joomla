@@ -53,6 +53,8 @@ class Home extends Model
             'home-type' => '',
             'home-amenity' => '',
             'home-facilites' => '',
+            'bedrooms' => '',
+            'bathrooms' => '',
             'number' => posts_per_page()
         ];
         $data = wp_parse_args($data, $default);
@@ -60,7 +62,7 @@ class Home extends Model
 
         $sql = DB::table($this->getTable())->selectRaw("SQL_CALC_FOUND_ROWS *");
 
-        if (!empty($data['lat']) && !empty($data['lng'])) {
+        if (!empty($data['lat']) && !empty($data['lng']) && $data['lat'] != 'NaN') {
             $distance = get_option('home_search_radius', '25');
             $data['lat'] = esc_sql($data['lat']);
             $data['lng'] = esc_sql($data['lng']);
@@ -70,8 +72,28 @@ class Home extends Model
         } elseif (!empty($data['address'])) {
             $address = urldecode($data['address']);
             $data['address'] = esc_sql($data['address']);
-            $sql->whereRaw("home.location_address LIKE '%{$address}%'");
+            $sql->whereRaw("home.location_city LIKE '%{$address}%'");
             $sql->orderByDesc('home.post_id');
+        }
+
+        
+        if(!empty($data['bedrooms']) && ($data['bedrooms'] != '0')){
+            $val = intval($data['bedrooms']);
+            if($val == 6){
+                $sql->whereRaw(" home.number_of_bedrooms >= {$val}");
+            }else {
+                $sql->whereRaw(" home.number_of_bedrooms = {$val}");
+            }
+        }
+
+        if(!empty($data['bathrooms'])){
+            $val = intval($data['bathrooms']);
+            if($val == 3){
+                $sql->whereRaw("home.number_of_bathrooms >= {$val}");
+            }else {
+                $sql->whereRaw("home.number_of_bathrooms = {$val}");
+            }
+            
         }
 
         if (!empty($data['num_adults']) || !empty($data['num_children'])) {
@@ -81,7 +103,14 @@ class Home extends Model
 
         if (!empty($data['price_filter'])) {
             $min_max = get_origin_filter_price($data['price_filter']);
-            $sql->whereRaw("base_price >= {$min_max['min']} AND base_price <= {$min_max['max']}");
+            // $sql->whereRaw("base_price >= {$min_max['min']} AND base_price <= {$min_max['max']}");
+            $sql->leftJoin('home_price', function($join) use ($min_max){
+                $join->on('home.post_id', '=', 'home_price.home_id');
+                $join->whereRaw("
+                    home_price.price_per_night >= {$min_max['min']} AND home_price.price_per_night <= {$min_max['max']} OR
+                    home.base_price >= {$min_max['min']} AND home.base_price <= {$min_max['max']}
+                ");
+            });
         }
         if (empty($data['bookingType'])) {
             if (!empty($data['checkIn']) && !empty($data['checkOut'])) {
@@ -160,10 +189,13 @@ class Home extends Model
         }
 
         if (!empty($data['home-facilities'])) {
-            $amen_arr = explode(',', $data['home-facilities']);
+            // $amen_arr = explode(',', $data['home-facilities']);
+            $amen_arr = json_decode($data['home-facilities']);
             $sql_amen = [];
             foreach ($amen_arr as $k => $v) {
-                array_push($sql_amen, "( FIND_IN_SET({$v}, home.facilities) )");
+                foreach ($v as $value) {
+                    array_push($sql_amen, "( FIND_IN_SET({$v}, home.facilities) )");
+                }
             }
             if (!empty($sql_amen)) {
                 $sql->whereRaw("(" . implode(' OR ', $sql_amen) . ")");
@@ -376,6 +408,13 @@ class Home extends Model
         DB::table('comments')->where('post_id', $home_id)->where('post_type', 'home')->delete();
 
         return DB::table($this->getTable())->where('post_id', $home_id)->delete();
+    }
+
+    public function searchCitiesList($query) {
+        $sql = DB::table($this->getTable())->selectRaw("SQL_CALC_FOUND_ROWS *");
+        $sql->whereRaw("home.location_city LIKE '%{$query}%'");
+        $results = $sql->get();
+        return $results;
     }
 
 }

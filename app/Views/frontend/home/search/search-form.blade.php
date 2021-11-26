@@ -2,16 +2,16 @@
 <form action="{{ get_home_search_page() }}" class="form mt-3" method="get">
     <div class="form-group">
         <label>{{__('Where')}}</label>
-        <div class="form-control" data-plugin="mapbox-geocoder" data-value=""
+        <!-- <div class="form-control" data-plugin="mapbox-geocoder" data-value=""
              data-current-location="1"
              data-your-location="{{__('Your Location')}}"
-             data-placeholder="{{__('Enter a location ...')}}" data-lang="{{get_current_language()}}"></div>
+             data-placeholder="{{__('Enter a location ...')}}" data-lang="{{get_current_language()}}"></div> -->
+        <input type="text" id="demo4" name="address" class="form-control typeahead" autocomplete="off" placeholder="{{__('Enter a location ...')}}">
         <div class="map d-none"></div>
         <input type="hidden" name="lat" value="">
         <input type="hidden" name="lng" value="">
-        <input type="hidden" name="address" value="">
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <div class="radio radio-pink form-check-inline ml-1">
             <input id="booking_type_home_night" type="radio" name="bookingType" value="per_night"
                    checked>
@@ -21,12 +21,12 @@
             <input id="booking_type_home_hour" type="radio" name="bookingType" value="per_hour">
             <label for="booking_type_home_hour">{{ __('per Hour') }}</label>
         </div>
-    </div>
+    </div> -->
 
     <div class="form-group form-group-date-single d-none">
         <label>{{__('Check In')}}</label>
         <div class="date-wrapper date date-single"
-             data-date-format="{{ hh_date_format_moment() }}">
+             data-date-format="d.m.Y">
             <input type="text"
                    class="input-hidden check-in-out-field"
                    name="checkInOutTime">
@@ -35,7 +35,7 @@
             <input type="text" class="input-hidden check-out-field"
                    name="checkOutTime">
             <span class="check-in-render"
-                  data-date-format="{{ hh_date_format_moment() }}"></span>
+                  data-date-format="d.m.Y"></span>
         </div>
     </div>
     <div class="form-group form-group-date-time d-none">
@@ -76,10 +76,10 @@
             <input type="text" class="input-hidden check-in-field" name="checkIn">
             <input type="text" class="input-hidden check-out-field" name="checkOut">
             <span class="check-in-render"
-                  data-date-format="{{ hh_date_format_moment()  }}"></span>
+                  data-date-format="DD.MM.YYYY."></span>
             <span class="divider"></span>
             <span class="check-out-render"
-                  data-date-format="{{ hh_date_format_moment()  }}"></span>
+                  data-date-format="DD.MM.YYYY."></span>
         </div>
     </div>
     <div class="form-group">
@@ -142,5 +142,8 @@
     <div class="form-group">
         <input class="btn btn-primary w-100" type="submit" name="sm"
                value="{{__('Search')}}">
+    </div>
+    <div class="form-group">
+        <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">{{__('Advanced Search')}}</a>
     </div>
 </form>

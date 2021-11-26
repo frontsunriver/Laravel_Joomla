@@ -365,6 +365,11 @@ class HomeController extends Controller
 
     }
 
+    public function advancedSearch($page = '1') {
+        $page = 5;
+        return view("frontend.home.search.search", ['page'=>$page]);
+    }
+
     public function _getSearchResult()
     {
         $home = new Home();
@@ -629,17 +634,22 @@ class HomeController extends Controller
 
     public function getMinMaxPrice()
     {
+        $home_price_model = new HomePrice();
         $home_model = new Home();
         $minMaxPrice = $home_model->getMinMaxPrice();
-        if (!isset($minMaxPrice['min']) || empty($minMaxPrice['min'])) {
-            $minMaxPrice['min'] = 0;
+        $homePriceMinMax = $home_price_model->getMinMaxPrice();
+        if(!isset($homePriceMinMax['min']) || empty($homePriceMinMax['min'])){
+            if (!isset($minMaxPrice['min']) || empty($minMaxPrice['min'])) {
+                $minMaxPrice['min'] = 0;
+            }
+            if (!isset($minMaxPrice['max'])) {
+                $minMaxPrice['max'] = 500;
+            }
         }
-        if (!isset($minMaxPrice['max'])) {
-            $minMaxPrice['max'] = 500;
-        }
+        
 
-        $minMaxPrice['min'] = convert_price($minMaxPrice['min'], false, false);
-        $minMaxPrice['max'] = convert_price($minMaxPrice['max'], false, false);
+        $minMaxPrice['min'] = convert_price($homePriceMinMax['min'], false, false);
+        $minMaxPrice['max'] = convert_price($homePriceMinMax['max'], false, false);
 
         return $minMaxPrice;
     }

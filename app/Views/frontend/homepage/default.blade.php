@@ -21,6 +21,11 @@ enqueue_style('owl-carousel-theme');
 
 $tab_services = get_option('sort_search_form', convert_tab_service_to_list_item());
 ?>
+<style>
+    .daterangepicker.dropdown-menu {
+        z-index: 1000000000 !important;
+    }
+</style>
 <div class="home-page pb-5">
     @if(!empty($tab_services))
         <div class="hh-search-form-wrapper">
@@ -51,7 +56,7 @@ $tab_services = get_option('sort_search_form', convert_tab_service_to_list_item(
                 <div class="container">
                     <div class="hh-search-form">
                         @if(!empty($tab_services))
-                            <div class="nav-wrapper relative" data-tabs-calculation>
+                            <!-- <div class="nav-wrapper relative" data-tabs-calculation>
                                 <ul class="nav nav-tabs" data-tabs>
                                     @foreach($tab_services as $key => $item)
                                         <li class="nav-item">
@@ -63,7 +68,7 @@ $tab_services = get_option('sort_search_form', convert_tab_service_to_list_item(
                                         </li>
                                     @endforeach
                                 </ul>
-                            </div>
+                            </div> -->
                             <div class="tab-content  @if(count($tab_services) == 1) pt-0 @endif">
                                 @foreach($tab_services as $key => $item)
                                     <div class="tab-pane {{$key == 0 ? 'active' : ''}}" id="tab-search-{{$item['id']}}">
@@ -610,4 +615,230 @@ $tab_services = get_option('sort_search_form', convert_tab_service_to_list_item(
         @endif
     </div>
 </div>
+<div class="modal fade " id="myModal">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">{{__('Advanced Search')}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="hh-search-form">
+                <form action="{{ url('get-advanced-search') }}" class="form mt-3" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <?php
+                            $minmax = \App\Controllers\Services\HomeController::get_inst()->getMinMaxPrice();
+                            $currencySymbol = current_currency('symbol');
+                            $currencyPos = current_currency('position');
+                            ?>
+                            <div class="form-group">
+                                <label>{{__('Price Range')}}</label>
+                                <input type="text" name="price_filter"
+                                    data-plugin="ion-range-slider"
+                                    data-prefix="{{ $currencyPos == 'left' ? $currencySymbol : ''}}"
+                                    data-postfix="{{ $currencyPos == 'right' ? $currencySymbol : ''}}"
+                                    data-min="{{ $minmax['min'] }}"
+                                    data-max="{{ $minmax['max'] }}"
+                                    data-from="{{ $minmax['min'] }}"
+                                    data-to="{{ $minmax['max'] }}"
+                                    data-skin="round">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>{{__('Where')}}</label>
+                                <input type="text" id="demo5" name="address" class="form-control typeahead" autocomplete="off" placeholder="{{__('Enter a location ...')}}">
+                                <div class="map d-none"></div>
+                                <input type="hidden" name="lat" value="">
+                                <input type="hidden" name="lng" value="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group form-group-date">
+                                <label>{{__('Check In/Out')}}</label>
+                                <div class="date-wrapper date date-double" data-date-format="{{ hh_date_format_moment() }}">
+                                    <input type="text" class="input-hidden check-in-out-field" name="checkInOut">
+                                    <input type="text" class="input-hidden check-in-field" name="checkIn">
+                                    <input type="text" class="input-hidden check-out-field" name="checkOut">
+                                    <span class="check-in-render"
+                                        data-date-format="DD.MM.YYYY."></span>
+                                    <span class="divider"></span>
+                                    <span class="check-out-render"
+                                        data-date-format="DD.MM.YYYY."></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>{{__('Guests')}}</label>
+                                <div class="guest-group">
+                                    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                                            data-text-guest="{{__('Guest')}}"
+                                            data-text-guests="{{__('Guests')}}"
+                                            data-text-infant="{{__('Infant')}}"
+                                            data-text-infants="{{__('Infants')}}"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        &nbsp;
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <div class="group">
+                                            <span class="pull-left">{{__('Adults')}}</span>
+                                            <div class="control-item">
+                                                <i class="decrease ti-minus"></i>
+                                                <input type="number" min="1" step="1" max="15" name="num_adults" value="1">
+                                                <i class="increase ti-plus"></i>
+                                            </div>
+                                        </div>
+                                        <div class="group">
+                                            <span class="pull-left">{{__('Children')}}</span>
+                                            <div class="control-item">
+                                                <i class="decrease ti-minus"></i>
+                                                <input type="number" min="0" step="1" max="15" name="num_children"
+                                                    value="0">
+                                                <i class="increase ti-plus"></i>
+                                            </div>
+                                        </div>
+                                        <div class="group">
+                                            <span class="pull-left">{{__('Infants')}}</span>
+                                            <div class="control-item">
+                                                <i class="decrease ti-minus"></i>
+                                                <input type="number" min="0" step="1" max="10" name="num_infants" value="0">
+                                                <i class="increase ti-plus"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>{{__('Bedrooms')}}</label>
+                                        <select class="form-control" name="bedrooms">
+                                            <option value="">Any</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>{{__('Bathrooms')}}</label>
+                                        <select class="form-control" name="bathrooms">
+                                            <option value="">Any</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <?php
+                                $terms = get_home_terms_filter();
+                            ?>
+                            @if (!empty($terms))
+                                @foreach ($terms as $term_name => $term)
+                                    <?php
+                                    $tax = request()->get($term_name);
+                                    $tax_arr = [];
+                                    if (!empty($tax)) {
+                                        $tax_arr = explode(',', $tax);
+                                    }
+                                    ?>
+                                    <div class="item-filter-wrapper" data-type="{{ $term_name }}">
+                                        <div class="label">{{ $term['label'] }}</div>
+                                        <?php
+                                            $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $term['label']));
+                                        ?>
+                                        @if (!empty($term['items']) && $term['label'] != 'Home Facilities Fields')
+                                            <div class="content" id="{{$idName}}">
+                                                <div class="row">
+                                                    @foreach ($term['items'] as $term_id => $term_title)
+                                                        <?php
+                                                        $checked = '';
+                                                        if (in_array($term_id, $tax_arr)) {
+                                                            $checked = 'checked';
+                                                        }
+                                                        ?>
+                                                        <div class="col-lg-4 mb-1">
+                                                            <div class="item checkbox  checkbox-success ">
+                                                                <input type="checkbox" value="{{ $term_id }}" onchange="checkStatus('{{ $idName }}', {{$term_id}})"
+                                                                    id="{{$term_name}}{{ $term_id }}" {{ $checked }}/>
+                                                                <label
+                                                                    for="{{ $term_name }}{{ $term_id }}">{{ $term_title }}</label>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
+                                        <input type="hidden" name="{{ $term_name }}" value="{{ $tax }}"/>
+                                        
+                                    </div>
+                                @endforeach
+                                <?php
+                                $facilities_list = get_terms('home-facilities'); ?>
+                                <div class="item-filter-wrapper" id="home-facilities">
+                                    <?php foreach ($facilities_list as $key => $value) { ?>
+                                            <div class="label">{{ $value['title'] }}</div>
+                                            <?php $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $value['title']));?>
+                                            <div class="content">
+                                                <div class="row">
+                                                    <?php $sub_val = json_decode($value['selection_val']);
+                                                        foreach ($sub_val as $item) { ?>
+                                                            <div class="col-lg-4 mb-1">
+                                                                <div class="item checkbox  checkbox-success ">
+                                                                    <input type="checkbox" value="{{$item}}" onchange="checkFacility()"
+                                                                        id="{{$idName}}_{{$item}}" {{ $checked }}/>
+                                                                    <label
+                                                                        for="{{$idName}}_{{$item}}">{{ $item }}</label>
+                                                                </div>
+                                                            </div>
+                                                        <?php }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                    <?php } ?>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    <input type="hidden" name="amenity_val" id="amenity_val">
+                    <input type="hidden" name="facility_val" id="facility_val">
+                    <input type="hidden" name="hometype_val" id="hometype_val">
+                    <div class="form-group float-right">
+                        <button type="submit" class="btn btn-success">Apply</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            
+        </div>
+        
+      </div>
+    </div>
+</div>
+  
 @include('frontend.components.footer')

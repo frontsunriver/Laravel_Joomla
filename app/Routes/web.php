@@ -331,6 +331,8 @@ Route::group(['middleware' => ['locale', 'enable_home', 'html_compress']], funct
 
     Route::post($home['search_slug'], 'Services\HomeController@_getSearchResult');
 
+    Route::post('get-advanced-search', 'Services\HomeController@advancedSearch');
+
     Route::post('get-inventory-home', 'Services\HomeController@_getAvailabilityHome');
 });
 
@@ -435,6 +437,8 @@ Route::group(['middleware' => ['locale', 'html_compress']], function () {
     Route::post('add-post-comment', 'CommentController@addCommentAction');
 
     Route::get('/', 'HomePageController@index')->name('home-page');
+
+    Route::get('/cities/list', 'HomePageController@searchCities')->name('city-list-search');
 
     Route::get('home', 'HomePageController@_homePage')->name('home-demo');
 

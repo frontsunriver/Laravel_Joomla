@@ -15,27 +15,48 @@ enqueue_script('iconrange-slider');
         $lat = request()->get('lat');
         $lng = request()->get('lng');
         $address = request()->get('address');
+        $method = request()->method();
+        $post_checkIn = request()->get('checkIn');
+        $post_checkOut = request()->get('checkOut');
+        $post_num_children = request()->get('num_children');
+        $post_num_adult = request()->get('num_adults');
+        $post_num_infants = request()->get('num_infants');
+        $post_price_filter = request()->get('price_filter');
+        $post_amenity_val = request()->get('amenity_val');
+        $post_facility_val = request()->get('facility_val');
+        $post_hometype_val = request()->get('hometype_val');
+        $post_bedrooms = request()->get('bedrooms');
+        $post_bathrooms = request()->get('bathrooms');
         ?>
         <div class="hh-button-item button-location form-group">
-            <div class="form-control" data-plugin="mapbox-geocoder" data-value="{{ $address }}"
-                 data-your-location="{{__('Your Location')}}" data-current-location="0"
-                 data-placeholder="{{__('Enter a location ...')}}" data-lang="{{get_current_language()}}"></div>
-            <div class="map d-none"></div>
+            <input type="text" id="demo5" name="address" class="form-control typeahead" autocomplete="off" value="{{$address}}" placeholder="{{__('Enter a location ...')}}">
             <input type="hidden" name="lat" value="{{ $lat }}">
             <input type="hidden" name="lng" value="{{ $lng }}">
             <input type="hidden" name="address" value="{{ $address }}">
+            <input type="hidden" name="request_method" value="{{$method}}" id="request_method">
+            <input type="hidden" id="post_checkIn" value="{{$post_checkIn}}">
+            <input type="hidden" id="post_checkOut" value="{{$post_checkOut}}">
+            <input type="hidden" id="post_num_children" value="{{$post_num_children}}">
+            <input type="hidden" id="post_num_adult" value="{{$post_num_adult}}">
+            <input type="hidden" id="post_num_infants" value="{{$post_num_infants}}">
+            <input type="hidden" id="post_price_filter" value="{{$post_price_filter}}">
+            <input type="hidden" id="post_amenity_val" value="{{$post_amenity_val}}">
+            <input type="hidden" id="post_facility_val" value="{{$post_facility_val}}">
+            <input type="hidden" id="post_hometype_val" value="{{$post_hometype_val}}">
+            <input type="hidden" id="post_bedrooms" value="{{$post_bedrooms}}">
+            <input type="hidden" id="post_bathrooms" value="{{$post_bathrooms}}">
         </div>
         <?php
         $booking_type = request()->get('bookingType', 'per_night');
         ?>
         @if($booking_type == 'per_night')
             <div class="hh-button-item button-date button-date-double form-group"
-                 data-date-format="{{ hh_date_format_moment() }}">
+                 data-date-format="DD.MM.YYYY">
                 <span class="text"><?php echo __('Date'); ?></span>
                 <?php
-                $checkIn = request()->get('checkIn', '');
-                $checkOut = request()->get('checkOut', '');
-                $checkInOut = request()->get('checkInOut', '');
+                $checkIn = request()->get('checkIn', date('d.m.Y.'));
+                $checkOut = request()->get('checkOut', date('d.m.Y.'));
+                $checkInOut = request()->get('checkInOut', date('d.m.Y.'));
                 ?>
                 <input type="hidden" class="check-in-field" name="checkIn" value="{{ $checkIn }}">
                 <input type="hidden" class="check-out-field" name="checkOut" value="{{ $checkOut }}">
@@ -47,8 +68,8 @@ enqueue_script('iconrange-slider');
                  data-date-format="{{ hh_date_format_moment() }}">
                 <span class="text"><?php echo __('Date'); ?></span>
                 <?php
-                $checkIn = request()->get('checkInTime', date('Y-m-d'));
-                $checkOut = request()->get('checkOutTime', date('Y-m-d'));
+                $checkIn = request()->get('checkInTime', date('d.m.Y.'));
+                $checkOut = request()->get('checkOutTime', date('d.m.Y.'));
                 $checkInOut = request()->get('checkInOutTime');
                 ?>
                 <input type="hidden" class="check-in-field" name="checkInTime" value="{{ $checkIn }}">
@@ -146,7 +167,10 @@ enqueue_script('iconrange-slider');
                             ?>
                             <div class="item-filter-wrapper" data-type="{{ $term_name }}">
                                 <div class="label">{{ $term['label'] }}</div>
-                                @if (!empty($term['items']))
+                                <?php
+                                    $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $term['label']));
+                                ?>
+                                @if (!empty($term['items']) && $term['label'] != 'Home Facilities Fields')
                                     <div class="content">
                                         <div class="row">
                                             @foreach ($term['items'] as $term_id => $term_title)
@@ -167,10 +191,37 @@ enqueue_script('iconrange-slider');
                                             @endforeach
                                         </div>
                                     </div>
+                                    <input type="hidden" name="{{ $term_name }}" value="{{ $tax }}"/>
                                 @endif
-                                <input type="hidden" name="{{ $term_name }}" value="{{ $tax }}"/>
+                                
                             </div>
                         @endforeach
+                        <?php
+                        $facilities_list = get_terms('home-facilities'); ?>
+                        <div class="item-filter-wrapper" id="home-facilities" data-type="home-facilities">
+                            <?php foreach ($facilities_list as $key => $value) { ?>
+                                    <div class="label">{{ $value['title'] }}</div>
+                                    <?php $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $value['title']));?>
+                                    <div class="content">
+                                        <div class="row">
+                                            <?php $sub_val = json_decode($value['selection_val']);
+                                                foreach ($sub_val as $item) { ?>
+                                                    <div class="col-lg-4 mb-1">
+                                                        <div class="item checkbox  checkbox-success ">
+                                                            <input type="checkbox" value="{{$item}}" onchange="checkSearchFacility()"
+                                                                id="{{$idName}}_{{$item}}" {{ $checked }}/>
+                                                            <label
+                                                                for="{{$idName}}_{{$item}}">{{ $item }}</label>
+                                                        </div>
+                                                    </div>
+                                                <?php }
+                                            ?>
+                                        </div>
+                                    </div>
+                            <?php } ?>
+                            <input type="hidden" name="home-facilities" value="">
+                        </div>
+                        
                     @endif
                     <a href="javascript:void(0)"
                        class="apply-more-filter btn btn-primary btn-xs right">{{__('Apply')}}</a>
@@ -299,7 +350,7 @@ enqueue_script('iconrange-slider');
                         ?>
                         <div class="filter-item item-filter-wrapper popup-tax-filter" data-type="{{ $term_name }}">
                             <p class="filter-item-title">{{ $term['label'] }}</p>
-                            @if (!empty($term['items']))
+                            @if (!empty($term['items']) && $term['label'] != 'Home Facilities Fields')
                                 <div class="content">
                                     <div class="row">
                                         @foreach ($term['items'] as $term_id => $term_title)
@@ -321,9 +372,33 @@ enqueue_script('iconrange-slider');
                                     </div>
                                 </div>
                             @endif
-                            <input type="hidden" name="{{ $term_name }}" value="{{ $tax }}"/>
+                            <!-- <input type="hidden" name="{{ $term_name }}" value="{{ $tax }}"/> -->
                         </div>
                     @endforeach
+                    <?php
+                    $facilities_list = get_terms('home-facilities'); ?>
+                    <div class="filter-item item-filter-wrapper" id="home-facilities1">
+                        <?php foreach ($facilities_list as $key => $value) { ?>
+                                <div class="label">{{ $value['title'] }}</div>
+                                <?php $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $value['title']));?>
+                                <div class="content">
+                                    <div class="row">
+                                        <?php $sub_val = json_decode($value['selection_val']);
+                                            foreach ($sub_val as $item) { ?>
+                                                <div class="col-lg-4 mb-1">
+                                                    <div class="item checkbox  checkbox-success ">
+                                                        <input type="checkbox" value="{{$item}}" onchange="checkFacility()"
+                                                            id="{{$idName}}_{{$item}}" {{ $checked }}/>
+                                                        <label
+                                                            for="{{$idName}}_{{$item}}">{{ $item }}</label>
+                                                    </div>
+                                                </div>
+                                            <?php }
+                                        ?>
+                                    </div>
+                                </div>
+                        <?php } ?>
+                    </div>
                 @endif
             </div>
         </div>
