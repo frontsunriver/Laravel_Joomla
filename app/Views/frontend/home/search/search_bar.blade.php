@@ -205,16 +205,19 @@ enqueue_script('iconrange-slider');
                                     <div class="content">
                                         <div class="row">
                                             <?php $sub_val = json_decode($value['selection_val']);
-                                                foreach ($sub_val as $item) { ?>
-                                                    <div class="col-lg-4 mb-1">
-                                                        <div class="item checkbox  checkbox-success ">
-                                                            <input type="checkbox" value="{{$item}}" onchange="checkSearchFacility()"
-                                                                id="{{$idName}}_{{$item}}" {{ $checked }}/>
-                                                            <label
-                                                                for="{{$idName}}_{{$item}}">{{ $item }}</label>
+                                                if(!empty($sub_val)) {
+                                                    foreach ($sub_val as $item) { ?>
+                                                        <div class="col-lg-4 mb-1">
+                                                            <div class="item checkbox  checkbox-success ">
+                                                                <input type="checkbox" value="{{$item}}" onchange="checkSearchFacility()"
+                                                                    id="{{$idName}}_{{$item}}" {{ $checked }}/>
+                                                                <label
+                                                                    for="{{$idName}}_{{$item}}">{{ $item }}</label>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                <?php }
+                                                    <?php }
+                                                }
+                                                
                                             ?>
                                         </div>
                                     </div>
@@ -384,16 +387,18 @@ enqueue_script('iconrange-slider');
                                 <div class="content">
                                     <div class="row">
                                         <?php $sub_val = json_decode($value['selection_val']);
-                                            foreach ($sub_val as $item) { ?>
-                                                <div class="col-lg-4 mb-1">
-                                                    <div class="item checkbox  checkbox-success ">
-                                                        <input type="checkbox" value="{{$item}}" onchange="checkFacility()"
-                                                            id="{{$idName}}_{{$item}}" {{ $checked }}/>
-                                                        <label
-                                                            for="{{$idName}}_{{$item}}">{{ $item }}</label>
+                                            if(!empty($sub_val)){
+                                                foreach ($sub_val as $item) { ?>
+                                                    <div class="col-lg-4 mb-1">
+                                                        <div class="item checkbox  checkbox-success ">
+                                                            <input type="checkbox" value="{{$item}}" onchange="checkFacility()"
+                                                                id="{{$idName}}_{{$item}}" {{ $checked }}/>
+                                                            <label
+                                                                for="{{$idName}}_{{$item}}">{{ $item }}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            <?php }
+                                                <?php }
+                                            }
                                         ?>
                                     </div>
                                 </div>

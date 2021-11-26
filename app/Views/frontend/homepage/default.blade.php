@@ -803,16 +803,18 @@ $tab_services = get_option('sort_search_form', convert_tab_service_to_list_item(
                                             <div class="content">
                                                 <div class="row">
                                                     <?php $sub_val = json_decode($value['selection_val']);
-                                                        foreach ($sub_val as $item) { ?>
-                                                            <div class="col-lg-4 mb-1">
-                                                                <div class="item checkbox  checkbox-success ">
-                                                                    <input type="checkbox" value="{{$item}}" onchange="checkFacility()"
-                                                                        id="{{$idName}}_{{$item}}" {{ $checked }}/>
-                                                                    <label
-                                                                        for="{{$idName}}_{{$item}}">{{ $item }}</label>
+                                                        if(!empty($sub_val)){
+                                                            foreach ($sub_val as $item) { ?>
+                                                                <div class="col-lg-4 mb-1">
+                                                                    <div class="item checkbox  checkbox-success ">
+                                                                        <input type="checkbox" value="{{$item}}" onchange="checkFacility()"
+                                                                            id="{{$idName}}_{{$item}}" {{ $checked }}/>
+                                                                        <label
+                                                                            for="{{$idName}}_{{$item}}">{{ $item }}</label>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        <?php }
+                                                            <?php }
+                                                        }
                                                     ?>
                                                 </div>
                                             </div>
