@@ -231,8 +231,8 @@ function get_origin_filter_price($filter_price)
         $max = floatval($min_max[1]);
     }
 
-    $min = $min / $exchange_rate;
-    $max = $max / $exchange_rate;
+    $min = $min / 1;
+    $max = $max / 1;
 
     return [
         'min' => $min,
