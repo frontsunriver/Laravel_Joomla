@@ -27,6 +27,8 @@ enqueue_script('iconrange-slider');
         $post_hometype_val = request()->get('hometype_val');
         $post_bedrooms = request()->get('bedrooms');
         $post_bathrooms = request()->get('bathrooms');
+        $first_minute = request()->get('first_minute');
+        $last_minute = request()->get('last_minute');
         ?>
         <div class="hh-button-item button-location form-group">
             <input type="text" id="demo5" name="address" class="form-control typeahead" autocomplete="off" value="{{$address}}" placeholder="{{__('Enter a location ...')}}">
@@ -45,6 +47,8 @@ enqueue_script('iconrange-slider');
             <input type="hidden" id="post_hometype_val" value="{{$post_hometype_val}}">
             <input type="hidden" id="post_bedrooms" value="{{$post_bedrooms}}">
             <input type="hidden" id="post_bathrooms" value="{{$post_bathrooms}}">
+            <input type="hidden" id="first_minute" value="{{$first_minute}}">
+            <input type="hidden" id="last_minute" value="{{$last_minute}}">
         </div>
         <?php
         $booking_type = request()->get('bookingType', 'per_night');
@@ -166,11 +170,11 @@ enqueue_script('iconrange-slider');
                             }
                             ?>
                             <div class="item-filter-wrapper" data-type="{{ $term_name }}">
-                                <div class="label">{{ $term['label'] }}</div>
-                                <?php
-                                    $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $term['label']));
-                                ?>
                                 @if (!empty($term['items']) && $term['label'] != 'Home Facilities Fields')
+                                    <div class="label">@if($term['label'] == 'Home Amenity') Amenity @else {{ $term['label'] }} @endif</div>
+                                    <?php
+                                        $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $term['label']));
+                                    ?>
                                     <div class="content">
                                         <div class="row">
                                             @foreach ($term['items'] as $term_id => $term_title)
@@ -196,9 +200,33 @@ enqueue_script('iconrange-slider');
                                 
                             </div>
                         @endforeach
+                        <div class="" id="special-offer">
+                            <div class="label">Special Offer</div>
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-lg-4 mb-1">
+                                        <div class="item checkbox  checkbox-success ">
+                                            <input type="checkbox" value="on"
+                                                id="first_minute1" name="first_minute"/>
+                                            <label
+                                                for="first_minute1">FIRST MINUTE</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 mb-1">
+                                        <div class="item checkbox  checkbox-success ">
+                                            <input type="checkbox" value="on"
+                                                id="last_minute1" name="last_minute"/>
+                                            <label
+                                                for="last_minute1">LAST MINUTE</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <?php
                         $facilities_list = get_terms('home-facilities'); ?>
                         <div class="item-filter-wrapper" id="home-facilities" data-type="home-facilities">
+                            <div class="label">Home Facilities</div>
                             <?php foreach ($facilities_list as $key => $value) { ?>
                                     <div class="label">{{ $value['title'] }}</div>
                                     <?php $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $value['title']));?>

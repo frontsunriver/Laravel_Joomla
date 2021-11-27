@@ -222,6 +222,20 @@
                             base.pushStateToFilter($(this).data('type'), '', true);
                         }
                     });
+                    if($("#first_minute1")[0].checked){
+                        base.dataFilter['first_minute'] = 'on'
+                        base.pushStateToFilter('first_minute', 'on');
+                    }else {
+                        base.dataFilter['first_minute'] = ''
+                        base.pushStateToFilter('first_minute', '');
+                    }
+                    if($("#last_minute1")[0].checked){
+                        base.dataFilter['last_minute'] = 'on'
+                        base.pushStateToFilter('last_minute', 'on');
+                    }else {
+                        base.dataFilter['last_minute'] = ''
+                        base.pushStateToFilter('last_minute', '');
+                    }
                     base._resetPage();
                     base._searchCallBack();
                     parent.removeClass('show');
@@ -533,6 +547,8 @@
                     let address = $('input[name="address"]').val();
                     let bathrooms = $("#post_bathrooms").val();
                     let bedrooms = $("#post_bedrooms").val();
+                    let first_minute = $("#first_minute").val();
+                    let last_minute = $("#last_minute").val();
                     res['current_url'] = $('.hh-search-results-render', base.search_container).data('url');
                     if ($('.pagination li.active a', base.search_container).length) {
                         let pagination = parseInt($('.pagination li.active a', base.search_container).data('pagination'));
@@ -552,6 +568,8 @@
                     res['address'] = address;
                     res['bedrooms'] = bedrooms;
                     res['bathrooms'] = bathrooms;
+                    res['first_minute'] = first_minute;
+                    res['last_minute'] = last_minute;
                 }
                 
                 return res;

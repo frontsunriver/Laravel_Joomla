@@ -55,6 +55,8 @@ class Home extends Model
             'home-facilites' => '',
             'bedrooms' => '',
             'bathrooms' => '',
+            'first_minute' => '',
+            'last_minute' => '',
             'number' => posts_per_page()
         ];
         $data = wp_parse_args($data, $default);
@@ -75,7 +77,6 @@ class Home extends Model
             $sql->whereRaw("home.location_city LIKE '%{$address}%'");
             $sql->orderByDesc('home.post_id');
         }
-
         
         if(!empty($data['bedrooms']) && ($data['bedrooms'] != '0')){
             $val = intval($data['bedrooms']);
@@ -101,17 +102,29 @@ class Home extends Model
             $sql->whereRaw("number_of_guest >= {$number_of_guest}");
         }
 
+        
+
         if (!empty($data['price_filter'])) {
             $min_max = get_origin_filter_price($data['price_filter']);
-            // $sql->whereRaw("base_price >= {$min_max['min']} AND base_price <= {$min_max['max']}");
             $sql->leftJoin('home_price', function($join) use ($min_max){
+                $where_home_price = "";
+                if (!empty($data['first_minute'])) {
+                    $where_home_price .= " and home_price.first_minute = 'on'";
+                }
+        
+                if (!empty($data['last_minute'])) {
+                    $where_home_price .= " and home_price.last_minute = 'on'";
+                }
                 $join->on('home.post_id', '=', 'home_price.home_id');
                 $join->whereRaw("
-                    home_price.price_per_night >= {$min_max['min']} AND home_price.price_per_night <= {$min_max['max']} OR
-                    home.base_price >= {$min_max['min']} AND home.base_price <= {$min_max['max']}
+                    (home_price.price_per_night >= {$min_max['min']} AND home_price.price_per_night <= {$min_max['max']} OR
+                    home.base_price >= {$min_max['min']} AND home.base_price <= {$min_max['max']}) {$where_home_price}
                 ");
             });
         }
+
+        
+
         if (empty($data['bookingType'])) {
             if (!empty($data['checkIn']) && !empty($data['checkOut'])) {
                 $check_in = strtotime($data['checkIn']);

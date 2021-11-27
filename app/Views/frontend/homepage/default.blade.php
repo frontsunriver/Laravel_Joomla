@@ -764,11 +764,11 @@ $tab_services = get_option('sort_search_form', convert_tab_service_to_list_item(
                                     }
                                     ?>
                                     <div class="item-filter-wrapper" data-type="{{ $term_name }}">
-                                        <div class="label">{{ $term['label'] }}</div>
-                                        <?php
-                                            $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $term['label']));
-                                        ?>
                                         @if (!empty($term['items']) && $term['label'] != 'Home Facilities Fields')
+                                            <div class="label">@if($term['label'] == 'Home Amenity') Amenity @else {{ $term['label'] }} @endif</div>
+                                            <?php
+                                                $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $term['label']));
+                                            ?>
                                             <div class="content" id="{{$idName}}">
                                                 <div class="row">
                                                     @foreach ($term['items'] as $term_id => $term_title)
@@ -794,9 +794,33 @@ $tab_services = get_option('sort_search_form', convert_tab_service_to_list_item(
                                         
                                     </div>
                                 @endforeach
+                                <div class="" id="special-offer">
+                                    <div class="label">Special Offer</div>
+                                    <div class="content">
+                                        <div class="row">
+                                            <div class="col-lg-4 mb-1">
+                                                <div class="item checkbox  checkbox-success ">
+                                                    <input type="checkbox" value="on" onchange="changeSpecial('first_minute')"
+                                                        id="first_minute" name="first_minute"/>
+                                                    <label
+                                                        for="first_minute">FIRST MINUTE</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 mb-1">
+                                                <div class="item checkbox  checkbox-success ">
+                                                    <input type="checkbox" value="on" onchange="changeSpecial('last_minute')"
+                                                        id="last_minute" name="last_minute"/>
+                                                    <label
+                                                        for="last_minute">LAST MINUTE</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <?php
                                 $facilities_list = get_terms('home-facilities'); ?>
                                 <div class="item-filter-wrapper" id="home-facilities">
+                                    <div class="label">Home Facilities</div>
                                     <?php foreach ($facilities_list as $key => $value) { ?>
                                             <div class="label">{{ $value['title'] }}</div>
                                             <?php $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $value['title']));?>

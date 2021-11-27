@@ -14,6 +14,23 @@ $('#demo4').typeahead({
     }
 });
 
+// $("#demo4").on('focus', function(){
+//     $.ajax({
+//         url: '/cities/list',
+//         method: 'GET',
+//         data: {
+//             query: $("#demo4").val()
+//         },
+//         success: function(res){
+//             $("#demo4").typeahead({
+//                 source: function(){
+//                     return res;
+//                 }
+//             });
+//         }
+//     });
+// });
+
 $('#demo5').typeahead({
     source: function (query, result) {
         $.ajax({

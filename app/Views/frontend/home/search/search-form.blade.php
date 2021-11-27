@@ -6,6 +6,7 @@
              data-current-location="1"
              data-your-location="{{__('Your Location')}}"
              data-placeholder="{{__('Enter a location ...')}}" data-lang="{{get_current_language()}}"></div> -->
+             
         <input type="text" id="demo4" name="address" class="form-control typeahead" autocomplete="off" placeholder="{{__('Enter a location ...')}}">
         <div class="map d-none"></div>
         <input type="hidden" name="lat" value="">
