@@ -818,31 +818,40 @@ $tab_services = get_option('sort_search_form', convert_tab_service_to_list_item(
                                     </div>
                                 </div>
                                 <?php
-                                $facilities_list = get_terms('home-facilities'); ?>
+                                $facilities_list = get_terms('home-advanced'); 
+                                ?>
                                 <div class="item-filter-wrapper" id="home-facilities">
-                                    <div class="label">Home Facilities</div>
-                                    <?php foreach ($facilities_list as $key => $value) { ?>
-                                            <div class="label">{{ $value['title'] }}</div>
-                                            <?php $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $value['title']));?>
-                                            <div class="content">
-                                                <div class="row">
-                                                    <?php $sub_val = json_decode($value['selection_val']);
-                                                        if(!empty($sub_val)){
-                                                            foreach ($sub_val as $item) { ?>
-                                                                <div class="col-lg-4 mb-1">
-                                                                    <div class="item checkbox  checkbox-success ">
-                                                                        <input type="checkbox" value="{{$item}}" onchange="checkFacility()"
-                                                                            id="{{$idName}}_{{$item}}" {{ $checked }}/>
-                                                                        <label
-                                                                            for="{{$idName}}_{{$item}}">{{ $item }}</label>
-                                                                    </div>
+                                    <!-- <div class="label">Home Facilities</div> -->
+                                        
+                                    <?php 
+                                    foreach ($facilities_list as $key => $value) { ?>
+                                        <div class="label">{{$value['title']}}</div>
+                                        <div class="content">
+                                            <div class="row">
+                                            <?php $sub_val = json_decode($value['selection_val']);
+                                            
+                                                if(!empty($sub_val)){
+                                                    foreach ($sub_val as $k=>$item) { 
+                                                        foreach ($item as $tmp) {
+                                                            $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $k)); ?>
+                                                            <div class="col-lg-4 mb-1">
+                                                                <div class="item checkbox  checkbox-success ">
+                                                                    <input type="checkbox" value="{{$tmp}}" onchange="checkFacility()"
+                                                                        id="{{$idName}}_{{$tmp}}"/>
+                                                                    <label
+                                                                        for="{{$idName}}_{{$tmp}}">{{ $tmp }}</label>
                                                                 </div>
-                                                            <?php }
-                                                        }
-                                                    ?>
-                                                </div>
+                                                            </div>
+                                                        <?php }
+                                                        ?>
+                                                        
+                                                    <?php }
+                                                }
+                                            ?>
                                             </div>
+                                        </div>
                                     <?php } ?>
+                                       
                                 </div>
                             @endif
                         </div>

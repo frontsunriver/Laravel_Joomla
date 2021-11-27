@@ -400,6 +400,11 @@ return [
                     'label' => awe_lang('Distances'),
                     'screen' => 'get-terms/home-distance',
                 ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Advanced Facilities Search'),
+                    'screen' => 'get-terms/home-advanced',
+                ],
             ],
             'screen' => ['add-new-home', 'my-home', 'edit-home', 'review/home', 'get-terms/home-type', 'get-terms/home-amenity', 'get-terms/home-facilities']
         ],

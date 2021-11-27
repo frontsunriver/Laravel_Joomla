@@ -28,7 +28,7 @@ function get_terms($taxonomy = 'home-type', $is_object = false)
 {
     $return = [];
 
-    $home_taxonomy = ['home-type', 'home-amenity', 'home-facilities', 'home-distance'];
+    $home_taxonomy = ['home-type', 'home-amenity', 'home-facilities', 'home-distance', 'home-advanced'];
     $experience_taxonomy = ['experience-type', 'experience-languages', 'experience-inclusions', 'experience-exclusions'];
     $car_taxonomy = ['car-type', 'car-equipment', 'car-feature'];
 
@@ -48,7 +48,7 @@ function get_terms($taxonomy = 'home-type', $is_object = false)
             $return = $terms;
         } else {
             if ($terms) {
-                if($taxonomy == 'home-facilities'){
+                if($taxonomy == 'home-facilities' || $taxonomy == 'home-advanced'){
                     foreach ($terms as $item) {
                         $return[$item->term_id] = array('title' => esc_attr(get_translate($item->term_title)), 'selection_val' => $item->term_select);
                     }

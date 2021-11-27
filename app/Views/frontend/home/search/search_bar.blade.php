@@ -224,34 +224,41 @@ enqueue_script('iconrange-slider');
                             </div>
                         </div>
                         <?php
-                        $facilities_list = get_terms('home-facilities'); ?>
-                        <div class="item-filter-wrapper" id="home-facilities" data-type="home-facilities">
-                            <div class="label">Home Facilities</div>
-                            <?php foreach ($facilities_list as $key => $value) { ?>
-                                    <div class="label">{{ $value['title'] }}</div>
-                                    <?php $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $value['title']));?>
-                                    <div class="content">
-                                        <div class="row">
+                                $facilities_list = get_terms('home-advanced'); 
+                                ?>
+                                <div class="item-filter-wrapper" id="home-facilities">
+                                    <!-- <div class="label">Home Facilities</div> -->
+                                        
+                                    <?php 
+                                    foreach ($facilities_list as $key => $value) { ?>
+                                        <div class="label">{{$value['title']}}</div>
+                                        <div class="content">
+                                            <div class="row">
                                             <?php $sub_val = json_decode($value['selection_val']);
-                                                if(!empty($sub_val)) {
-                                                    foreach ($sub_val as $item) { ?>
-                                                        <div class="col-lg-4 mb-1">
-                                                            <div class="item checkbox  checkbox-success ">
-                                                                <input type="checkbox" value="{{$item}}" onchange="checkSearchFacility()"
-                                                                    id="{{$idName}}_{{$item}}" {{ $checked }}/>
-                                                                <label
-                                                                    for="{{$idName}}_{{$item}}">{{ $item }}</label>
+                                            
+                                                if(!empty($sub_val)){
+                                                    foreach ($sub_val as $k=>$item) { 
+                                                        foreach ($item as $tmp) {
+                                                            $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $k)); ?>
+                                                            <div class="col-lg-4 mb-1">
+                                                                <div class="item checkbox  checkbox-success ">
+                                                                    <input type="checkbox" value="{{$tmp}}" onchange="checkSearchFacility()"
+                                                                        id="{{$idName}}_{{$tmp}}"/>
+                                                                    <label
+                                                                        for="{{$idName}}_{{$tmp}}">{{ $tmp }}</label>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        <?php }
+                                                        ?>
+                                                        
                                                     <?php }
                                                 }
-                                                
                                             ?>
+                                            </div>
                                         </div>
-                                    </div>
-                            <?php } ?>
-                            <input type="hidden" name="home-facilities" value="">
-                        </div>
+                                    <?php } ?>
+                                       
+                                </div>
                         
                     @endif
                     <a href="javascript:void(0)"

@@ -54,6 +54,8 @@ class TermController extends Controller
             echo view("dashboard.screens.{$folder}.services.car.quick-add-car-feature")->render();
         }elseif ($screen == 'get-terms/home-distance') {
             echo view("dashboard.screens.{$folder}.services.home.quick-add-home-distance")->render();
+        }elseif ($screen == 'get-terms/home-advanced') {
+            echo view("dashboard.screens.{$folder}.services.home.quick-add-home-advanced")->render();
         }
     }
 
@@ -66,6 +68,7 @@ class TermController extends Controller
         $termPrice = request()->get('term_price');
         $taxonomyName = request()->get('taxonomy_name', '');
         $current = request()->get('currentNum');
+        $term_select = request()->get('term_select');
 
         $value = array();
         for($i = 1; $i <= (int)($current); $i++){
@@ -107,6 +110,9 @@ class TermController extends Controller
             'author' => get_current_user_id(),
             'term_select' => $value,
         ];
+        if($taxObject->taxonomy_id == 14){
+            $data['term_select'] = $term_select;
+        }
 
         $term = new Term();
 
@@ -178,6 +184,8 @@ class TermController extends Controller
         $termIcon = request()->get('term_icon');
         $termPrice = request()->get('term_price');
         $current = request()->get('currentNum_update');
+        $term_select = request()->get('term_select');
+        $term_type = request()->get('term_type');
 
         $value = array();
         for($i = 1; $i <= (int)($current); $i++){
@@ -216,6 +224,10 @@ class TermController extends Controller
             'term_price' => (float)$termPrice,
             'term_select' => $value
         ];
+
+        if(!empty($term_type)) {
+            $data['term_select'] = $term_select;
+        }
 
         $termUpdated = $term->updateTerm($data, $termID);
 
@@ -416,6 +428,37 @@ class TermController extends Controller
         }
 
         $html = view("dashboard.screens.{$this->getFolder()}.services.home.home-distance-form", ['termObject' => $termObject])->render();
+
+        $this->sendJson([
+            'status' => 1,
+            'html' => $html
+        ], true);
+    }
+
+    public function _getHomeAdvancedItem(Request $request)
+    {
+        $termID = request()->get('termID');
+        $termEncrypt = request()->get('termEncrypt');
+
+        if (!hh_compare_encrypt($termID, $termEncrypt)) {
+            $this->sendJson([
+                'status' => 0,
+                'title' => __('System Alert'),
+                'message' => __('This term is invalid')
+            ], true);
+        }
+
+        $term = new Term();
+        $termObject = $term->getById($termID);
+        if (is_null($termObject)) {
+            $this->sendJson([
+                'status' => 0,
+                'title' => __('System Alert'),
+                'message' => __('This term is invalid')
+            ], true);
+        }
+
+        $html = view("dashboard.screens.{$this->getFolder()}.services.home.home-advanced-form", ['termObject' => $termObject])->render();
 
         $this->sendJson([
             'status' => 1,

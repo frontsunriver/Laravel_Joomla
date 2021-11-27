@@ -43,4 +43,36 @@ $('input[type=radio][name=type_of_bulk]').change(function() {
         $("#bulk_first_minute").hide();
         $("#bulk_last_minute").hide();
     }
-})
+});
+
+var checkFacility = function(val){
+    var checkboxes = $("#home-facilities :checked");
+    var tmpName = "";
+    var makeJson = {};
+    var tmpArray = new Array();
+    for(var i = 0; i < checkboxes.length; i++){
+        if(checkboxes[i].checked){
+            var id = checkboxes[i].id;
+            var f_name = id.split('_');
+            f_name = f_name[0].replace("-", " ");
+            if(tmpName != f_name) {
+                if(tmpName != ""){
+                    makeJson[tmpName] = tmpArray;
+                }
+                tmpName = f_name;
+                tmpArray = new Array();
+            }
+            tmpArray.push(checkboxes[i].defaultValue);
+        }
+    }
+    makeJson[tmpName] = tmpArray;
+    console.log(makeJson);
+
+    if(val == 'add'){
+        $("#facility_val").val(JSON.stringify(makeJson));
+    }else {
+        $("#facility_val_1").val(JSON.stringify(makeJson));
+    }
+    
+
+}
