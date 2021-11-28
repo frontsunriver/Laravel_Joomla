@@ -41,7 +41,8 @@ class EnqueueScripts
             'locale' => str_replace('_', '-', app()->getLocale()),
             'language_code' => strtolower(str_replace('_', '-', app()->getLocale())),
             'timezone' => e(get_timezone()),
-            'mapbox_token' => e(get_option('mapbox_key')),
+            // 'mapbox_token' => e(get_option('mapbox_key')),
+            'mapbox_token' => "pk.eyJ1IjoibmV5bWFyMjE1IiwiYSI6ImNrd2o1dXNtYTFmMWczM25vYzkzY3JkNmYifQ.TKhPlTMgIRXjLLrnkcrynQ",
             'currency' => current_currency(),
             'media' => [
                 'get_all_media_url' => e(dashboard_url('all-media')),
