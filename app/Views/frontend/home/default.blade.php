@@ -453,8 +453,7 @@ global $post;
                     @endif
                     @if(!empty($video))
                         <div class="clearfix mt-2">
-                            <iframe width="100%" height="500" src="{{$video}}">
-                            </iframe>
+                            <?php echo preg_replace("/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", "<iframe src=\"//www.youtube.com/embed/$2\" allowfullscreen width='100%' height='500'></iframe>",$video); ?>
                         </div>
                     @endif
                     <?php do_action('hh_owner_information'); ?>

@@ -306,7 +306,7 @@ Route::group(['prefix' => Config::get('awebooking.prefix_dashboard'), 'middlewar
 });
 
 
-Route::group(['middleware' => ['locale', 'enable_home', 'html_compress']], function () {
+Route::group(['middleware' => ['locale', 'enable_home', 'html_compress', 'sameorigin']], function () {
     $home = Config::get('awebooking.post_types')['home'];
 
     Route::get($home['slug'] . '/{home_id}/{home_name?}', 'Services\HomeController@_getHomeSingle')->name($home['slug']);

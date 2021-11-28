@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'authenticate' => \App\Http\Middleware\Authenticate::class,
         'is_login' => \App\Http\Middleware\IsLoginMiddleware::class,
         'locale' => \App\Http\Middleware\Locale::class,
+        'sameorigin' => \App\Http\Middleware\Sameorigin::class,
         'enable_car' => \App\Http\Middleware\IsCarEnable::class,
         'enable_home' => \App\Http\Middleware\IsHomeEnable::class,
         'enable_experience' => \App\Http\Middleware\IsExperienceEnable::class,
