@@ -216,4 +216,9 @@ class User extends Authenticatable
         $results = DB::table('roles')->get();
         return (is_object($results) && $results->count()) ? $results : null;
     }
+
+    public function getAllUserList() {
+        $results = DB::table('users')->selectRaw('users.*')->join('role_users', 'users.id', '=', 'role_users.user_id')->where('role_users.role_id', '!=', 3)->get();
+        return (is_object($results) && $results->count()) ? $results : null;
+    }
 }

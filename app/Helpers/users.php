@@ -264,6 +264,13 @@ function get_user_meta($user_id, $meta_key, $default = '')
     }
 }
 
+function get_all_user_list()
+{
+    $user_model = new \App\Models\User();
+    $result = $user_model->getAllUserList();
+    return $result;
+}
+
 function update_user_meta($user_id, $meta_key, $meta_value = '')
 {
     $user_model = new \App\Models\User();

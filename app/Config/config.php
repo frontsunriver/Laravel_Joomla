@@ -895,6 +895,16 @@ return [
                 'section' => 'detail_options'
             ],
             [
+                'id' => 'author',
+                'label' => awe_lang('Ownner'),
+                'type' => 'select',
+                'permission' => ['administrator'],//['administrator', 'partner', 'customer']
+                'layout' => 'col-12 col-md-6',
+                'break' => true,
+                'style' => 'wide',
+                'section' => 'detail_options'
+            ],
+            [
                 'id' => 'booking_form',
                 'label' => awe_lang('Booking Form'),
                 'type' => 'select',
