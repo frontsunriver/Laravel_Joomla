@@ -423,6 +423,7 @@ global $post;
                 $location = $author->location;
                 $country = get_country_by_code($location);
                 $description = $author->description;
+                $video = $author->video;
                 ?>
                 <div class="w-100 mt-3"></div>
                 <div class="hosted-author">
@@ -440,10 +441,20 @@ global $post;
                                 </p>
                             @endif
                         </div>
+                        <div style="flex:2;">
+                            <img src="{{asset('images/verified_stamp.jpg')}}" style="width:100px;"></img>
+                        </div>
+                        
                     </div>
                     @if(!empty($description))
                         <div class="clearfix mt-2">
                             {!! balanceTags(nl2br($description)) !!}
+                        </div>
+                    @endif
+                    @if(!empty($video))
+                        <div class="clearfix mt-2">
+                            <iframe width="100%" height="500" src="{{$video}}">
+                            </iframe>
                         </div>
                     @endif
                     <?php do_action('hh_owner_information'); ?>

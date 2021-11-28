@@ -221,6 +221,7 @@ class DashboardController extends Controller
         $location = request()->get('location');
         $address = request()->get('address');
         $description = request()->get('description');
+        $video = request()->get('video');
 
         if (hh_compare_encrypt($user_id, $user_encrypt) && $user_id == get_current_user_id()) {
             $args = [
@@ -230,6 +231,7 @@ class DashboardController extends Controller
                 'location' => $location,
                 'address' => $address,
                 'description' => $description,
+                'video' => $video,
             ];
             $user = get_user_by_id($user_id);
 
