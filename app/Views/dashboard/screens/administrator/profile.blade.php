@@ -187,6 +187,13 @@ enqueue_script('dropzone-js');
                                                   class="form-control">{{ $current_user->description }}</textarea>
                                     </div>
                                 </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="description">{{__('Video')}}</label>
+                                        <input type="text" class="form-control" id="video" name="video"
+                                               value="{{ $current_user->video }}">
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-success btn-rounded waves-effect waves-light right">
                                 <span class="btn-label"><i class="mdi mdi-check-all"></i></span>
