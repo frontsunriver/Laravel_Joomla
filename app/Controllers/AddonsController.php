@@ -20,7 +20,7 @@
             } else {
                 $content = [];
             }
-            return view('dashboard.screens.administrator.addons', ['addons' => $content, 'bodyClass' => 'hh-dashboard']);
+            return view('dashboard.screens.'.$this->getFolder().'.addons', ['addons' => $content, 'bodyClass' => 'hh-dashboard']);
         }
 
         public function _actionExtension(Request $request)

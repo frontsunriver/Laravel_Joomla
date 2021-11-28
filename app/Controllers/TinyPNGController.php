@@ -31,7 +31,7 @@ class TinyPNGController extends Controller
 
     public function _tinyPngCompress(Request $request)
     {
-        return view('dashboard.screens.administrator.tinypng-compress');
+        return view('dashboard.screens.'.$this->getFolder().'.tinypng-compress');
     }
 
     private function _init()

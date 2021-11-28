@@ -214,6 +214,7 @@ return [
         ],
     ],
     'user_roles' => [
+        'superadmin' => awe_lang('Superadmin'),
         'administrator' => awe_lang('Administrator'),
         'partner' => awe_lang('Partner'),
         'customer' => awe_lang('Customer'),
@@ -263,7 +264,7 @@ return [
         'female' => awe_lang('Female'),
         'other' => awe_lang('Other'),
     ],
-    'admin_menu' => [
+    'superadmin_menu' => [
         [
             'type' => 'heading',
             'label' => awe_lang('General'),
@@ -624,6 +625,367 @@ return [
             'screen' => 'api-settings'
         ]
     ],
+    'admin_menu' => [
+        [
+            'type' => 'heading',
+            'label' => awe_lang('General'),
+            'id' => 'heading-general'
+        ],
+        [
+            'type' => 'item',
+            'label' => awe_lang('Dashboard'),
+            'icon' => '001_dashboard',
+            'screen' => 'dashboard',
+        ],
+        [
+            'type' => 'item',
+            'label' => awe_lang('Your Profile'),
+            'icon' => '011_user_1',
+            'screen' => 'profile',
+        ],
+        [
+            'type' => 'item',
+            'label' => awe_lang('Notifications'),
+            'icon' => '003_error',
+            'screen' => 'all-notifications',
+        ],
+        [
+            'type' => 'parent',
+            'label' => awe_lang('Posts'),
+            'icon' => '004_post',
+            'child' => [
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Add new Post'),
+                    'screen' => 'add-new-post',
+                ],
+                [
+                    'type' => 'hidden',
+                    'label' => awe_lang('Edit Post'),
+                    'screen' => 'edit-post',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('All Posts'),
+                    'screen' => 'all-post',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Categories'),
+                    'screen' => 'get-terms/post-category',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Tags'),
+                    'screen' => 'get-terms/post-tag',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Comments'),
+                    'screen' => 'comment',
+                ]
+            ],
+            'screen' => ['all-post', 'edit-post', 'add-new-post', 'get-terms/post-category', 'get-terms/post-tag', 'comment']
+        ],
+        [
+            'type' => 'parent',
+            'label' => awe_lang('Pages'),
+            'icon' => '005_website',
+            'child' => [
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('All Pages'),
+                    'screen' => 'all-page',
+                ],
+                [
+                    'type' => 'hidden',
+                    'label' => awe_lang('Edit Page'),
+                    'screen' => 'edit-page',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Add new Page'),
+                    'screen' => 'add-new-page',
+                ]
+            ],
+            'screen' => ['all-page', 'edit-page', 'add-new-page']
+        ],
+        [
+            'type' => 'heading',
+            'services' => ['car', 'home', 'experience'],
+            'label' => awe_lang('All Services'),
+            'id' => 'heading-services'
+        ],
+        [
+            'type' => 'parent',
+            'label' => awe_lang('Homes'),
+            'service' => 'home',
+            'icon' => '006_home',
+            'child' => [
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Add new Home'),
+                    'screen' => 'add-new-home',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('My Homes'),
+                    'screen' => 'my-home',
+                ],
+                [
+                    'type' => 'hidden',
+                    'label' => awe_lang('Edit Home'),
+                    'screen' => 'edit-home',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Reviews'),
+                    'screen' => 'review/home',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Types'),
+                    'screen' => 'get-terms/home-type',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Amenities'),
+                    'screen' => 'get-terms/home-amenity',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Facilities'),
+                    'screen' => 'get-terms/home-facilities',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Distances'),
+                    'screen' => 'get-terms/home-distance',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Advanced Facilities Search'),
+                    'screen' => 'get-terms/home-advanced',
+                ],
+            ],
+            'screen' => ['add-new-home', 'my-home', 'edit-home', 'review/home', 'get-terms/home-type', 'get-terms/home-amenity', 'get-terms/home-facilities']
+        ],
+        [
+            'type' => 'parent',
+            'label' => awe_lang('Experiences'),
+            'service' => 'experience',
+            'icon' => '001_tour',
+            'child' => [
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Add new Experience'),
+                    'screen' => 'add-new-experience',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('My Experiences'),
+                    'screen' => 'my-experience',
+                ],
+                [
+                    'type' => 'hidden',
+                    'label' => awe_lang('Edit Experience'),
+                    'screen' => 'edit-experience',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Reviews'),
+                    'screen' => 'review/experience',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Types'),
+                    'screen' => 'get-terms/experience-type',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Languages'),
+                    'screen' => 'get-terms/experience-languages',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Inclusions'),
+                    'screen' => 'get-terms/experience-inclusions',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Exclusions'),
+                    'screen' => 'get-terms/experience-exclusions',
+                ],
+            ],
+            'screen' => ['add-new-experience', 'my-experience', 'edit-experience', 'review/experience', 'get-terms/experience-type', 'get-terms/experience-languages', 'get-terms/experience-inclusions', 'get-terms/experience-exclusions']
+        ],
+        [
+            'type' => 'parent',
+            'label' => awe_lang('Car'),
+            'service' => 'car',
+            'icon' => '003_steering_wheel',
+            'child' => [
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Add new Car'),
+                    'screen' => 'add-new-car',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('My Cars'),
+                    'screen' => 'my-car',
+                ],
+                [
+                    'type' => 'hidden',
+                    'label' => awe_lang('Edit Car'),
+                    'screen' => 'edit-car',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Types'),
+                    'screen' => 'get-terms/car-type',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Equipments'),
+                    'screen' => 'get-terms/car-equipment',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Features'),
+                    'screen' => 'get-terms/car-feature',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Reviews'),
+                    'screen' => 'review/car',
+                ],
+            ],
+            'screen' => ['add-new-car', 'my-car', 'edit-car', 'review/car', 'get-terms/car-type', 'get-terms/car-equipment', 'get-terms/car-feature']
+        ],
+        [
+            'type' => 'heading',
+            'label' => awe_lang('Reservation'),
+            'id' => 'heading-reservation'
+        ],
+        [
+            'type' => 'item',
+            'label' => awe_lang('Reservation'),
+            'icon' => '007_bars',
+            'screen' => 'all-booking',
+        ],
+        [
+            'type' => 'heading',
+            'label' => awe_lang('System Setting'),
+            'id' => 'heading-system-setting'
+        ],
+        // [
+        //     'type' => 'item',
+        //     'label' => awe_lang('Settings'),
+        //     'icon' => '008_settings',
+        //     'screen' => 'settings',
+        // ],
+        [
+            'type' => 'item',
+            'label' => awe_lang('Menus'),
+            'icon' => '009_menu',
+            'screen' => 'menus',
+        ],
+        [
+            'type' => 'item',
+            'label' => awe_lang('Media'),
+            'icon' => '010_gallery',
+            'screen' => 'media',
+        ],
+        [
+            'type' => 'parent',
+            'label' => awe_lang('Users'),
+            'icon' => '002_user',
+            'child' => [
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('All Users'),
+                    'screen' => 'user-management',
+                ],
+                [
+                    'type' => 'item',
+                    'label' => awe_lang('Registration'),
+                    'screen' => 'user-registration',
+                ],
+            ],
+            'screen' => ['user-management', 'user-registration'],
+        ],
+        [
+            'type' => 'item',
+            'label' => awe_lang('Coupons'),
+            'icon' => '012_voucher',
+            'screen' => 'coupon',
+        ],
+        [
+            'type' => 'item',
+            'label' => awe_lang('Payouts'),
+            'icon' => 'transfer',
+            'screen' => 'payout',
+        ],
+        [
+            'type' => 'heading',
+            'label' => awe_lang('Tools'),
+            'id' => 'heading-tools'
+        ],
+        [
+            'type' => 'item',
+            'label' => awe_lang('Languages'),
+            'icon' => '001_language',
+            'screen' => 'language',
+        ],
+        [
+            'type' => 'item',
+            'label' => awe_lang('Translation'),
+            'icon' => '002_translation',
+            'screen' => 'translation',
+        ],
+        // [
+        //     'type' => 'item',
+        //     'label' => awe_lang('Addons'),
+        //     'icon' => 'web_plugin',
+        //     'screen' => 'addons',
+        // ],
+        // [
+        //     'type' => 'parent',
+        //     'label' => awe_lang('Advanced'),
+        //     'id' => 'advanced',
+        //     'icon' => '001_repair',
+        //     'child' => [
+        //         [
+        //             'type' => 'item',
+        //             'label' => awe_lang('Import Font Icon'),
+        //             'screen' => 'import-fonts'
+        //         ],
+        //         [
+        //             'type' => 'item',
+        //             'label' => awe_lang('Email Checker'),
+        //             'screen' => 'email-checker'
+        //         ],
+        //         [
+        //             'type' => 'item',
+        //             'label' => awe_lang('TinyPNG Compress'),
+        //             'screen' => 'tinypng-compress'
+        //         ],
+        //         [
+        //             'type' => 'item',
+        //             'label' => awe_lang('Sitemap'),
+        //             'screen' => 'site-map'
+        //         ]
+        //     ],
+        //     'screen' => ['import-fonts', 'email-checker', 'tinypng-compress']
+        // ],
+        // [
+        //     'type' => 'item',
+        //     'label' => awe_lang('APIs'),
+        //     'icon' => '001_api',
+        //     'screen' => 'api-settings'
+        // ]
+    ],
     'partner_menu' => [
         [
             'type' => 'heading',
@@ -891,14 +1253,14 @@ return [
                 'id' => 'is_featured',
                 'label' => awe_lang('is Featured?'),
                 'type' => 'on_off',
-                'permission' => ['administrator'],//['administrator', 'partner', 'customer']
+                'permission' => ['administrator', 'superadmin'],//['administrator', 'partner', 'customer']
                 'section' => 'detail_options'
             ],
             [
                 'id' => 'author',
                 'label' => awe_lang('Ownner'),
                 'type' => 'select',
-                'permission' => ['administrator'],//['administrator', 'partner', 'customer']
+                'permission' => ['administrator', 'superadmin'],//['administrator', 'partner', 'customer']
                 'layout' => 'col-12 col-md-6',
                 'break' => true,
                 'style' => 'wide',
@@ -1394,7 +1756,7 @@ return [
                 'id' => 'is_featured',
                 'label' => awe_lang('is Featured?'),
                 'type' => 'on_off',
-                'permission' => ['administrator'],
+                'permission' => ['administrator', 'superadmin'],
                 'section' => 'detail_options'
             ],
             [
@@ -1852,7 +2214,7 @@ return [
                 'id' => 'is_featured',
                 'label' => awe_lang('is Featured?'),
                 'type' => 'on_off',
-                'permission' => ['administrator'],
+                'permission' => ['administrator', 'superadmin'],
                 'layout' => 'col-12 col-md-6',
                 'section' => 'detail_options'
             ],

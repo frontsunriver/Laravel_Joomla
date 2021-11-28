@@ -64,7 +64,7 @@ class MailController extends Controller
 
     public function _emailChecker(Request $request)
     {
-        return view('dashboard.screens.administrator.email-checker');
+        return view('dashboard.screens.'.$this->getFolder().'.email-checker');
     }
 
     public function _emailCheckerPost(Request $request)

@@ -23,6 +23,8 @@ class Controller extends BaseController
             $folder = 'administrator';
         } elseif (Sentinel::inRole('partner')) {
             $folder = 'partner';
+        } elseif (Sentinel::inRole('superadmin')) {
+            $folder = 'superadmin';
         }
 
         return $folder;

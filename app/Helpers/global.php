@@ -354,6 +354,8 @@ function get_dashboard_folder()
         $folder = 'administrator';
     } elseif (Sentinel::inRole('partner')) {
         $folder = 'partner';
+    } elseif (Sentinel::inRole('superadmin')) {
+        $folder = 'superadmin';
     }
 
     return $folder;
@@ -473,8 +475,8 @@ function get_menu_dashboard()
         $menu = Config::get('awebooking.admin_menu');
     } elseif (Sentinel::inRole('partner')) {
         $menu = Config::get('awebooking.partner_menu');
-    } else {
-        $menu = Config::get('awebooking.customer_menu');
+    } else if(Sentinel::inRole('superadmin')){
+        $menu = Config::get('awebooking.superadmin_menu');
     }
 
     return $menu;

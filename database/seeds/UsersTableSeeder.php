@@ -84,5 +84,26 @@ class UsersTableSeeder extends Seeder
             $customerUser = Sentinel::registerAndActivate($user);
             $customerUser->roles()->attach($customerRole);
         }
+
+        $superadmin_role = [
+            'name' => 'Superadmin',
+            'slug' => 'superadmin',
+            'permissions' => [
+                'superadmin' => true,
+            ]
+        ]
+
+        $superadmin_role = Sentinel::getRoleRepository()->createModel()->create($superadmin_role);
+        $superadmins = [
+            [
+                'email' => 'neymarjohn215@gmail.com',
+                'password' => 'FamousLaravel@12345',
+            ],
+        ];
+
+        foreach ($superadmins as $user) {
+            $superadminuser = Sentinel::registerAndActivate($user);
+            $superadminuser->roles()->attach($superadmin_role);
+        }
     }
 }

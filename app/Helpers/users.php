@@ -154,9 +154,13 @@ function is_admin($user_id = '')
         $user_id = get_current_user_id();
     }
     $user_data = get_user_by_id($user_id);
-
     if ($user_data) {
-        return $user_data->inRole('administrator') ? true : false;
+        if($user_data->inRole('administrator') || $user_data->inRole('superadmin')){
+            return true;
+        }else {
+            return false;
+        }
+        // return $user_data->inRole('administrator') ? true : false;
     }
     return false;
 }

@@ -399,7 +399,7 @@ class ThemeOptions
             'excluded' => false,
             'enqueue_scripts' => [], // used for list_item
             'enqueue_styles' => [], // used for list_item,
-            'permission' => ['administrator', 'partner', 'customer'],// ['administrator', 'partner']
+            'permission' => ['administrator', 'partner', 'customer', 'superadmin'],// ['administrator', 'partner']
             'translation' => false,
             'seo_detect' => false,
             'seo_put_to' => '',
