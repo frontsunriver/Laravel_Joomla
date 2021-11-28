@@ -171,7 +171,7 @@ enqueue_script('iconrange-slider');
                             ?>
                             <div class="item-filter-wrapper" data-type="{{ $term_name }}">
                                 @if (!empty($term['items']) && $term['label'] != 'Home Facilities Fields')
-                                    <div class="label">@if($term['label'] == 'Home Amenity') Amenity @else {{ $term['label'] }} @endif</div>
+                                <div class="label">@if($term['label'] == 'Home Amenity') Amenity @elseif($term['label'] == 'Home Type') Type @else {{ $term['label'] }} @endif</div>
                                     <?php
                                         $idName = str_replace(' ', '-', str_replace(['[', ']'], '_', $term['label']));
                                     ?>
