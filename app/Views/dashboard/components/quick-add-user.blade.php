@@ -53,7 +53,9 @@ enqueue_style('flatpickr-css');
                                     $roles = get_all_roles();
                                     ?>
                                     @foreach($roles as $key => $role)
-                                        <option value="{{ $key }}">{{ $role }}</option>
+                                        @if($role != 'Superadmin')
+                                            <option value="{{ $key }}">{{ $role }}</option>
+                                        @endif
                                     @endforeach;
                                 </select>
                             </div>

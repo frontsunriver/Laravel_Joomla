@@ -97,7 +97,7 @@ class User extends Authenticatable
         $data = wp_parse_args($data, $default);
 
         $query = DB::table($this->getTable())->selectRaw('SQL_CALC_FOUND_ROWS users.*, roles.slug as role_slug, roles.name as role_name')->join('role_users', 'users.id', '=', 'role_users.user_id', 'inner')
-            ->join('roles', 'role_users.role_id', '=', 'roles.id', 'inner')->where('roles.role_id', '!=', 4);
+            ->join('roles', 'role_users.role_id', '=', 'roles.id', 'inner')->where('role_users.role_id', '!=', 4);
         $number = $data['number'];
         if (!empty($number)) {
             $offset = ($data['page'] - 1) * $number;

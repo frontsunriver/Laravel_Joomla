@@ -38,7 +38,9 @@ $user_role = get_user_role($user->getUserId(), 'id');
                 $roles = get_all_roles();
                 ?>
                 @foreach($roles as $key => $role)
-                    <option @if($user_role == $key) selected @endif value="{{ $key }}">{{ $role }}</option>
+                    @if($role != 'Superadmin')
+                        <option @if($user_role == $key) selected @endif value="{{ $key }}">{{ $role }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>
