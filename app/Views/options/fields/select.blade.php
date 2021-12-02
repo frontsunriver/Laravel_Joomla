@@ -85,7 +85,7 @@ enqueue_style('nice-select-css');
         }else {
             $allUsers = get_all_user_list();
             foreach ($allUsers as $val) { ?>
-                <option value="{{$val->id}}" @if($val->id == $value) selected @endif>{{$val->first_name}}</option>
+                <option value="{{$val->id}}" @if($val->id == $value) selected @endif>{{$val->email}}</option>
             <?php }
         }
         ?>

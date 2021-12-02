@@ -1553,10 +1553,10 @@ class HomeController extends Controller
             // if(in_array($idName, $_POST)) {
             if(isset($_POST[$idName])){
                 $tmp[$value['title']] = $_POST[$idName];
+                unset($_POST[$idName]);
             }else {
                 $tmp[$value['title']] = null;
             }
-            
             // $tmp[$value['title']] = request()->get($idName);
         }
 
@@ -1610,7 +1610,7 @@ class HomeController extends Controller
                     if ($field['field_type'] == 'meta') {
                         $data[$field['id']] = $value;
                     } elseif ($field['field_type'] == 'taxonomy') {
-                        if(explode(':', $field['choices'])[1] != 'home-distance'){
+                        if(explode(':', $field['choices'])[1] != 'home-distance' && explode(':', $field['choices'])[1] != 'home-facilities'){
                             $value = (array)$value;
                             $taxonomy = explode(':', $field['choices'])[1];
                             $termRelation = new TermRelation();

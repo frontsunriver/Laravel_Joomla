@@ -38,6 +38,7 @@ global $post;
                 $special_flag = true;
                 $item->first_minute = 'on';
                 $item->last_minute = 'on';
+                $item->discount_percent = $value->discount_percent;
                 array_push($total_array, $item);
                 break;
             }
@@ -304,52 +305,29 @@ global $post;
                         @if (!empty($post->period_stay_date['total']))
                             <tbody>
                             @foreach ($total_array as $item)
+                                <?php
+                                    $base_price = 0;
+                                    $i = strtotime(date('d.m.Y'));
+                                    $special_flag = false;
+                                    
+                                    if($item->first_minute == 'on' || $item->last_minute == 'on'){
+                                        $special_flag = true;
+                                        $base_price = $post->base_price;
+                                        $special_price = $post->base_price * ($item->discount_percent / 100);
+                                    }else if($item->price == 0 && $item->price_per_night > 0){
+                                        $base_price = $item->price_per_night;
+                                    }else {
+                                        $base_price = $item->price;    
+                                    }
+                                ?>
                                 <tr>
-                                    <td>{{ date('d.m.Y.', $item->start_time) }}</td>
-                                    <td>{{ date('d.m.Y.', $item->end_time) }}</td>
+                                    <td>@if($special_flag) <p style="color:#f1556c; margin-top: -15px;"> Special Offer</p> @endif<p style="color:@if($special_flag)#f1556c; @else #000; @endif">{{ date('d.m.Y.', $item->start_time) }} </p></td>
+                                    <td><p style="color:@if($special_flag)#f1556c; @else #000; @endif">{{ date('d.m.Y.', $item->end_time) }}</p></td>
                                     <td>
-                                    <?php
-                                        $base_price = 0;
-                                        $i = strtotime(date('d.m.Y'));
-                                        $special_flag = false;
-                                        
-                                        if($item->first_minute == 'on' || $item->last_minute == 'on'){
-                                            $special_flag = true;
-                                            $base_price = $post->base_price;
-                                        }else if($item->price == 0 && $item->price_per_night > 0){
-                                            $base_price = $item->price_per_night;
-                                        }else {
-                                            $base_price = $item->price;    
-                                        }
-                                        echo convert_price($base_price, '€', true, array('unit' => 'EUR'));
-                                    ?>
-                                    <td>@if($special_flag) {{$post->min_stay}} @else {{ $item->stay_min_date }} @endif</td>
+                                        <p style="color:@if($special_flag)#f1556c; @else #000; @endif">@if($special_flag) {{convert_price(($base_price - $special_price), '€', true, array('unit' => 'EUR')) }} @else {{convert_price($base_price, '€', true, array('unit' => 'EUR')) }} @endif</p></td>
+                                    <td>@if($special_flag) <p style="color:#f1556c;"> {{$post->min_stay}} </p> @else <p style="color:#000;">{{ $item->stay_min_date }} </p>  @endif</td>
                                     <td>
-                                        <?php
-                                            $base_price = 0;
-                                            $special_price = 0;
-                                            $i = strtotime(date('d.m.Y'));
-                                            $special_flag = false;
-                                            if($item->first_minute == 'on' || $item->last_minute == 'on'){
-                                                $special_flag = true;
-                                                $base_price = $post->base_price;
-                                                $special_price = $post->base_price * ($item->discount_percent / 100);
-                                            }else if($item->price == 0 && $item->price_per_night > 0){
-                                                $base_price = $item->price_per_night;
-                                            }else {
-                                                $base_price = $item->price;
-                                            }
-                                            if($special_flag){
-                                                ?>
-                                                    <p style="text-decoration: line-through; margin-top: -20px;">{{convert_price($base_price * 7, '€', true, array('unit' => 'EUR')) }} </p>
-                                                    <p style="color:#f1556c">{{convert_price(($base_price - $special_price) * 7, '€', true, array('unit' => 'EUR')) }} </p>
-                                                <?php
-                                            }else {
-                                                ?>
-                                                    <p>{{convert_price($base_price * 7, '€', true, array('unit' => 'EUR')) }} </p>
-                                                <?php
-                                            }
-                                        ?>
+                                        <p style="color:@if($special_flag)#f1556c; @else #000; @endif">@if($special_flag) {{convert_price(($base_price - $special_price) * 7, '€', true, array('unit' => 'EUR')) }} @else {{convert_price($base_price * 7, '€', true, array('unit' => 'EUR')) }} @endif</p></td>
                                     </td>
                                 </tr>
                             @endforeach
