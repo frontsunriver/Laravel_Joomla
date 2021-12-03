@@ -36,10 +36,13 @@ global $post;
         foreach ($specialPrices as $value) {
             if($value->start_time >= $item->start_time && $value->end_time <= $item->end_time){
                 $special_flag = true;
-                $item->first_minute = 'on';
-                $item->last_minute = 'on';
-                $item->discount_percent = $value->discount_percent;
+                // $item->first_minute = 'on';
+                // $item->last_minute = 'on';
+                // $item->discount_percent = $value->discount_percent;
+                $value->price_per_night = $item->price_per_night;
+                $value->stay_min_date = $item->stay_min_date;
                 array_push($total_array, $item);
+                array_push($total_array, $value);
                 break;
             }
         }
@@ -321,11 +324,11 @@ global $post;
                                     }
                                 ?>
                                 <tr>
-                                    <td>@if($special_flag) <p style="color:#f1556c; margin-top: -15px;"> Special Offer</p> @endif<p style="color:@if($special_flag)#f1556c; @else #000; @endif">{{ date('d.m.Y.', $item->start_time) }} </p></td>
+                                    <td>@if($special_flag) <p style="color:#f1556c; margin-top: -10px;line-height: 0px;"> Special Offer</p> @endif<p style="color:@if($special_flag)#f1556c; @else #000; @endif">{{ date('d.m.Y.', $item->start_time) }} </p></td>
                                     <td><p style="color:@if($special_flag)#f1556c; @else #000; @endif">{{ date('d.m.Y.', $item->end_time) }}</p></td>
                                     <td>
-                                        <p style="color:@if($special_flag)#f1556c; @else #000; @endif">@if($special_flag) {{convert_price(($base_price - $special_price), '€', true, array('unit' => 'EUR')) }} @else {{convert_price($base_price, '€', true, array('unit' => 'EUR')) }} @endif</p></td>
-                                    <td>@if($special_flag) <p style="color:#f1556c;"> {{$post->min_stay}} </p> @else <p style="color:#000;">{{ $item->stay_min_date }} </p>  @endif</td>
+                                        @if($special_flag) <p style="color:#000; margin-top: -10px;text-decoration: line-through; line-height: 0px;"> {{convert_price(($base_price), '€', true, array('unit' => 'EUR')) }}</p> @endif <p style="color:@if($special_flag)#f1556c; @else #000; @endif">@if($special_flag) {{convert_price(($base_price - $special_price), '€', true, array('unit' => 'EUR')) }} @else {{convert_price($base_price, '€', true, array('unit' => 'EUR')) }} @endif</p></td>
+                                    <td>@if($special_flag) <p style="color:#f1556c;"> {{$item->stay_min_date}} </p> @else <p style="color:#000;">{{ $item->stay_min_date }} </p>  @endif</td>
                                     <td>
                                         <p style="color:@if($special_flag)#f1556c; @else #000; @endif">@if($special_flag) {{convert_price(($base_price - $special_price) * 7, '€', true, array('unit' => 'EUR')) }} @else {{convert_price($base_price * 7, '€', true, array('unit' => 'EUR')) }} @endif</p></td>
                                     </td>
