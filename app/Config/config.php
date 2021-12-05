@@ -1258,7 +1258,7 @@ return [
             ],
             [
                 'id' => 'author',
-                'label' => awe_lang('Ownner'),
+                'label' => awe_lang('Owner'),
                 'type' => 'select',
                 'permission' => ['administrator', 'superadmin'],//['administrator', 'partner', 'customer']
                 'layout' => 'col-12 col-md-6',

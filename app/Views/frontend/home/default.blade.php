@@ -315,8 +315,8 @@ global $post;
                                     
                                     if($item->first_minute == 'on' || $item->last_minute == 'on'){
                                         $special_flag = true;
-                                        $base_price = $post->base_price;
-                                        $special_price = $post->base_price * ($item->discount_percent / 100);
+                                        $base_price = $item->price_per_night;
+                                        $special_price = $item->price_per_night * ($item->discount_percent / 100);
                                     }else if($item->price == 0 && $item->price_per_night > 0){
                                         $base_price = $item->price_per_night;
                                     }else {

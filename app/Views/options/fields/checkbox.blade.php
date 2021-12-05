@@ -17,7 +17,7 @@ $facilities_check = array();
      data-operator="{{ $operation }}"
      class="form-group mb-3 col {{ $layout }} field-{{ $type }}">
     <label for="{{ $idName }}">
-        {{ __($label) }}
+        {{ htmlspecialchars_decode($label) }}
         @if (!empty($desc))
             <i class="dripicons-information field-desc" data-toggle="popover" data-placement="right"
                data-trigger="hover"
